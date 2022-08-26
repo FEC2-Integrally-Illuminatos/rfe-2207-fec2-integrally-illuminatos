@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../../assets/stylesOverview.css';
 import axios from 'axios';
 import Price from './price.jsx';
+import StarRating from './starRating.jsx';
 
 
 const ProductInfo = (props) => {
@@ -16,6 +17,7 @@ const ProductInfo = (props) => {
 
   return (
     <div>
+      <StarRating />
       <div>{product.category}</div>
       <div>{product.name}</div>
       <Price {...style}/>

@@ -1,5 +1,4 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import ImageGallery from 'react-image-gallery';
 import '../../assets/stylesOverview.css';
 
@@ -22,7 +21,9 @@ const MainCarousel = (props) => {
   ];
 
   return (
-    <ImageGallery items={images} useBrowserFullscreen={false} showPlayButton={false} thumbnailPosition={'left'} disableThumbnailScroll={true}/>
+    <div>
+      <ImageGallery items={images} useBrowserFullscreen={false} showPlayButton={false} thumbnailPosition={'left'} disableThumbnailScroll={true}/>
+    </div>
   )
 }
 
