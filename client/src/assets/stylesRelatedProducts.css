@@ -2,11 +2,19 @@
   width: 80%;
 }
 
-.Carousel__Container-sc-hyhecw-0 button {
+.Carousel__Container-sc-hyhecw-0 .card {
   position: relative;
-  top: 10%;
-  left: 90%;
 }
 
-/* #related_products {
-} */
+.Carousel__Container-sc-hyhecw-0 .card .star {
+  position: absolute;
+  top: 5%;
+  left: 85%;
+}
+
+.Carousel__Container-sc-hyhecw-0 .card .remove {
+  position: absolute;
+  top: 5%;
+  left: 85%;
+}
+
