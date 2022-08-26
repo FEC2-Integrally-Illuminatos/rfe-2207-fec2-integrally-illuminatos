@@ -10,9 +10,6 @@ module.exports = {
     filename: "bundle.js"
   },
   module: {
-    plugins: [
-      new Dotenv()
-    ],
     rules: [
       {
         test: /\.(jsx|js)$/,
