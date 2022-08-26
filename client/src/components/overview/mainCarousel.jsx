@@ -6,9 +6,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const MainCarousel = () => {
   return (
-    <div className='mainImg'>
+    <div className='mainImg' >
 
-<Carousel slide={false} variant="dark" data-interval='false'>
+    <Carousel slide={false} variant='dark' interval={null} indicators={true}>
       <Carousel.Item>
         <img
           className="d-block w-100"
