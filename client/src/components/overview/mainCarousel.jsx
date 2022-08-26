@@ -8,7 +8,7 @@ const MainCarousel = () => {
   return (
     <div className='mainImg'>
 
-<Carousel slide={false} variant="dark">
+<Carousel slide={false} variant="dark" data-interval='false'>
       <Carousel.Item>
         <img
           className="d-block w-100"
