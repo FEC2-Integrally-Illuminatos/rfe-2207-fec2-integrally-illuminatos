@@ -1,21 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import '../../assets/stylesOverview.css';
 import axios from 'axios';
+import Price from './price.jsx';
 
 
-const ProductInfo = () => {
-  const [state, setState] = useState({});
+const ProductInfo = (props) => {
+  const [product, setProduct] = useState({});
+  const [style, setStyle] = useState({});
 
   useEffect(() => {
-    axios.get('/products', {params: {product_id: 37331}})
-      .then((data) => {
-        console.log(data.data);
-      });
-  }, [])
+    setProduct(props);
+    setStyle(props.styles[0]);
+  }, [props]);
+
 
   return (
     <div>
-
+      <div>{product.category}</div>
+      <div>{product.name}</div>
+      <Price {...style}/>
     </div>
   )
 }

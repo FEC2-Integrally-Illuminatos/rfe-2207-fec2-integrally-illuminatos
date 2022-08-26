@@ -18,9 +18,16 @@ app.use('/', (req, res, next) => {
 //GET REQUESTS
 app.get('/products', (req, res) => {
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.query.product_id}`, {headers: {Authorization: process.env.API_KEY}})
-    .then((data) => {
-      res.status(200).json(data.data);
-    })
+    .then((prodData) => {
+      axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.query.product_id}/styles`, {headers: {Authorization: process.env.API_KEY}})
+        .then((data) => {
+          prodData.data.styles = data.data.results;
+          res.status(200).json(prodData.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+     })
     .catch((err) => {
       console.log(err);
     });

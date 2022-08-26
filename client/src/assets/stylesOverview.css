@@ -4,6 +4,8 @@
     height:auto;
   }
 } */
+@import "~react-image-gallery/styles/css/image-gallery.css";
+
 
 .mainImg {
   display: flex;
