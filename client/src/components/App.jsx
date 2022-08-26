@@ -1,7 +1,10 @@
 import React from 'react';
+import RelatedProducts from './related_products/RelatedProducts.jsx';
 
 const App = () => {
-  return <h1>Hello World</h1>
+  return (
+    <RelatedProducts />
+  )
 }
 
 export default App;
