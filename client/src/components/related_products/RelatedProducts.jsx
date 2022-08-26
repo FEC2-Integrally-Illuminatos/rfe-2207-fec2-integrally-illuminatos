@@ -6,7 +6,9 @@ import ProductList from './ProductList.jsx';
 const RelatedProducts = () => {
   return (
     <div id="related_products">
+      <h2>Related Products</h2>
       <ProductList />
+      <h2>Your Outfit</h2>
       <OutfitList />
     </div>
   )
