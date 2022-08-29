@@ -4,7 +4,7 @@ import StarRatings from 'react-star-ratings';
 
 
 const StarRating = (props) => {
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState(props);
   const [rating, setRating] = useState(0);
 
   useEffect(() => {

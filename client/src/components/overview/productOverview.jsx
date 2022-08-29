@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 
 
 const ProductOverview = (props) => {
-  const [product, setStyle] = useState(props);
+  const [product, setStyle] = useState(props.product);
 
   useEffect(() => {
-    setStyle(props);
+    setStyle(props.product);
   }, [props]);
 
   if (product.description.length > 0) {

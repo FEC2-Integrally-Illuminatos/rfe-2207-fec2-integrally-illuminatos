@@ -9,29 +9,33 @@ import axios from 'axios';
 
 const Overview = (props) => {
   const [product, setProduct] = useState({});
+  const [style, setStyle] = useState({});
 
   useEffect(() => {
-    axios.get('/products', {params: {product_id: 37331}})
+    axios.get('/products', {params: {product_id: 37311}})
       .then((data) => {
         setProduct(data.data);
+        setStyle(data.data.styles[0]);
       })
   }, [])
 
   useEffect(() => {
-    console.log(product);
+    console.log(product, style);
   }, [product])
+
+//CREATE CLICK HANDLER FOR SETTING SELECTED STYLE
 
 if (Object.keys(product).length > 0 ) {
   return (
     <div className='mainImg'>
       <div>
-        <MainCarousel {...product}/>
+        <MainCarousel product={product} style={style}/>
       </div>
       <div>
-        <ProductInfo {...product}/>
+        <ProductInfo product={product} style={style}/>
       </div>
       <div>
-        <ProductOverview {...product}/>
+        <ProductOverview product={product} style={style}/>
       </div>
     </div>
     )

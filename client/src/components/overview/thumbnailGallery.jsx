@@ -3,31 +3,25 @@ import StyleThumbnail from './styleThumbnail.jsx';
 
 
 const ThumbnailGallery = (props) => {
-  const [styles, setStyles] = useState([]);
-  const [style, setStyle] = useState({});
+  const [styles, setStyles] = useState(props.thumbnailArray);
+  const [style, setStyle] = useState(props.style);
   const [active, setActive] = useState(false);
 
   useEffect(() => {
     setStyle(props.style);
-    let tempStyles = [];
-    if (props.product.styles) {
-      props.product.styles.forEach((obj) => {
-        tempStyles.push(obj.photos[0].thumbnail_url)
-      })
-    };
-    setStyles(tempStyles);
+    setStyles(props.thumbnailArray);
   }, [props]);
 
 
-  if (JSON.stringify(style) !== JSON.stringify({})) {
+  // if (JSON.stringify(style) !== JSON.stringify({})) {
       return (
         <div>
-          {styles.map(currentStyle => (
-            <StyleThumbnail currentStyle={currentStyle}/>
+          {styles.map((currentStyle, key) => (
+            <StyleThumbnail currentStyle={currentStyle} key={key}/>
           ))}
         </div>
       );
-  }
+  // }
 }
 
 

@@ -9,15 +9,30 @@ import ThumbnailGallery from './thumbnailGallery.jsx';
 
 
 const ProductInfo = (props) => {
-  const [product, setProduct] = useState({});
-  const [style, setStyle] = useState({});
+  const [product, setProduct] = useState(props.product);
+  const [style, setStyle] = useState(props.style);
+  const [thumbnailArray, setThumbnailArray] = useState(() => {
+    let tempStyles = [];
+    props.product.styles.forEach((obj) => {
+      tempStyles.push(obj.photos[0].thumbnail_url)
+    })
+    return tempStyles;
+  });
 
   useEffect(() => {
-    setProduct(props);
-    setStyle(props.styles[0]);
+    setProduct(props.product);
+    setStyle(props.style);
+    setThumbnailArray(() => {
+      let tempStyles = [];
+      props.product.styles.forEach((obj) => {
+        tempStyles.push(obj.photos[0].thumbnail_url)
+      })
+      return tempStyles;
+      });
   }, [props]);
 
-  //NEED TO MAKE HANDLE CLICK FOR STYLE AND PASS DOWN
+
+  //NEED TO PASS DOWN CLICK HANDLER FOR STYLE TO CHILDREN
 
   return (
     <div>
@@ -31,7 +46,7 @@ const ProductInfo = (props) => {
         <Price {...style}/>
         <StyleName {...style}/>
         {/* <StyleThumbnail product={product} style={style}/> */}
-        <ThumbnailGallery product={product} style={style}/>
+        <ThumbnailGallery product={product} thumbnailArray={thumbnailArray}/>
     </div>
   )
 }
