@@ -1,11 +1,11 @@
 import React from 'react';
-import Question from './faq/Question.jsx';
+import Wrapper from './faq/QuestionWrapper.jsx';
 
 const App = () => {
   return (
     <>
     <h1>Hello World</h1>
-    <Question/>
+    <Wrapper/>
     </>
   )
 }
