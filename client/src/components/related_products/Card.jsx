@@ -1,6 +1,7 @@
 import React from 'react';
 
-const Card = ({type}) => {
+const Card = ({type, product}) => {
+  console.log('product in card view', product)
   if (type === 'Product') {
     return (
       <div className="card">
