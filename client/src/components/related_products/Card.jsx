@@ -7,9 +7,11 @@ const Card = ({type, product}) => {
       <div className="card">
         <button className="star">*</button>
         <img width="100%" src="https://picsum.photos/800/600?random=1" />
-        <p className="category">Category</p>
-        <h1 className="name">Expanded Product Name With Extra Text</h1>
-        <p className="price">$123</p>
+        <p className="category">{product.category}</p>
+        <h1 className="name">{product.name}</h1>
+        {/* TODO: visual bussiness document shows "expanded product name with extra text" */}
+        <p className="price">${product.default_price}</p>
+        {/* TODO: handle sale prices */}
         <div>Star Component</div>
       </div>
     )

@@ -8,6 +8,7 @@ const RelatedProducts = (/*will take product id as prop*/) => {
   const [relatedProducts, setRelatedProducts] = useState([]);
 
   const [productNum, setProductNum] = useState(37331);
+
   useEffect(() => {
     axios.get('/relatedProducts', {params: {productID: productNum}})
       .then((response) => setRelatedProducts(response.data));
