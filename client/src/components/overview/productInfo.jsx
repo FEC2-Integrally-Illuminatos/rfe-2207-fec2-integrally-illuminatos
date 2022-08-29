@@ -3,6 +3,8 @@ import '../../assets/stylesOverview.css';
 import axios from 'axios';
 import Price from './price.jsx';
 import StarRating from './starRating.jsx';
+import StyleName from './styleName.jsx';
+import StyleThumbnail from './styleThumbnail.jsx';
 
 
 const ProductInfo = (props) => {
@@ -14,13 +16,20 @@ const ProductInfo = (props) => {
     setStyle(props.styles[0]);
   }, [props]);
 
+  //NEED TO MAKE HANDLE CLICK FOR STYLE AND PASS DOWN
 
   return (
     <div>
-      <StarRating {...product}/>
-      <div>{product.category}</div>
-      <div>{product.name}</div>
-      <Price {...style}/>
+        <StarRating {...product}/>
+      <div>
+        {product.category}
+        </div>
+      <div>
+        {product.name}
+      </div>
+        <Price {...style}/>
+        <StyleName {...style}/>
+        <StyleThumbnail product={product} style={style}/>
     </div>
   )
 }

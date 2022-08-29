@@ -11,7 +11,7 @@ const Overview = (props) => {
   const [product, setProduct] = useState({});
 
   useEffect(() => {
-    axios.get('/products', {params: {product_id: 37331}})
+    axios.get('/products', {params: {product_id: 37800}})
       .then((data) => {
         setProduct(data.data);
       })
