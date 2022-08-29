@@ -13,7 +13,7 @@ const Overview = (props) => {
   const [style, setStyle] = useState({});
 
   useEffect(() => {
-    axios.get('/products', {params: {product_id: 37311}})
+    axios.get('/products', {params: {product_id: 37314}})
       .then((data) => {
         setProduct(data.data);
         setStyle(data.data.styles[0]);

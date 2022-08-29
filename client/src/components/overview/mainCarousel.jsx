@@ -15,16 +15,16 @@ const MainCarousel = (props) => {
 
   const images = [
     {
-      original: 'https://picsum.photos/id/1018/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1018/250/150/',
+      original: style.photos[0].url,
+      thumbnail: style.photos[0].thumbnail_url,
     },
     {
-      original: 'https://picsum.photos/id/1015/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1015/250/150/',
+      original: style.photos[1].url,
+      thumbnail: style.photos[1].thumbnail_url,
     },
     {
-      original: 'https://picsum.photos/id/1019/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1019/250/150/',
+      original: style.photos[2].url,
+      thumbnail: style.photos[2].thumbnail_url,
     },
   ];
 

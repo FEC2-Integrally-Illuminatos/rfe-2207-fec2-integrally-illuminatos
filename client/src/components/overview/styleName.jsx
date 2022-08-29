@@ -11,7 +11,7 @@ const StyleName = (props) => {
 
     return (
       <div>
-        Style > {style.name}
+        <h4>Style > {style.name}</h4>
       </div>
     );
 }

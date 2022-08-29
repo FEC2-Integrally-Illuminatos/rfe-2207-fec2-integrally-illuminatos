@@ -6,6 +6,7 @@ import StarRating from './starRating.jsx';
 import StyleName from './styleName.jsx';
 import StyleThumbnail from './styleThumbnail.jsx';
 import ThumbnailGallery from './thumbnailGallery.jsx';
+import SizeSelector from './sizeSelector.jsx';
 
 
 const ProductInfo = (props) => {
@@ -33,21 +34,23 @@ const ProductInfo = (props) => {
 
 
   //NEED TO PASS DOWN CLICK HANDLER FOR STYLE TO CHILDREN
+  //NEED TO PASS DOWN ON CHANGE FOR SIZE AND QUANTITY TO SIZESELECTOR AND QUANTIY SELECTOR
 
   return (
     <div>
         <StarRating {...product}/>
       <div>
-        {product.category}
+        <h4>{product.category}</h4>
         </div>
       <div>
-        {product.name}
+        <h4>{product.name}</h4>
       </div>
         <Price {...style}/>
         <StyleName {...style}/>
         {/* <StyleThumbnail product={product} style={style}/> */}
         <ThumbnailGallery product={product} thumbnailArray={thumbnailArray}/>
-    </div>
+        <SizeSelector product={product} style={style}/>
+     </div>
   )
 }
 

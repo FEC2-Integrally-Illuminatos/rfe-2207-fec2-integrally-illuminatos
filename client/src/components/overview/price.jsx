@@ -11,13 +11,13 @@ const Price = (props) => {
   if (style.sale_price === null || style.sale_price === undefined) {
     return (
       <div>
-        {style.original_price}
+        <h4>{style.original_price}</h4>
       </div>
     )
   } else {
     return (
       <div>
-        {style.sale_price}  {style.original_price}
+        <h4>{style.sale_price}  {style.original_price}</h4>
       </div>
     )
   };
