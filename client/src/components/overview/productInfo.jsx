@@ -5,6 +5,7 @@ import Price from './price.jsx';
 import StarRating from './starRating.jsx';
 import StyleName from './styleName.jsx';
 import StyleThumbnail from './styleThumbnail.jsx';
+import ThumbnailGallery from './thumbnailGallery.jsx';
 
 
 const ProductInfo = (props) => {
@@ -29,7 +30,8 @@ const ProductInfo = (props) => {
       </div>
         <Price {...style}/>
         <StyleName {...style}/>
-        <StyleThumbnail product={product} style={style}/>
+        {/* <StyleThumbnail product={product} style={style}/> */}
+        <ThumbnailGallery product={product} style={style}/>
     </div>
   )
 }
