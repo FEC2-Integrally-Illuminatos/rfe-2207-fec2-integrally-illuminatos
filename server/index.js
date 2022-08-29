@@ -22,14 +22,21 @@ app.get('/products', (req, res) => {
       axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.query.product_id}/styles`, {headers: {Authorization: process.env.API_KEY}})
         .then((data) => {
           prodData.data.styles = data.data.results;
-          res.status(200).json(prodData.data);
+          axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta/`, {params: {product_id: req.query.product_id}, headers: {Authorization: process.env.API_KEY}} )
+            .then((data) => {
+              prodData.data.ratings = data.data.ratings;
+              res.status(200).json(prodData.data);
+            })
+            .catch((err) => {
+              res.sendStatus(401);
+            })
         })
         .catch((err) => {
-          console.log(err);
+          res.sendStatus(401);
         })
      })
     .catch((err) => {
-      console.log(err);
+      res.sendStatus(401);
     });
 });
 

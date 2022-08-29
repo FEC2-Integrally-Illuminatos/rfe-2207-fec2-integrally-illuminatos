@@ -17,7 +17,7 @@ const ProductInfo = (props) => {
 
   return (
     <div>
-      <StarRating />
+      <StarRating {...product}/>
       <div>{product.category}</div>
       <div>{product.name}</div>
       <Price {...style}/>
