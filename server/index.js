@@ -15,14 +15,25 @@ app.use('/', (req, res, next) => {
   next();
 });
 
+let auth = {headers: {Authorization: process.env.API_KEY}};
+
 //GET REQUESTS
 app.get('/products', (req, res) => {
   //TODO:
-
 });
 
 app.get('/relatedProducts', (req, res) => {
-  //TODO:
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.query.productID}/related`, auth)
+    .then((relatedProds) => {
+      return relatedProds.data.map((product) => {
+        return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product}`, auth);
+      })
+    })
+    .then(promiseArr => Promise.all(promiseArr))
+    .then(values => res.status(200).send(values.map(product => product.data)))
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 app.get('/reviews', (req, res) => {

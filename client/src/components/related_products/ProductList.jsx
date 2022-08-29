@@ -1,6 +1,7 @@
 import React from 'react';
 import Carousel from 'better-react-carousel';
 import Card from './Card.jsx'
+import axios from 'axios';
 
 const ProductList = () => {
   return (
