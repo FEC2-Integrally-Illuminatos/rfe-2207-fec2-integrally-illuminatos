@@ -29,8 +29,18 @@ app.get('/relatedProducts', (req, res) => {
         return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product}`, auth);
       })
     })
-    .then(promiseArr => Promise.all(promiseArr))
-    .then(values => res.status(200).send(values.map(product => product.data)))
+    .then(promiseArr => Promise.all(promiseArr)) //returns an array of objects with object.data being the prod information
+    .then(products => {
+      return products.map((product) => {
+        return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product.data.id}/styles`, auth)
+        .then(response => {
+          let thumbnail = response.data.results.filter(style => style['default?'])[0].photos[0].thumbnail_url;
+          product.data.picture = thumbnail;
+          return product.data;
+        })
+      })
+    })
+    .then(promises => Promise.all(promises).then(productArr => res.status(200).send(productArr)))
     .catch((err) => {
       console.log(err);
     });

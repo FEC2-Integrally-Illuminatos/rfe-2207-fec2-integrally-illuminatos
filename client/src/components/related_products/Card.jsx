@@ -6,7 +6,7 @@ const Card = ({type, product}) => {
     return (
       <div className="card">
         <button className="star">*</button>
-        <img width="100%" src="https://picsum.photos/800/600?random=1" />
+        <img width="100%" src={product.picture} />
         <p className="category">{product.category}</p>
         <h1 className="name">{product.name}</h1>
         {/* TODO: visual bussiness document shows "expanded product name with extra text" */}
