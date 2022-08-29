@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Image from 'react-bootstrap/Image'
+import Image from 'react-bootstrap/Image';
+import { Checkmark } from 'react-checkmark';
 
 
 const StyleThumbnail = (props) => {

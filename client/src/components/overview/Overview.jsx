@@ -3,6 +3,7 @@ import '../../assets/stylesOverview.css';
 import MainCarousel from './mainCarousel.jsx';
 import ProductInfo from './productInfo.jsx';
 import ProductOverview from './productOverview.jsx';
+import MetaInfo from './metaInfo.jsx';
 import axios from 'axios';
 
 
@@ -36,6 +37,9 @@ if (Object.keys(product).length > 0 ) {
       </div>
       <div>
         <ProductOverview product={product} style={style}/>
+      </div>
+      <div>
+        <MetaInfo />
       </div>
     </div>
     )

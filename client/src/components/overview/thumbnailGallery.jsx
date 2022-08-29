@@ -12,9 +12,8 @@ const ThumbnailGallery = (props) => {
     setStyles(props.thumbnailArray);
   }, [props]);
 
-
-  // if (JSON.stringify(style) !== JSON.stringify({})) {
-      return (
+// DIV BELOW WILL NEED TO BE FLEXBOX THAT FITS 4 THUMBNAILS PER ROW
+  return (
         <div>
           {styles.map((currentStyle, key) => (
             <StyleThumbnail currentStyle={currentStyle} key={key}/>
