@@ -53,7 +53,6 @@ app.get('/qa/questions/:id', (req, res) => {
     })
   } else {
     axios.get(`${url}/qa/questions/${id}/answers`, {headers: headerOptions}).then((answers) => {
-      console.log(answers.data);
       res.status(200).json(answers.data)
     }).catch((err) => {
       console.log('Error getting answers: ', err)
@@ -118,15 +117,16 @@ app.post('/cart', (req, res) => {
 app.put('/qa/questions/:id', (req, res) => {
   let {id} = req.params;
   let {questionId, answerId} = req.body;
-  console.log(answerId)
+  console.log(answerId);
+  console.log(questionId)
   if (id === 'question_helpful') {
-    axios.put(`${url}/qa/questions/${questionId}/helpful`, {headers: headerOptions}).then(() => {
+    axios.put(`${url}/qa/questions/${questionId}/helpful`, {}, {headers: headerOptions}).then(() => {
       res.status(204).send('Question marked as helpful');
     }).catch((err) => {
       console.log('Error marking question helpful: ', err);
     })
   } else if (id === 'question_report') {
-    axios.put(`${url}/qa/questions/${questionId}/report`, {headers: headerOptions}).then(() => {
+    axios.put(`${url}/qa/questions/${questionId}/report`, {}, {headers: headerOptions}).then(() => {
       res.status(204).send('Question marked as reported');
     }).catch((err) => {
       console.log('Error reporting question: ', err);
@@ -138,7 +138,7 @@ app.put('/qa/questions/:id', (req, res) => {
       console.log('Error marking answer helpful: ', err);
     })
   } else if (id === 'answer_report') {
-    axios.put(`${url}/qa/answers/${answerId}/report`, {headers: headerOptions}).then(() => {
+    axios.put(`${url}/qa/answers/${answerId}/report`, {}, {headers: headerOptions}).then(() => {
       res.status(204).send('Answer marked as reported');
     }).catch((err) => {
       console.log('Error reporting answer: ', err);
