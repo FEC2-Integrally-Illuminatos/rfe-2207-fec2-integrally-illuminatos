@@ -30,9 +30,9 @@ const SizeSelector = (props) => {
     setSize(e.target.value);
   };
 
-
-  return (
-    <div>
+  if (!style.skus.null) {
+    return (
+      <div>
       <label>
       <select defaultValue={selectedSize} onChange={(e) => {handleChange(e);}}>
         <option value='default' disabled hidden>Select Size</option>
@@ -44,6 +44,17 @@ const SizeSelector = (props) => {
       <QuantitySelector quantity={quantity} selectedSize={selectedSize} quantityEnabled={quantityEnabled}/>
     </div>
   );
+  } else {
+    return (
+      <div>
+      <label>
+      <select defaultValue={selectedSize}>
+        <option value='default' disabled hidden>OUT OF STOCK</option>
+      </select>
+      </label>
+    </div>
+  );
+  }
 }
 
 
