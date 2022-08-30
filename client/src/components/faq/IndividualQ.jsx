@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import Answers from './AnswerDisplay.jsx';
+import Helpful from './Helpful.jsx';
 import axios from 'axios';
 
-export default function IndividualQ ({question, questionID, wantsMore}) {
+export default function IndividualQ ({question, questionID, wantsMore, count}) {
   question = question.includes('?') ? question : question +='?';
   const [allAnswers, setAllAnswers] = useState([]);
 
@@ -17,7 +18,7 @@ export default function IndividualQ ({question, questionID, wantsMore}) {
 
   return (
     <div>
-      Q: {question}
+      Q: {question} <Helpful questionId={questionID} count={count}/>
       {<Answers answers={allAnswers} wantsMore={wantsMore}/>}
       <br></br>
     </div>
