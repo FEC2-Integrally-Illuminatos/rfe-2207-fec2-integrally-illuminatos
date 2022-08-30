@@ -12,24 +12,13 @@ import SizeSelector from './sizeSelector.jsx';
 const ProductInfo = (props) => {
   const [product, setProduct] = useState(props.product);
   const [style, setStyle] = useState(props.style);
-  const [thumbnailArray, setThumbnailArray] = useState(() => {
-    let tempStyles = [];
-    props.product.styles.forEach((obj) => {
-      tempStyles.push(obj.photos[0].thumbnail_url)
-    })
-    return tempStyles;
-  });
+  const [styles, setStyles] = useState(props.styles);
+
 
   useEffect(() => {
     setProduct(props.product);
     setStyle(props.style);
-    setThumbnailArray(() => {
-      let tempStyles = [];
-      props.product.styles.forEach((obj) => {
-        tempStyles.push(obj.photos[0].thumbnail_url)
-      })
-      return tempStyles;
-      });
+    setStyles(props.styles);
   }, [props]);
 
 
@@ -48,7 +37,7 @@ const ProductInfo = (props) => {
         <Price {...style}/>
         <StyleName {...style}/>
         {/* <StyleThumbnail product={product} style={style}/> */}
-        <ThumbnailGallery product={product} thumbnailArray={thumbnailArray}/>
+        <ThumbnailGallery handleStyleChange={props.handleStyleChange} styles={styles}/>
         <SizeSelector product={product} style={style}/>
      </div>
   )

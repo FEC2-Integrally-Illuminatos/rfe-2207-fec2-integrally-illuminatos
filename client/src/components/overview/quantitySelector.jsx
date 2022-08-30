@@ -5,8 +5,8 @@ import _ from 'underscore';
 
 const QuantitySelector = (props) => {
   const [isEnabled, setEnabled] = useState(props.quantityEnabled);
-  const [selectedSize, setSize] = useState(props.selectedSize);
   const [quantity, setQuantity] = useState(props.quantity);
+  const [currentQuantity, setCurrentQuantity] = useState(0);
   const [numbers, setNumbers] = useState(() => {
     let tempArray = [];
     if (props.quantity > 15) {
@@ -23,16 +23,15 @@ const QuantitySelector = (props) => {
 
   useEffect(() => {
     setEnabled(props.quantityEnabled);
-    setSize(props.selectedSize);
     setQuantity(props.quantity);
     setNumbers(() => {
       let tempArray = [];
       if (props.quantity > 15) {
-        for (let i = 1; i <= 15; i++) {
+        for (let i = 2; i <= 15; i++) {
           tempArray.push(i);
         }
       } else {
-        for (let i = 1; i <= props.quantity; i++) {
+        for (let i = 2; i <= props.quantity; i++) {
           tempArray.push(i);
         }
       }
@@ -40,13 +39,26 @@ const QuantitySelector = (props) => {
     })
   }, [props]);
 
+  const handleOnChange = (e) => {
+    setCurrentQuantity(e.target.value);
+  };
+
+  useEffect(() => {
+    console.log(currentQuantity);
+  }, [currentQuantity]);
+
+  useEffect(() => {
+    if (isEnabled) {
+      setCurrentQuantity(1);
+    }
+  }, [isEnabled])
 
   if (!isEnabled) {
     return (
       <div>
         <label>
-        <select  defaultValue={selectedSize}>
-          <option value='default' disabled hidden >---</option>
+        <select  defaultValue={'default'}>
+          <option value='default' disabled hidden>---</option>
         </select>
         </label>
       </div>
@@ -55,7 +67,7 @@ const QuantitySelector = (props) => {
       return (
         <div>
         <label>
-        <select defaultValue={selectedSize} onChange={() => {}}>
+        <select defaultValue={currentQuantity} onChange={(e) => {handleOnChange(e)}}>
           <option value={1}>1</option>
           {_.map(numbers, (number, key) => {
             return <option value={number} key={key}>{number}</option>

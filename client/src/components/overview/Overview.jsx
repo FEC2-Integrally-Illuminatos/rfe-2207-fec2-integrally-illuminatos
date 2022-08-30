@@ -11,20 +11,27 @@ import axios from 'axios';
 const Overview = (props) => {
   const [product, setProduct] = useState({});
   const [style, setStyle] = useState({});
+  const [styles, setStyles] = useState({});
 
   useEffect(() => {
-    axios.get('/products', {params: {product_id: 37314}})
+    axios.get('/products', {params: {product_id: 37315}})
       .then((data) => {
         setProduct(data.data);
         setStyle(data.data.styles[0]);
+        setStyles(data.data.styles);
       })
+      .catch((err) => {
+        console.log(err);
+      });
   }, [])
 
   useEffect(() => {
     console.log(product, style);
   }, [product])
 
-//CREATE CLICK HANDLER FOR SETTING SELECTED STYLE
+  const handleStyleChange = (newStyle) => {
+    setStyle(newStyle);
+  }
 
 if (Object.keys(product).length > 0 ) {
   return (
@@ -33,7 +40,7 @@ if (Object.keys(product).length > 0 ) {
         <MainCarousel product={product} style={style}/>
       </div>
       <div>
-        <ProductInfo product={product} style={style}/>
+        <ProductInfo handleStyleChange={handleStyleChange} styles={styles} product={product} style={style}/>
       </div>
       <div>
         <ProductOverview product={product} style={style}/>

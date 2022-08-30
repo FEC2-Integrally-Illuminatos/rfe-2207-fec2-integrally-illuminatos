@@ -11,15 +11,18 @@ const StyleThumbnail = (props) => {
     setStyle(props.currentStyle);
   }, [props]);
 
-
+  const handleClick = (e) => {
+    console.log(style);
+    props.handleStyleChange(style);
+  };
 
   if (!active) {
     return (
-        <Image src={style}/>
+        <Image onClick={(e) => {handleClick(e)}} src={style.photos[0].thumbnail_url}/>
     );
   } else { //ADD FEATURES TO HIGHLIGHT and ADD CHECKMARK TO INDICATE SELECTED
     return (
-        <Image src={style}/>
+        <Image src={style.photos[0].thumbnail_url}/>
   );
   }
 }
