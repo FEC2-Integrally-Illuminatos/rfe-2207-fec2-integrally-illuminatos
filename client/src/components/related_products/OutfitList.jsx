@@ -5,9 +5,9 @@ import Card from './Card.jsx';
 
 const OutfitList = () => {
   return (
-    <Carousel cols={3} rows={1} gap={2} loop>
+    <Carousel cols={3} rows={1} gap={20} loop>
       <Carousel.Item>
-        <Card type="Outfit"/>
+        <Card type="AddOutfit"/>
       </Carousel.Item>
       <Carousel.Item>
         <Card type="Outfit"/>

@@ -28,6 +28,14 @@ const Card = ({type, product}) => {
       </div>
     )
   }
+  if (type === 'AddOutfit') {
+    return (
+      <div className="card">
+        <h1>Add To Outfit</h1>
+        <button>+++</button>
+      </div>
+    )
+  }
 }
 
 export default Card;

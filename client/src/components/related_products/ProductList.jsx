@@ -7,7 +7,7 @@ const ProductList = ({relatedProducts}) => {
 
   console.log('related products on the product list', relatedProducts);
   return (
-    <Carousel cols={3} rows={1} gap={2} loop>
+    <Carousel cols={3} rows={1} gap={20} loop>
       {relatedProducts.map((product) => {
         return (
         <Carousel.Item key={product.id}>
