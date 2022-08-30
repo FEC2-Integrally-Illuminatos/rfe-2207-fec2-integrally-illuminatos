@@ -22,15 +22,19 @@ const SizeSelector = (props) => {
     if (selectedSize !== 'default') {
       toggleQuantityDropdown(true);
       setQuantity(_.findWhere(style.skus, {size: selectedSize}).quantity);
+      console.log(selectedSize);
     };
   }, [selectedSize]);
 
-  //CREATE SELECT SIZE HANDLER
+  const handleChange = (e) => {
+    setSize(e.target.value);
+  };
+
 
   return (
     <div>
       <label>
-      <select defaultValue={selectedSize} onChange={() => {}}>
+      <select defaultValue={selectedSize} onChange={(e) => {handleChange(e);}}>
         <option value='default' disabled hidden>Select Size</option>
         {_.map(style.skus, (styleID, key) => {
           return <SizeOption size={styleID.size} quantity={styleID.quantity} key={key}/>

@@ -18,7 +18,6 @@ const QuantitySelector = (props) => {
         tempArray.push(i);
       }
     }
-    console.log(tempArray);
     return tempArray;
   })
 
@@ -40,11 +39,6 @@ const QuantitySelector = (props) => {
       return tempArray;
     })
   }, [props]);
-
-
-  useEffect(() => {
-    console.log(isEnabled);
-  }, [isEnabled]);
 
 
   if (!isEnabled) {
