@@ -25,6 +25,7 @@ const SizeSelector = (props) => {
     };
   }, [selectedSize]);
 
+  //CREATE SELECT SIZE HANDLER
 
   return (
     <div>
