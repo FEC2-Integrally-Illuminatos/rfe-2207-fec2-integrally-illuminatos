@@ -5,6 +5,7 @@ import _ from 'underscore';
 
 const QuantitySelector = (props) => {
   const [isEnabled, setEnabled] = useState(props.quantityEnabled);
+  const [selectedSize, setSelectedSize] = useState(props.selectedSize);
   const [quantity, setQuantity] = useState(props.quantity);
   const [currentQuantity, setCurrentQuantity] = useState(0);
   const [numbers, setNumbers] = useState(() => {
@@ -23,6 +24,7 @@ const QuantitySelector = (props) => {
 
   useEffect(() => {
     setEnabled(props.quantityEnabled);
+    setSelectedSize(props.selectedSize);
     setQuantity(props.quantity);
     setNumbers(() => {
       let tempArray = [];
@@ -44,14 +46,11 @@ const QuantitySelector = (props) => {
   };
 
   useEffect(() => {
-    console.log(currentQuantity);
-  }, [currentQuantity]);
-
-  useEffect(() => {
     if (isEnabled) {
       setCurrentQuantity(1);
     }
-  }, [isEnabled])
+  }, [selectedSize])
+
 
   if (!isEnabled) {
     return (
@@ -67,7 +66,7 @@ const QuantitySelector = (props) => {
       return (
         <div>
         <label>
-        <select defaultValue={currentQuantity} onChange={(e) => {handleOnChange(e)}}>
+        <select value={currentQuantity} onChange={(e) => {handleOnChange(e)}}>
           <option value={1}>1</option>
           {_.map(numbers, (number, key) => {
             return <option value={number} key={key}>{number}</option>

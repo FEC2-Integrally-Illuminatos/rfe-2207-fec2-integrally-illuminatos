@@ -22,7 +22,6 @@ const SizeSelector = (props) => {
     if (selectedSize !== 'default') {
       toggleQuantityDropdown(true);
       setQuantity(_.findWhere(style.skus, {size: selectedSize}).quantity);
-      console.log(selectedSize);
     };
   }, [selectedSize]);
 
