@@ -1,4 +1,6 @@
 const path = require("path");
+const webpack = require('webpack');
+
 
 module.exports = {
   mode: "development",
@@ -17,7 +19,14 @@ module.exports = {
       {
         test: /\.css$/,
         use: ['style-loader','css-loader']
-      }
+      },
+      {
+        test: /\.(woff(2)?|ttf|eot)$/,
+        type: 'asset/resource',
+        generator: {
+            filename: './fonts/[name][ext]',
+        },
+      },
     ]
   },
   // [devtool] this is an additional source map that will let the browser know what files are running our code.
@@ -32,5 +41,6 @@ module.exports = {
     compress: true,
     // [port] what port on our local machine to run the dev server
     port: process.env.PORT,
-  }
+  },
+
 }
