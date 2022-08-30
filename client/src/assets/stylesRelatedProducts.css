@@ -1,9 +1,21 @@
+#related_products {
+  height: 100vh;
+}
+
 .Carousel__Container-sc-hyhecw-0 {
   width: 80%;
+  height: 50%;
+}
+
+.Carousel__Container-sc-hyhecw-0 .thumbnail {
+  height: 30%;
 }
 
 .Carousel__Container-sc-hyhecw-0 .card {
   position: relative;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
 }
 
 .Carousel__Container-sc-hyhecw-0 .card .star {
