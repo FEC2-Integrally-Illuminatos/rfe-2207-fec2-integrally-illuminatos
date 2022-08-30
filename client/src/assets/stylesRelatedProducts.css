@@ -1,24 +1,60 @@
 #related_products {
-  height: 100vh;
+  height: 150vh;
 }
 
-.Carousel__Container-sc-hyhecw-0 {
+.container {
+  height: 100%;
+  border: 2px solid black;
+}
+
+.container img {
+  height: 200px;
+}
+
+.container button {
+  position: absolute;
+  top: 5%;
+  left: 85%;
+}
+
+.react-multi-carousel-track li {
+  margin-right: 0.5%;
+}
+
+/* .Carousel__Container-sc-hyhecw-0 {
   width: 80%;
-  height: 50%;
+  height: 20%;
+}
+
+.Carousel__Rail-sc-hyhecw-2 {
+  height: 100%;
+}
+
+.gcwslj {
+  height: 100%;
+}
+
+.Carousel__Item-sc-hyhecw-5 {
+  height: 90%;
+}
+
+.Carousel__RailWrapper-sc-hyhecw-1 {
+  height: 90%;
 }
 
 .Carousel__Container-sc-hyhecw-0 .thumbnail {
   height: 30%;
-}
+} */
 
-.Carousel__Container-sc-hyhecw-0 .card {
+/* .Carousel__Container-sc-hyhecw-0 .card {
   position: relative;
-  height: 80%;
+  height: 60%;
   display: flex;
   flex-direction: column;
-}
+  border: 2px solid black;
+} */
 
-.Carousel__Container-sc-hyhecw-0 .card .star {
+/* .Carousel__Container-sc-hyhecw-0 .card .star {
   position: absolute;
   top: 5%;
   left: 85%;
@@ -28,5 +64,5 @@
   position: absolute;
   top: 5%;
   left: 85%;
-}
+} */
 
