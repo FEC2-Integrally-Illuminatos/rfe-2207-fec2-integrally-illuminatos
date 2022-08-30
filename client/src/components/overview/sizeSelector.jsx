@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SizeOption from './sizeOption.jsx';
 import _ from 'underscore';
-// import QuantitySelector from './quantitySelector.jsx';
+import QuantitySelector from './quantitySelector.jsx';
 
 
 
@@ -9,15 +9,22 @@ const SizeSelector = (props) => {
   const [product, setProduct] = useState(props.product);
   const [style, setStyle] = useState(props.style);
   const [selectedSize, setSize] = useState('default');
+  const [quantityEnabled, toggleQuantityDropdown] = useState(false);
+  const [quantity, setQuantity] = useState(16);
 
   useEffect(() => {
     setProduct(props.product);
     setStyle(props.style);
   }, [props]);
 
+
   useEffect(() => {
-    console.log(style);
-  }, [style]);
+    if (selectedSize !== 'default') {
+      toggleQuantityDropdown(true);
+      setQuantity(_.findWhere(style.skus, {size: selectedSize}).quantity);
+    };
+  }, [selectedSize]);
+
 
   return (
     <div>
@@ -29,7 +36,7 @@ const SizeSelector = (props) => {
         })}
       </select>
       </label>
-      {/* <QuantitySelector quantity={style.quantity} selectedSize={selectedSize} key={key}/> */}
+      <QuantitySelector quantity={quantity} selectedSize={selectedSize} quantityEnabled={quantityEnabled}/>
     </div>
   );
 }
