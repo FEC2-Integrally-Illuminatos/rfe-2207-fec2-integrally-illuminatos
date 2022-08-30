@@ -1,12 +1,12 @@
 import React from 'react';
 import Answer from './Answer.jsx';
 
-export default function Answers({answers}) {
-
+export default function Answers({answers, wantsMore}) {
+  answers = wantsMore ? answers : answers.slice(0, 2);
   return (
     <div>
       A: {answers.map((answer) => {
-        return (<Answer answer = {answer.body} key= {answer['answer_id']}/>)
+        return (<Answer answer = {answer} key= {answer['answer_id']}/>)
       })}
     </div>
   )

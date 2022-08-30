@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Answers from './AnswerDisplay.jsx';
 import axios from 'axios';
 
-export default function IndividualQ ({question, questionID}) {
+export default function IndividualQ ({question, questionID, wantsMore}) {
   question = question.includes('?') ? question : question +='?';
   const [allAnswers, setAllAnswers] = useState([]);
 
@@ -18,7 +18,8 @@ export default function IndividualQ ({question, questionID}) {
   return (
     <div>
       Q: {question}
-      {<Answers answers={allAnswers}/>}
+      {<Answers answers={allAnswers} wantsMore={wantsMore}/>}
+      <br></br>
     </div>
   )
 }
