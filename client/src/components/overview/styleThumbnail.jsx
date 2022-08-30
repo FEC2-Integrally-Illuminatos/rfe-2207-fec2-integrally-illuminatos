@@ -12,7 +12,6 @@ const StyleThumbnail = (props) => {
   }, [props]);
 
   const handleClick = (e) => {
-    console.log(style);
     props.handleStyleChange(style);
   };
 

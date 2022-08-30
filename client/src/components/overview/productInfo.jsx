@@ -22,7 +22,6 @@ const ProductInfo = (props) => {
   }, [props]);
 
 
-  //NEED TO PASS DOWN CLICK HANDLER FOR STYLE TO CHILDREN
   //NEED TO PASS DOWN ON CHANGE FOR SIZE AND QUANTITY TO SIZESELECTOR AND QUANTIY SELECTOR
 
   return (
@@ -36,7 +35,6 @@ const ProductInfo = (props) => {
       </div>
         <Price {...style}/>
         <StyleName {...style}/>
-        {/* <StyleThumbnail product={product} style={style}/> */}
         <ThumbnailGallery handleStyleChange={props.handleStyleChange} styles={styles}/>
         <SizeSelector product={product} style={style}/>
      </div>
