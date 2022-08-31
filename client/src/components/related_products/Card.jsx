@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Card = ({type, product}) => {
+const Card = ({type, product, handleRemove, id}) => {
   if (type === 'Product') {
     return (
       <div className="card">
@@ -17,8 +17,8 @@ const Card = ({type, product}) => {
   }
   if (type === 'Outfit') {
     return (
-      <div className="card">
-        <button className="remove">x</button>
+      <div className="card" id={id}>
+        <button className="remove" onClick={handleRemove}>x</button>
         <img className="thumbnail" width="100%" src={product.picture} />
         <p className="category">{product.category}</p>
         <h1 className="name">{product.name}</h1>

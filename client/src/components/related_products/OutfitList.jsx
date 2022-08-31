@@ -29,13 +29,28 @@ const OutfitList = ({productNum}) => {
   const [userOutfits, setUserOutfits] = useState([]);
 
   const handleAddClick = () => {
-    axios.get('/outfits', {params: {productID: productNum}})
-    .then((response) => {
-      setUserOutfits([...userOutfits, response.data]);
+    let isNewProduct = true;
+    userOutfits.forEach(outfit => {
+      if (~~outfit.id === productNum) {
+        isNewProduct = false;
+      }
     })
+    if (isNewProduct) {
+      axios.get('/outfits', {params: {productID: productNum}})
+      .then((response) => {
+        setUserOutfits([...userOutfits, response.data]);
+      })
+    }
   };
 
-  console.log(userOutfits);
+  const handleRemove = (e) => {
+    let id = e.target.parentElement.id;
+    let filteredArr = userOutfits.filter((outfit) => {
+      return (outfit.id !== ~~id );
+    });
+    setUserOutfits(filteredArr);
+  }
+
 
   return (
     <Carousel
@@ -72,7 +87,7 @@ const OutfitList = ({productNum}) => {
       {userOutfits.map(product => {
         return (
         <div className="container" key={product.id}>
-          <Card type="Outfit" product={product}/>
+          <Card type="Outfit" product={product} handleRemove={handleRemove} id={product.id}/>
         </div>
         )
       })}
