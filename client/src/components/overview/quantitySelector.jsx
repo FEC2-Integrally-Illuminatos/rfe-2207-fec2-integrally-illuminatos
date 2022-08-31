@@ -84,7 +84,7 @@ const QuantitySelector = (props) => {
       return (
         <div>
           <div>
-            <Select value={{value: currentQuantity, label: currentQuantity}} options={numbers} onChange={(e) => {handleOnChange(e)}}/>
+            <Select isSearchable={false} value={{value: currentQuantity, label: currentQuantity}} options={numbers} onChange={(e) => {handleOnChange(e)}}/>
           </div>
           <div>
             <Cart isEnabled={isEnabled} setMenuOpen={props.setMenuOpen} currentSKU={currentSKU} currentQuantity={currentQuantity} selectedSize={selectedSize}/>

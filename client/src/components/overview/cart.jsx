@@ -25,6 +25,10 @@ const Cart = (props) => {
       });
   };
 
+  const handleOtherClick = (e) => {
+    props.setMenuOpen(true);
+  };
+
   if (isEnabled) {
     return (
       <div>
@@ -38,7 +42,7 @@ const Cart = (props) => {
       <div>
         COMPONENT FOR MESSAGE
         <div>
-          <button>Add to Cart</button>
+          <button onClick={(e) => {handleOtherClick(e);}}>Add to Cart</button>
         </div>
       </div>
     );

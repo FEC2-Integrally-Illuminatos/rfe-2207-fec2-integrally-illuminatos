@@ -60,12 +60,17 @@ const SizeSelector = (props) => {
 
   const handleChange = (e) => {
     setSize({value: e.value, label: e.value});
+    setMenuOpen(false);
+  };
+
+  const handleOnFocus = (e) => {
+    setMenuOpen(true);
   };
 
   if (!style.skus.null) {
     return (
       <div>
-        <Select value={selectedSize} options={options} placeholder={'Select Size'} defaultMenuIsOpen={menuOpen} onChange={(e) => {handleChange(e);}}/>
+        <Select value={selectedSize} blurInputOnSelect={true} isSearchable={false} options={options} placeholder={'Select Size'} onFocus={(e) => {handleOnFocus(e);}} menuIsOpen={menuOpen} onChange={(e) => {handleChange(e);}}/>
         <QuantitySelector currentSKU={currentSKU} setMenuOpen={setMenuOpen} style={style} quantity={quantity} selectedSize={selectedSize.value} quantityEnabled={quantityEnabled}/>
       </div>
   );
