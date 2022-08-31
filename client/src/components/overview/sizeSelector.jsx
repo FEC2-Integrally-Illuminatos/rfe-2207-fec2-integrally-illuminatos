@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import SizeOption from './sizeOption.jsx';
 import _ from 'underscore';
 import QuantitySelector from './quantitySelector.jsx';
@@ -6,6 +6,7 @@ import Select from 'react-select'
 
 
 const SizeSelector = (props) => {
+  const selectRef = useRef();
   const [product, setProduct] = useState(props.product);
   const [style, setStyle] = useState(props.style);
   const [selectedSize, setSize] = useState('');
@@ -67,11 +68,12 @@ const SizeSelector = (props) => {
     setMenuOpen(true);
   };
 
+
   if (!style.skus.null) {
     return (
       <div>
-        <Select value={selectedSize} blurInputOnSelect={true} isSearchable={false} options={options} placeholder={'Select Size'} onFocus={(e) => {handleOnFocus(e);}} menuIsOpen={menuOpen} onChange={(e) => {handleChange(e);}}/>
-        <QuantitySelector currentSKU={currentSKU} setMenuOpen={setMenuOpen} style={style} quantity={quantity} selectedSize={selectedSize.value} quantityEnabled={quantityEnabled}/>
+        <Select value={selectedSize} ref={selectRef} openMenuOnFocus={true} isSearchable={false} options={options} placeholder={'Select Size'}  onChange={(e) => {handleChange(e);}}/>
+        <QuantitySelector currentSKU={currentSKU} selectRef={selectRef} setMenuOpen={setMenuOpen} style={style} quantity={quantity} selectedSize={selectedSize.value} quantityEnabled={quantityEnabled}/>
       </div>
   );
   } else {

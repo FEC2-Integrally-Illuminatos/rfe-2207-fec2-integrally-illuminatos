@@ -26,7 +26,7 @@ const Cart = (props) => {
   };
 
   const handleOtherClick = (e) => {
-    props.setMenuOpen(true);
+      props.selectRef.current.focus();
   };
 
   if (isEnabled) {
