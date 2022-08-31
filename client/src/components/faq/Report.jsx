@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
+import {HelpfulContainer} from './Helpful.jsx';
 
 export default function Report({answerId, questionId, fetchAnswers}) {
   const [isReported, setIsReported] = useState(false);
@@ -10,7 +11,7 @@ export default function Report({answerId, questionId, fetchAnswers}) {
       axios.put(`/qa/questions/${endpoint}_report`, body).then((response) => {
         console.log(response);
         setIsReported(true);
-        //TODO: should make a GET request to re-render the questions list
+        //TODO: should make a GET request to re-render the
           if (answerId) {
             fetchAnswers().catch(console.error)
           }
@@ -19,5 +20,5 @@ export default function Report({answerId, questionId, fetchAnswers}) {
       })
     }
   }
-  return (<span onClick={handleReportClick}>{!isReported ? <u>Report</u> : 'Report'}</span>)
+  return (<HelpfulContainer><span onClick={handleReportClick}>{!isReported ? <u>Report</u> : 'Report'}</span></HelpfulContainer>)
 }

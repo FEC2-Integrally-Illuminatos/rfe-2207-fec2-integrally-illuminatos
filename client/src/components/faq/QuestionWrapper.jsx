@@ -3,11 +3,15 @@ import axios from 'axios';
 import QuestionDisplay from './QuestionDisplay.jsx';
 import Search from './Search.jsx';
 import QuestionModal from './QuestionModal.jsx';
+import styled from 'styled-components';
 import {FAQWrapper} from './styles/FAQWrapper.styled.js';
 import {Main} from './styles/Main.styled.js';
 import {Buttons} from './styles/Buttons.styled.js'
 
-
+const Button = styled.button`
+  margin: 1% 15% 1% 20%;
+  flex: 1;
+`
 
 const Wrapper = (props) => {
   //TODO: REMOVE WHEN YOU GET APPROPRIATE DATA
@@ -65,8 +69,8 @@ const Wrapper = (props) => {
       {addQuestion && <QuestionModal name={product.name} productId={product.id} />}
     </Main>
       <Buttons>
-      <button onClick ={handleMoreClick}>MORE ANSWERED QUESTIONS</button>
-      <button onClick={handleAddQuestion}>ADD A QUESTION + </button>
+      <Button onClick ={handleMoreClick}>MORE ANSWERED QUESTIONS</Button>
+      <Button onClick={handleAddQuestion}>ADD A QUESTION + </Button>
       </Buttons>
     </>
   )

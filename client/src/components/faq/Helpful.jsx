@@ -1,5 +1,10 @@
 import React, {useState} from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
+
+export const HelpfulContainer = styled.div`
+  margin: auto 10px;
+`
 
 export default function Helpful({count, answerId, questionId}) {
   const [helpCount, setHelpCount] = useState(count);
@@ -19,5 +24,5 @@ export default function Helpful({count, answerId, questionId}) {
       setIsHelpful(true);
     }
   }
-  return (<span>Helpful? <span onClick={helpfulClickHandler}><u>Yes</u>{` (${helpCount})`} </span></span>)
+  return (<HelpfulContainer>Helpful? <span onClick={helpfulClickHandler}><u>Yes</u>{` (${helpCount})`} </span></HelpfulContainer>)
 }
