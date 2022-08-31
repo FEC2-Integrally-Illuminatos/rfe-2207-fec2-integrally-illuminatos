@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import QuestionDisplay from './QuestionDisplay.jsx';
 import Search from './Search.jsx';
+import QuestionModal from './QuestionModal.jsx';
 
 const Wrapper = (props) => {
   //TODO: REMOVE WHEN YOU GET APPROPRIATE DATA
@@ -18,6 +19,7 @@ const Wrapper = (props) => {
   const [searchQuestions, setSearchQuestions] = useState();
   const [isSearched, setSearched] = useState(false);
   const [wantsMore, setWantsMore] = useState(false);
+  const [addQuestion, setAddQuestion] = useState(false);
 
   useEffect(() => {
     const fetchQuestions = async () => {
@@ -43,6 +45,9 @@ const Wrapper = (props) => {
       fetchQuestions().catch(console.error)
     }
   }
+  const handleAddQuestion = () => {
+    setAddQuestion(!addQuestion);
+  }
 
   return (
     <div>
@@ -50,8 +55,9 @@ const Wrapper = (props) => {
       {/* render either searched questions or questions for product */}
       {allQuestions.length > 0 && <QuestionDisplay questions={isSearched ? searchQuestions : allQuestions } wantsMore = {wantsMore} product={product}/>}
       {/* //TODO:Change the name when clicked to be less answered questions */}
+      {addQuestion && <QuestionModal name={product.name} productId={product.id}/>}
       <button onClick ={handleMoreClick}>MORE ANSWERED QUESTIONS</button>
-      <button>ADD A QUESTION + </button>
+      <button onClick={handleAddQuestion}>ADD A QUESTION + </button>
     </div>
   )
 }

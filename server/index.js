@@ -95,7 +95,7 @@ app.post('/qa/questions/:id', (req, res) => {
     email: email,
     photos: photos
   };
-  if (!id) {
+  if (id === 'questions') {
     axios.post(`${url}/qa/questions`, questionParams, {headers: headerOptions}).then(() => {
       res.status(201).send('Question posted');
     }).catch((err) => {

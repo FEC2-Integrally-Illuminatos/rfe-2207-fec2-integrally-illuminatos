@@ -52,16 +52,16 @@ export default function AnswerModal({name, question, questionId}) {
       <h4>Submit your Answer</h4>
       <h5>{`${name} : ${question}`}</h5>
       <form onSubmit={submitHandler}>
-        <label>Type your Answer</label>
+        <label>Your Answer</label>
         {/* <input type="text" name="body" maxLength="1000" onChange={changeHandler}></input> */}
         <textarea name="body"  maxLength="1000" onChange={changeHandler} required></textarea>
         <label>What is your nickname?</label>
         <input type="text" maxLength='60' placeholder="Example: jack543!" name="name" onChange={changeHandler} required ></input>
         <p>For privacy reasons, do not use your full name or email address</p>
-        <label>Email:</label>
+        <label>Your Email:</label>
         <input type="email" maxLength='60' placeholder="Example: jack@email.com" name="email" required onChange={changeHandler}></input>
         For authentication reasons, you will not be emailed
-        <label>Upload images</label>
+        <label>Upload Your Photos</label>
        { images.length < 5 && <input type="file" name="image" accept="image/png, image/jpeg"onChange={fileUploader} multiple></input>}
         {/* <input type="submit" name="submit" value="Upload"></input> */}
         <input type="submit" value="Submit Answer"></input>
