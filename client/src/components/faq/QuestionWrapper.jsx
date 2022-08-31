@@ -21,6 +21,7 @@ const Wrapper = (props) => {
   const [wantsMore, setWantsMore] = useState(false);
   const [addQuestion, setAddQuestion] = useState(false);
 
+
   useEffect(() => {
     const fetchQuestions = async () => {
       const questions = await axios.get('/qa/questions/all', {params: {productID: product.id}});
@@ -55,7 +56,7 @@ const Wrapper = (props) => {
       {/* render either searched questions or questions for product */}
       {allQuestions.length > 0 && <QuestionDisplay questions={isSearched ? searchQuestions : allQuestions } wantsMore = {wantsMore} product={product}/>}
       {/* //TODO:Change the name when clicked to be less answered questions */}
-      {addQuestion && <QuestionModal name={product.name} productId={product.id}/>}
+      {addQuestion && <QuestionModal name={product.name} productId={product.id} />}
       <button onClick ={handleMoreClick}>MORE ANSWERED QUESTIONS</button>
       <button onClick={handleAddQuestion}>ADD A QUESTION + </button>
     </div>

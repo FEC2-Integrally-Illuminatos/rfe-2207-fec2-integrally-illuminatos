@@ -7,6 +7,7 @@ import axios from 'axios';
 export default function IndividualQ ({question, questionID, wantsMore, count, product}) {
   question = question.includes('?') ? question : question +='?';
   const [allAnswers, setAllAnswers] = useState([]);
+  const [showAnswers, setShowAnswers] = useState(false);
 
   useEffect(() => {
     const fetchAnswers = async () => {
@@ -22,10 +23,10 @@ export default function IndividualQ ({question, questionID, wantsMore, count, pr
   }, [])
 
   return (
-    <div>
+    <div onClick={() => {setShowAnswers(!showAnswers)}}>
       Q: {question} <Helpful questionId={questionID} count={count}/> |
       <AddAnswer question={question} product={product} questionId={questionID}/>
-      {<Answers answers={allAnswers} wantsMore={wantsMore}/>}
+      {showAnswers && <Answers answers={allAnswers} wantsMore={wantsMore} showAnswers={showAnswers}/>}
       <br></br>
     </div>
   )
