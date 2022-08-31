@@ -5,7 +5,7 @@ import ProductInfo from './productInfo.jsx';
 import ProductOverview from './productOverview.jsx';
 import MetaInfo from './metaInfo.jsx';
 import axios from 'axios';
-
+import SocialMedia from './socialMedia.jsx';
 
 
 const Overview = (props) => {
@@ -63,6 +63,9 @@ const Overview = (props) => {
       </div>
       <div>
         <MetaInfo />
+      </div>
+      <div>
+        <SocialMedia style={style}/>
       </div>
     </div>
     )
