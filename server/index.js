@@ -56,7 +56,25 @@ app.get('/outfits', (req, res) => {
       res.status(200).send(product.data)
     })
   });
+});
 
+app.get('/storage', (req, res) => {
+  let promiseArr = req.query.stored_IDs.map((id => {
+    return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${~~id}`, auth);
+  }));
+  Promise.all(promiseArr)
+  .then(products => {
+    return products.map((product) => {
+      return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product.data.id}/styles`, auth)
+      .then(response => {
+        let thumbnail = response.data.results.filter(style => style['default?'])[0].photos[0].thumbnail_url;
+        product.data.picture = thumbnail;
+        return product.data;
+      })
+    })
+  })
+  .then(promises => Promise.all(promises)
+  .then(productArr => res.status(200).send(productArr)))
 });
 
 app.get('/reviews', (req, res) => {
