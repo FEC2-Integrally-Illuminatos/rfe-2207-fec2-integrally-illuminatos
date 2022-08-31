@@ -10,7 +10,7 @@ import {Buttons} from './styles/Buttons.styled.js'
 
 const Button = styled.button`
   margin: 1% 15% 1% 20%;
-  flex: 1;
+  height: 3rem;
 `
 
 const Wrapper = (props) => {
