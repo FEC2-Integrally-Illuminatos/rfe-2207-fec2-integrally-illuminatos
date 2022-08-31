@@ -19,7 +19,7 @@ const RelatedProducts = (/*will take product id as prop*/) => {
       <h2>Related Products</h2>
       <ProductList relatedProducts={relatedProducts}/>
       <h2>Your Outfit</h2>
-      <OutfitList />
+      <OutfitList productNum={productNum}/>
     </div>
   )
 }

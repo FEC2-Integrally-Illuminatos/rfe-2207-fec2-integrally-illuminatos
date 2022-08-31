@@ -46,6 +46,19 @@ app.get('/relatedProducts', (req, res) => {
     });
 });
 
+app.get('/outfits', (req, res) => {
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.query.productID}`, auth)
+  .then((product) => {
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.query.productID}/styles`, auth)
+    .then(styles => {
+      let thumbnail = styles.data.results.filter(style => style['default?'])[0].photos[0].thumbnail_url;
+      product.data.picture = thumbnail;
+      res.status(200).send(product.data)
+    })
+  });
+
+});
+
 app.get('/reviews', (req, res) => {
   //TODO:
 });

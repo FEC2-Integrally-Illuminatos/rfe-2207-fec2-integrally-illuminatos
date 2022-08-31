@@ -1,5 +1,5 @@
-import React from 'react';
-// import Carousel from 'better-react-carousel';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Card from './Card.jsx';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -25,9 +25,19 @@ const responsive = {
   }
 };
 
-const OutfitList = () => {
-  return (
+const OutfitList = ({productNum}) => {
+  const [userOutfits, setUserOutfits] = useState([]);
 
+  const handleAddClick = () => {
+    axios.get('/outfits', {params: {productID: productNum}})
+    .then((response) => {
+      setUserOutfits([...userOutfits, response.data]);
+    })
+  };
+
+  console.log(userOutfits);
+
+  return (
     <Carousel
       additionalTransfrom={0}
       arrows
@@ -56,21 +66,16 @@ const OutfitList = () => {
       slidesToSlide={1}
       swipeable
     >
-      <div className="container">
+      <div className="container" onClick={handleAddClick}>
         <Card type="AddOutfit"/>
       </div>
-      <div className="container">
-        <Card type="Outfit"/>
-      </div>
-      <div className="container">
-        <Card type="Outfit"/>
-      </div>
-      <div className="container">
-        <Card type="Outfit"/>
-      </div>
-      <div className="container">
-        <Card type="Outfit"/>
-      </div>
+      {userOutfits.map(product => {
+        return (
+        <div className="container" key={product.id}>
+          <Card type="Outfit" product={product}/>
+        </div>
+        )
+      })}
     </Carousel>
   )
 }
