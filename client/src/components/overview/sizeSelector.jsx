@@ -5,7 +5,6 @@ import QuantitySelector from './quantitySelector.jsx';
 import Select from 'react-select'
 
 
-
 const SizeSelector = (props) => {
   const [product, setProduct] = useState(props.product);
   const [style, setStyle] = useState(props.style);
@@ -51,23 +50,23 @@ const SizeSelector = (props) => {
   useEffect(() => {
     if (selectedSize !== '') {
       toggleQuantityDropdown(true);
-      setQuantity(_.findWhere(style.skus, {size: selectedSize}).quantity);
+      setQuantity(_.findWhere(style.skus, {size: selectedSize.value}).quantity);
       setCurrentSKU(_.findKey(style.skus, (sku) => {
-          return (sku.size === selectedSize);
+          return (sku.size === selectedSize.value);
         })
       )
     };
   }, [selectedSize]);
 
   const handleChange = (e) => {
-    setSize(e.value);
+    setSize({value: e.value, label: e.value});
   };
 
   if (!style.skus.null) {
     return (
       <div>
         <Select value={selectedSize} options={options} placeholder={'Select Size'} defaultMenuIsOpen={menuOpen} onChange={(e) => {handleChange(e);}}/>
-        <QuantitySelector currentSKU={currentSKU} style={style} quantity={quantity} selectedSize={selectedSize} quantityEnabled={quantityEnabled}/>
+        <QuantitySelector currentSKU={currentSKU} setMenuOpen={setMenuOpen} style={style} quantity={quantity} selectedSize={selectedSize.value} quantityEnabled={quantityEnabled}/>
       </div>
   );
   } else {

@@ -59,7 +59,13 @@ app.get('/qa', (req, res) => {
 });
 
 app.get('/cart', (req, res) => {
-  //TODO:
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/cart`, {headers: {Authorization: process.env.API_KEY}})
+    .then((data) => {
+      res.status(200).json(data.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 
@@ -81,7 +87,20 @@ app.post('/qa', (req, res) => {
 });
 
 app.post('/cart', (req, res) => {
-  //TODO:
+  let promises = [];
+  for (let i = 0; i < parseInt(req.body.quantity); i++) {
+    promises.push(axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/cart`, {sku_id: req.body.sku_id}, {headers: {Authorization: process.env.API_KEY}})
+      .catch((err) => {
+        console.log(err);
+      }));
+  };
+  Promise.all(promises)
+    .then(() => {
+      res.status(201).send('added to cart!');
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 app.listen(process.env.PORT, () => {

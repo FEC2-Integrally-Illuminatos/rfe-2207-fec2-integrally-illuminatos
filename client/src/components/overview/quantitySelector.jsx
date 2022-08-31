@@ -35,6 +35,7 @@ const QuantitySelector = (props) => {
     setEnabled(props.quantityEnabled);
     setSelectedSize(props.selectedSize);
     setQuantity(props.quantity);
+    setCurrentQuantity(1);
     setCurrentSKU(props.currentSKU);
     setNumbers(() => {
       let tempArray = [];
@@ -72,10 +73,10 @@ const QuantitySelector = (props) => {
     return (
       <div>
         <div>
-          <Select placeholder='-' isDisabled={true}/>
+          <Select value={''} placeholder={'-'} isDisabled={true}/>
         </div>
         <div>
-          <Cart isEnabled={isEnabled} currentSKU={currentSKU} currentQuantity={currentQuantity} selectedSize={selectedSize}/>
+          <Cart isEnabled={isEnabled} setMenuOpen={props.setMenuOpen} currentSKU={currentSKU} currentQuantity={currentQuantity} selectedSize={selectedSize}/>
         </div>
       </div>
     );
@@ -86,7 +87,7 @@ const QuantitySelector = (props) => {
             <Select value={{value: currentQuantity, label: currentQuantity}} options={numbers} onChange={(e) => {handleOnChange(e)}}/>
           </div>
           <div>
-            <Cart isEnabled={isEnabled} currentSKU={currentSKU} currentQuantity={currentQuantity} selectedSize={selectedSize}/>
+            <Cart isEnabled={isEnabled} setMenuOpen={props.setMenuOpen} currentSKU={currentSKU} currentQuantity={currentQuantity} selectedSize={selectedSize}/>
           </div>
         </div>
     );

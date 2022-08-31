@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 
 const Cart = (props) => {
@@ -14,20 +15,28 @@ const Cart = (props) => {
     setCurrentSKU(props.currentSKU);
   }, [props]);
 
+  const handleClick = (e) => {
+    axios.post('/cart', {sku_id: currentSKU, quantity: currentQuantity})
+      .then((data) => {
+        console.log(data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   if (isEnabled) {
     return (
       <div>
-        Current Size: {selectedSize} Current Quantity: {currentQuantity} Current SKU: {currentSKU}
         <div>
-          <button>Add to Cart</button>
+          <button onClick={(e) => {handleClick(e);}}>Add to Cart</button>
         </div>
       </div>
     );
   } else {
     return (
       <div>
-        I'm not Enabled!
+        COMPONENT FOR MESSAGE
         <div>
           <button>Add to Cart</button>
         </div>
