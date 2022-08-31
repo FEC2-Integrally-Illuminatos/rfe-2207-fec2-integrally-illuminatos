@@ -16,6 +16,12 @@ app.use('/', (req, res, next) => {
 });
 
 //GET REQUESTS
+app.get('/loading', (req, res) => {
+  setTimeout(() => {
+    res.sendStatus(200);
+  }, 500);
+});
+
 app.get('/products', (req, res) => {
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.query.product_id}`, {headers: {Authorization: process.env.API_KEY}})
     .then((prodData) => {

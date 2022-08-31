@@ -14,7 +14,6 @@ const ProductInfo = (props) => {
   const [style, setStyle] = useState(props.style);
   const [styles, setStyles] = useState(props.styles);
 
-
   useEffect(() => {
     setProduct(props.product);
     setStyle(props.style);
@@ -28,7 +27,7 @@ const ProductInfo = (props) => {
     <div>
         <StarRating {...product}/>
       <div>
-        <h4>{product.category}</h4>
+        <h4 data-testid="counter">{product.category}</h4>
         </div>
       <div>
         <h4>{product.name}</h4>

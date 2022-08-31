@@ -12,6 +12,15 @@ const Overview = (props) => {
   const [product, setProduct] = useState({});
   const [style, setStyle] = useState({});
   const [styles, setStyles] = useState({});
+  const [loading, setLoading] = useState(true);
+
+
+  useEffect(() => {
+    axios.get('/loading')
+      .then(() => {
+        setLoading(false);
+      });
+  });
 
   useEffect(() => {
     axios.get('/products', {params: {product_id: 37315}})
@@ -33,8 +42,15 @@ const Overview = (props) => {
     setStyle(newStyle);
   }
 
-if (Object.keys(product).length > 0 ) {
+// if (Object.keys(product).length > 0 ) {
   return (
+    loading
+    ? (
+      <div>
+        Loading...
+      </div>
+    )
+    : (
     <div className='mainImg'>
       <div>
         <MainCarousel product={product} style={style}/>
@@ -50,7 +66,8 @@ if (Object.keys(product).length > 0 ) {
       </div>
     </div>
     )
-  }
+  );
+  // }
 }
 
 
