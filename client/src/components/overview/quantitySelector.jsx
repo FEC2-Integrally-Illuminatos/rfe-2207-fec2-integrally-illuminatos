@@ -2,14 +2,17 @@ import React, { useState, useEffect } from 'react';
 // import QuantityOption from './quantityOption.jsx';
 import _ from 'underscore';
 import Select from 'react-select'
+import Cart from './cart.jsx';
 
 
 
 const QuantitySelector = (props) => {
+  const [style, setStyle] = useState(props.style);
   const [isEnabled, setEnabled] = useState(props.quantityEnabled);
   const [selectedSize, setSelectedSize] = useState(props.selectedSize);
   const [quantity, setQuantity] = useState(props.quantity);
   const [currentQuantity, setCurrentQuantity] = useState(1);
+  const [currentSKU, setCurrentSKU] = useState(props.currentSKU);
   const [numbers, setNumbers] = useState(() => {
     let tempArray = [];
     if (props.quantity > 15) {
@@ -28,9 +31,11 @@ const QuantitySelector = (props) => {
   });
 
   useEffect(() => {
+    setStyle(props.style);
     setEnabled(props.quantityEnabled);
     setSelectedSize(props.selectedSize);
     setQuantity(props.quantity);
+    setCurrentSKU(props.currentSKU);
     setNumbers(() => {
       let tempArray = [];
       if (props.quantity > 15) {
@@ -66,14 +71,24 @@ const QuantitySelector = (props) => {
   if (!isEnabled) {
     return (
       <div>
-        <Select placeholder='-' isDisabled={true}/>
+        <div>
+          <Select placeholder='-' isDisabled={true}/>
+        </div>
+        <div>
+          <Cart isEnabled={isEnabled} currentSKU={currentSKU} currentQuantity={currentQuantity} selectedSize={selectedSize}/>
+        </div>
       </div>
     );
   } else {
       return (
         <div>
-        <Select defaultValue={{value: 1, label: 1}} value={{value: currentQuantity, label: currentQuantity}} options={numbers} onChange={(e) => {handleOnChange(e)}}/>
-      </div>
+          <div>
+            <Select value={{value: currentQuantity, label: currentQuantity}} options={numbers} onChange={(e) => {handleOnChange(e)}}/>
+          </div>
+          <div>
+            <Cart isEnabled={isEnabled} currentSKU={currentSKU} currentQuantity={currentQuantity} selectedSize={selectedSize}/>
+          </div>
+        </div>
     );
   }
 }

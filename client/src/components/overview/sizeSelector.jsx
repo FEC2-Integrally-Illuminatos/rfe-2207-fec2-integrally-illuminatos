@@ -9,10 +9,11 @@ import Select from 'react-select'
 const SizeSelector = (props) => {
   const [product, setProduct] = useState(props.product);
   const [style, setStyle] = useState(props.style);
-  const [selectedSize, setSize] = useState('default');
+  const [selectedSize, setSize] = useState('');
   const [quantityEnabled, toggleQuantityDropdown] = useState(false);
-  const [quantity, setQuantity] = useState(16);
+  const [quantity, setQuantity] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [currentSKU, setCurrentSKU] = useState('');
   const [options, setOptions] = useState(() => {
     let temp = [];
     _.each(props.style.skus, (styleID) => {
@@ -27,7 +28,12 @@ const SizeSelector = (props) => {
 
   useEffect(() => {
     setProduct(props.product);
+    setQuantity(0);
+    setMenuOpen(false);
+    setCurrentSKU('');
+    toggleQuantityDropdown(false);
     setStyle(props.style);
+    setSize('');
     setOptions(() => {
       let temp = [];
       _.each(props.style.skus, (styleID) => {
@@ -43,9 +49,13 @@ const SizeSelector = (props) => {
 
 
   useEffect(() => {
-    if (selectedSize !== 'default') {
+    if (selectedSize !== '') {
       toggleQuantityDropdown(true);
       setQuantity(_.findWhere(style.skus, {size: selectedSize}).quantity);
+      setCurrentSKU(_.findKey(style.skus, (sku) => {
+          return (sku.size === selectedSize);
+        })
+      )
     };
   }, [selectedSize]);
 
@@ -56,14 +66,14 @@ const SizeSelector = (props) => {
   if (!style.skus.null) {
     return (
       <div>
-      <Select defaultValue={selectedSize} options={options} placeholder={'Select Size'} defaultMenuIsOpen={menuOpen} onChange={(e) => {handleChange(e);}}/>
-      <QuantitySelector quantity={quantity} selectedSize={selectedSize} quantityEnabled={quantityEnabled}/>
-    </div>
+        <Select value={selectedSize} options={options} placeholder={'Select Size'} defaultMenuIsOpen={menuOpen} onChange={(e) => {handleChange(e);}}/>
+        <QuantitySelector currentSKU={currentSKU} style={style} quantity={quantity} selectedSize={selectedSize} quantityEnabled={quantityEnabled}/>
+      </div>
   );
   } else {
     return (
       <div>
-      <Select placeholder='OUT OF STOCK' isDisabled={true}/>
+        <Select placeholder='OUT OF STOCK' isDisabled={true}/>
     </div>
   );
   }
