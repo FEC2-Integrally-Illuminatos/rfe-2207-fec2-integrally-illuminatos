@@ -31,15 +31,17 @@ const Wrapper = (props) => {
   }, []);
 
   const handleMoreClick = (e) => {
-    setWantsMore(!wantsMore)
-    const fetchQuestions = async () => {
-      const questions = await axios.get('/qa/questions/all', {params: {productID: product.id}});
-      let result = questions.data.results.sort((a, b) => {
-       return b['question_helpfulness'] - a['question_helpfulness']
-      });
-      setAllQuestions(result);
+    setWantsMore(!wantsMore);
+    if (wantsMore) {
+      const fetchQuestions = async () => {
+        const questions = await axios.get('/qa/questions/all', {params: {productID: product.id}});
+        let result = questions.data.results.sort((a, b) => {
+         return b['question_helpfulness'] - a['question_helpfulness']
+        });
+        setAllQuestions(result);
+      }
+      fetchQuestions().catch(console.error)
     }
-    fetchQuestions().catch(console.error)
   }
 
   return (
@@ -47,6 +49,7 @@ const Wrapper = (props) => {
       <Search questions={allQuestions} setSearchQuestions= {setSearchQuestions} setSearched={setSearched}/>
       {/* render either searched questions or questions for product */}
       {allQuestions.length > 0 && <QuestionDisplay questions={isSearched ? searchQuestions : allQuestions } wantsMore = {wantsMore} product={product}/>}
+      {/* //TODO:Change the name when clicked to be less answered questions */}
       <button onClick ={handleMoreClick}>MORE ANSWERED QUESTIONS</button>
       <button>ADD A QUESTION + </button>
     </div>

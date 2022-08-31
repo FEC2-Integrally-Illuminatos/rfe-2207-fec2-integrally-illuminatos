@@ -24,7 +24,7 @@ export default function IndividualQ ({question, questionID, wantsMore, count, pr
   return (
     <div>
       Q: {question} <Helpful questionId={questionID} count={count}/> |
-      <AddAnswer question={question} product={product}/>
+      <AddAnswer question={question} product={product} questionId={questionID}/>
       {<Answers answers={allAnswers} wantsMore={wantsMore}/>}
       <br></br>
     </div>

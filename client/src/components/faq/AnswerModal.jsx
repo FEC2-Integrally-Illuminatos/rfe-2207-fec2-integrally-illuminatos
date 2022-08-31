@@ -1,12 +1,30 @@
 import React, {useState, useEffect} from 'react';
 import ImageThumb from './ImageThumb.jsx';
 import ImageDisplay from './ImageDisplay.jsx';
+import axios from 'axios';
 
-export default function Modal({name, question}) {
-  const [images, setImages] = useState([])
+export default function AnswerModal({name, question, questionId}) {
+  const [images, setImages] = useState([]);
+  const [answer, setAnswer] = useState({});
+  const [urls, setUrls] = useState([]);
+
   const submitHandler = (e) => {
     e.preventDefault();
     //TODO: make some kind of post request
+    let submission = {...answer, photos: urls, questionID: questionId }
+    axios.post('/qa/questions/answers', submission).then(() => {
+      console.log('Answer submitted')
+    }).catch((err) => {
+      console.log('error client posting answer: ', err);
+    })
+  }
+
+  const changeHandler = (e) => {
+    let key = e.target.name;
+    let value = e.target.value;
+    setAnswer((prev) => {
+      return {...prev, [key] : e.target.value }
+    })
   }
 
   const fileUploader = (e) => {
@@ -19,36 +37,29 @@ export default function Modal({name, question}) {
     let validImages = [...fileList].filter((file) =>
         ['image/jpeg', 'image/png'].includes(file.type)
     );
-
-
       validImages.forEach((image) => {
+        setUrls((prev) => {return [...prev, URL.createObjectURL(image).slice(5)]});
         const reader = new FileReader();
         reader.readAsDataURL(image);
         reader.addEventListener('load', (e) => {
           setImages((prev) => [...prev, e.target.result])
         })
       })
-      console.log(images)
-
-    // reader.readAsDataURL(e.target.files[0])
-    // reader.addEventListener('load', (e) => {
-    //   console.log(e.target.result)
-    //   setImages(...images, e.target.result);
-    // })
   }
 
   return (
     <div>
-      <h3>Submit your Answer</h3>
-      <h4>{`${name} : ${question}`}</h4>
+      <h4>Submit your Answer</h4>
+      <h5>{`${name} : ${question}`}</h5>
       <form onSubmit={submitHandler}>
-        <label>Username:</label>
-        <input type="text" name="username" required></input>
+        <label>Type your Answer</label>
+        {/* <input type="text" name="body" maxLength="1000" onChange={changeHandler}></input> */}
+        <textarea name="body"  maxLength="1000" onChange={changeHandler} required></textarea>
         <label>What is your nickname?</label>
-        <input type="text" maxlength='60' placeholder="Example: jack543!" name="nickname" required></input>
+        <input type="text" maxLength='60' placeholder="Example: jack543!" name="name" onChange={changeHandler} required ></input>
         <p>For privacy reasons, do not use your full name or email address</p>
         <label>Email:</label>
-        <input type="email" maxLength='60' placeholder="Example: jack@email.com" name="email" required></input>
+        <input type="email" maxLength='60' placeholder="Example: jack@email.com" name="email" required onChange={changeHandler}></input>
         For authentication reasons, you will not be emailed
         <label>Upload images</label>
        { images.length < 5 && <input type="file" name="image" accept="image/png, image/jpeg"onChange={fileUploader} multiple></input>}

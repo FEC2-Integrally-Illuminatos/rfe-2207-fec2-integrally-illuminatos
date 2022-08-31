@@ -82,6 +82,7 @@ app.post('/qa/questions/:id', (req, res) => {
   //TODO:
   let {id} = req.params;
   let {body, name, email, productID, questionID, photos} = req.body;
+  console.log(questionID);
   let questionParams = {
     body: body,
     name: name,
@@ -95,13 +96,13 @@ app.post('/qa/questions/:id', (req, res) => {
     photos: photos
   };
   if (!id) {
-    axios.post(`${url}/qa/questions`, {params : questionParams, headers: headerOptions}).then(() => {
+    axios.post(`${url}/qa/questions`, questionParams, {headers: headerOptions}).then(() => {
       res.status(201).send('Question posted');
     }).catch((err) => {
       console.log('Error posting a question: ', err);
     })
   } else if (id === 'answers') {
-    axios.post(`${url}/qa/questions/${questionID}/answers`, {params : bodyParams, headers: headerOptions}).then(() => {
+    axios.post(`${url}/qa/questions/${questionID}/answers`, answerParams, {headers: headerOptions}).then(() => {
       res.status(201).send('Answer posted');
     }).catch((err) => {
       console.log('Error posting an answer: ', err);
