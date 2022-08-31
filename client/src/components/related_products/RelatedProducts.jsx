@@ -8,7 +8,7 @@ import axios from 'axios';
 const RelatedProducts = (/*will take product id as prop*/) => {
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [productNum, setProductNum] = useState(37331);
-  const [isComparison, setIsComparison] = useState(true);
+  const [isComparison, setIsComparison] = useState(false);
 
   useEffect(() => {
     axios.get('/relatedProducts', {params: {productID: productNum}})

@@ -1,11 +1,12 @@
 import React from 'react';
+import ComparisonRow from './ComparisonRow.jsx';
 
 const ComparisonTable = () => {
   return (
     <div className="tableContainer">
       <table>
           <caption>
-            Item Comparison
+            Comparing
           </caption>
           <thead>
             <tr>
@@ -15,32 +16,18 @@ const ComparisonTable = () => {
             </tr>
           </thead>
           <tbody>
-
-            <tr>
-                <td>Item Value</td>
-                <td>Characteristic</td>
-                <td>Item Value</td>
-            </tr>
-
-            <tr>
-                <td>Item Value</td>
-                <td>Characteristic</td>
-                <td>Item Value</td>
-            </tr>
-
-
-            <tr>
-                <td>Item Value</td>
-                <td>Characteristic</td>
-                <td>Item Value</td>
-            </tr>
-
-            <tr>
-                <td>Item Value</td>
-                <td>Characteristic</td>
-                <td>Item Value</td>
-            </tr>
-
+            <ComparisonRow />
+            <ComparisonRow />
+            <ComparisonRow />
+            <ComparisonRow />
+            <ComparisonRow />
+            <ComparisonRow />
+            <ComparisonRow />
+            <ComparisonRow />
+            <ComparisonRow />
+            <ComparisonRow />
+            <ComparisonRow />
+            <ComparisonRow />
           </tbody>
       </table>
     </div>
