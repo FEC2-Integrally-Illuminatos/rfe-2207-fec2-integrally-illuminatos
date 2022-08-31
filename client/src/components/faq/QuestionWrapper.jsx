@@ -3,6 +3,11 @@ import axios from 'axios';
 import QuestionDisplay from './QuestionDisplay.jsx';
 import Search from './Search.jsx';
 import QuestionModal from './QuestionModal.jsx';
+import {FAQWrapper} from './styles/FAQWrapper.styled.js';
+import {Main} from './styles/Main.styled.js';
+import {Buttons} from './styles/Buttons.styled.js'
+
+
 
 const Wrapper = (props) => {
   //TODO: REMOVE WHEN YOU GET APPROPRIATE DATA
@@ -51,15 +56,19 @@ const Wrapper = (props) => {
   }
 
   return (
-    <div>
+    <>
       <Search questions={allQuestions} setSearchQuestions= {setSearchQuestions} setSearched={setSearched}/>
       {/* render either searched questions or questions for product */}
+      <Main>
       {allQuestions.length > 0 && <QuestionDisplay questions={isSearched ? searchQuestions : allQuestions } wantsMore = {wantsMore} product={product}/>}
       {/* //TODO:Change the name when clicked to be less answered questions */}
       {addQuestion && <QuestionModal name={product.name} productId={product.id} />}
+    </Main>
+      <Buttons>
       <button onClick ={handleMoreClick}>MORE ANSWERED QUESTIONS</button>
       <button onClick={handleAddQuestion}>ADD A QUESTION + </button>
-    </div>
+      </Buttons>
+    </>
   )
 }
 

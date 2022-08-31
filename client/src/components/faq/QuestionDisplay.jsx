@@ -1,5 +1,6 @@
 import React from 'react';
 import IndividualQ from './IndividualQ.jsx';
+import {Container} from './styles/QContainer.styled.js';
 
 const QuestionDisplay = ({questions, wantsMore, product}) => {
   return (
