@@ -26,7 +26,7 @@ const responsive = {
   }
 };
 
-const ProductList = ({relatedProducts}) => {
+const ProductList = ({relatedProducts, handleComparison}) => {
   return (
     <Carousel
       additionalTransfrom={0}
@@ -59,12 +59,12 @@ const ProductList = ({relatedProducts}) => {
       {relatedProducts.map((product) => {
         return (
         <div className="container" key={product.id}>
-          <Card type="Product" product={product}/>
+          <Card type="Product" product={product} handleComparison={handleComparison}/>
         </div>
         );
       })}
     </Carousel>
-  )
-}
+    )
+  }
 
 export default ProductList;

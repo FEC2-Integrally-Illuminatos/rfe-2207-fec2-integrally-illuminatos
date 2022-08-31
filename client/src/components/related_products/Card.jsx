@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Card = ({type, product, handleRemove, id}) => {
+const Card = ({type, product, handleRemove, id, handleComparison}) => {
   if (type === 'Product') {
     return (
       <div className="card">
-        <button className="star">*</button>
+        <button className="star" onClick={handleComparison}>*</button>
         <img className="thumbnail" width="100%" src={product.picture} />
         <p className="category">{product.category}</p>
         <h1 className="name">{product.name}</h1>

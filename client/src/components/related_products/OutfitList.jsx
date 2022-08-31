@@ -29,7 +29,7 @@ const OutfitList = ({productNum}) => {
   const [userOutfits, setUserOutfits] = useState([]);
   useEffect(() => {
     //get the results from local storage and set the state with those
-    if (userOutfits.length === 0 && localStorage.length !== 0) {
+    if (userOutfits.length !== localStorage.length) {
       let keys = Object.keys(localStorage);
       axios.get('/storage', {params: {stored_IDs: keys}})
       .then((products) => setUserOutfits(products.data));
@@ -79,7 +79,7 @@ const OutfitList = ({productNum}) => {
       keyBoardControl
       minimumTouchDrag={80}
       pauseOnHover
-      renderArrowsWhenDisabled={false}
+      renderArrowsWhenDisabled={true}
       renderButtonGroupOutside={false}
       renderDotsOutside={false}
       responsive={responsive}
