@@ -16,5 +16,4 @@ const StyleName = (props) => {
     );
 }
 
-
 export default StyleName;
