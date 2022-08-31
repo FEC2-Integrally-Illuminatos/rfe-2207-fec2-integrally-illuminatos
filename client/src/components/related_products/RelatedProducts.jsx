@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import '../../assets/stylesRelatedProducts.css';
 import OutfitList from './OutfitList.jsx';
 import ProductList from './ProductList.jsx';
+import ComparisonTable from './Comparison.jsx'
 import axios from 'axios';
 
 const RelatedProducts = (/*will take product id as prop*/) => {
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [productNum, setProductNum] = useState(37331);
-  const [isComparison, setIsComparison] = useState(false);
+  const [isComparison, setIsComparison] = useState(true);
 
   useEffect(() => {
     axios.get('/relatedProducts', {params: {productID: productNum}})
@@ -15,7 +16,6 @@ const RelatedProducts = (/*will take product id as prop*/) => {
   }, [productNum]);
 
   const handleComparison = () => {
-    console.log('handle comparison')
     isComparison ? setIsComparison(false) : setIsComparison(true);
   }
 
@@ -23,7 +23,7 @@ const RelatedProducts = (/*will take product id as prop*/) => {
     return (
       <div id="related_products">
         <h2>Related Products</h2>
-        <div className="comparison">Comparison</div>
+        <ComparisonTable />
         <ProductList relatedProducts={relatedProducts} handleComparison={handleComparison}/>
         <h2>Your Outfit</h2>
         <OutfitList productNum={productNum}/>
