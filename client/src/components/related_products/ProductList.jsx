@@ -26,7 +26,7 @@ const responsive = {
   }
 };
 
-const ProductList = ({relatedProducts, handleComparison}) => {
+const ProductList = ({relatedProducts, handleComparison, handleProductChange}) => {
   return (
     <Carousel
       additionalTransfrom={0}
@@ -34,7 +34,7 @@ const ProductList = ({relatedProducts, handleComparison}) => {
       autoPlaySpeed={3000}
       centerMode={false}
       className=""
-      containerClass="container-with-dots"
+      containerClass="carousel-products"
       dotListClass=""
       draggable
       focusOnSelect={false}
@@ -58,8 +58,8 @@ const ProductList = ({relatedProducts, handleComparison}) => {
     >
       {relatedProducts.map((product) => {
         return (
-        <div className="container" key={product.id}>
-          <Card type="Product" product={product} handleComparison={handleComparison} id={product.id}/>
+        <div className="container" key={product.id} onClick={handleProductChange}>
+          <Card type="Product" product={product} handleComparison={handleComparison} id={product.id} />
         </div>
         );
       })}

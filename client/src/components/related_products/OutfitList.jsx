@@ -25,7 +25,7 @@ const responsive = {
   }
 };
 
-const OutfitList = ({productNum}) => {
+const OutfitList = ({productNum, handleProductChange}) => {
   const [userOutfits, setUserOutfits] = useState([]);
   useEffect(() => {
     //get the results from local storage and set the state with those
@@ -70,7 +70,7 @@ const OutfitList = ({productNum}) => {
       autoPlaySpeed={3000}
       centerMode={false}
       className=""
-      containerClass="container-with-dots"
+      containerClass="carousel-outfit"
       dotListClass=""
       draggable
       focusOnSelect={false}
@@ -97,8 +97,8 @@ const OutfitList = ({productNum}) => {
       </div>
       {userOutfits.map(product => {
         return (
-        <div className="container" key={product.id}>
-          <Card type="Outfit" product={product} handleRemove={handleRemove} id={product.id}/>
+        <div className="container" key={product.id} onClick={handleProductChange}>
+          <Card type="Outfit" product={product} handleRemove={handleRemove} id={product.id} />
         </div>
         )
       })}
