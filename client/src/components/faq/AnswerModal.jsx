@@ -1,9 +1,32 @@
 import React, {useState, useEffect} from 'react';
 import ImageThumb from './ImageThumb.jsx';
 import ImageDisplay from './ImageDisplay.jsx';
+import styled from 'styled-components';
 import axios from 'axios';
 
-export default function AnswerModal({name, question, questionId}) {
+export const ModalWrap = styled.div`
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`
+
+export const Content = styled.div`
+  background-color: white;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid black;
+  width: 80%
+`
+
+export default function AnswerModal({name, question, questionId, setIsOpen}) {
   const [images, setImages] = useState([]);
   const [answer, setAnswer] = useState({});
   const [urls, setUrls] = useState([]);
@@ -13,7 +36,8 @@ export default function AnswerModal({name, question, questionId}) {
     //TODO: make some kind of post request
     let submission = {...answer, photos: urls, questionID: questionId }
     axios.post('/qa/questions/answers', submission).then(() => {
-      console.log('Answer submitted')
+      console.log('Answer submitted');
+      setIsOpen(false);
     }).catch((err) => {
       console.log('error client posting answer: ', err);
     })
@@ -48,25 +72,28 @@ export default function AnswerModal({name, question, questionId}) {
   }
 
   return (
-    <div>
-      <h4>Submit your Answer</h4>
-      <h5>{`${name} : ${question}`}</h5>
-      <form onSubmit={submitHandler}>
-        <label>Your Answer</label>
-        {/* <input type="text" name="body" maxLength="1000" onChange={changeHandler}></input> */}
-        <textarea name="body"  maxLength="1000" onChange={changeHandler} required></textarea>
-        <label>What is your nickname?</label>
-        <input type="text" maxLength='60' placeholder="Example: jack543!" name="name" onChange={changeHandler} required ></input>
-        <p>For privacy reasons, do not use your full name or email address</p>
-        <label>Your Email:</label>
-        <input type="email" maxLength='60' placeholder="Example: jack@email.com" name="email" required onChange={changeHandler}></input>
-        For authentication reasons, you will not be emailed
-        <label>Upload Your Photos</label>
-       { images.length < 5 && <input type="file" name="image" accept="image/png, image/jpeg"onChange={fileUploader} multiple></input>}
-        {/* <input type="submit" name="submit" value="Upload"></input> */}
-        <input type="submit" value="Submit Answer"></input>
-        {images.length > 0 && <ImageDisplay images={images}/>}
-      </form>
-    </div>
+    <ModalWrap>
+      <Content>
+        <h4>Submit your Answer</h4>
+        <h5>{`${name} : ${question}`}</h5>
+        <form onSubmit={submitHandler}>
+          <label>Your Answer</label>
+          {/* <input type="text" name="body" maxLength="1000" onChange={changeHandler}></input> */}
+          <textarea name="body"  maxLength="1000" onChange={changeHandler} required></textarea>
+          <label>What is your nickname?</label>
+          <input type="text" maxLength='60' placeholder="Example: jack543!" name="name" onChange={changeHandler} required ></input>
+          <p>For privacy reasons, do not use your full name or email address</p>
+          <label>Your Email:</label>
+          <input type="email" maxLength='60' placeholder="Example: jack@email.com" name="email" required onChange={changeHandler}></input>
+          For authentication reasons, you will not be emailed
+          <label>Upload Your Photos</label>
+        { images.length < 5 && <input type="file" name="image" accept="image/png, image/jpeg"onChange={fileUploader} multiple></input>}
+          {/* <input type="submit" name="submit" value="Upload"></input> */}
+          <input type="submit" value="Submit Answer"></input>
+          {images.length > 0 && <ImageDisplay images={images}/>}
+        </form>
+        <button onClick={() => {setIsOpen(false)}}>Close</button>
+      </Content>
+    </ModalWrap>
   )
 }

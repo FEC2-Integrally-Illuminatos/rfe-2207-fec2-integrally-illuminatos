@@ -16,7 +16,7 @@ export const Heading = styled.h3`
   margin: 0px;
 `
 
-export default function Answers({answers, requestCount, showAnswers, fetchAnswers, setRequestCount, setMoreAnswers, moreAnswers, setDisplayAnswers, allAnswers}) {
+export default function Answers({answers, requestCount, showAnswers, fetchAnswers, setRequestCount, setDisplayAnswers, allAnswers}) {
   const handleMoreAnswers = () => {
     //when this is clicked, need to show more answers
     setRequestCount(requestCount + 1);

@@ -60,7 +60,7 @@ export default function IndividualQ ({question, questionID, product}) {
           <AddAnswer question={question} product={product} questionId={questionID}/>
         </HP>
       </Body>
-      {showAnswers && <Answers answers={displayAnswers} requestCount={requestCount} setRequestCount={setRequestCount} showAnswers={showAnswers} fetchAnswers={fetchAnswers} moreAnswers={moreAnswers} setMoreAnswers={setMoreAnswers} setDisplayAnswers={setDisplayAnswers} allAnswers={allAnswers}/>}
+      {showAnswers && <Answers answers={displayAnswers} requestCount={requestCount} setRequestCount={setRequestCount} showAnswers={showAnswers} fetchAnswers={fetchAnswers} setDisplayAnswers={setDisplayAnswers} allAnswers={allAnswers}/>}
       <br></br>
     </Wrapper>
   )

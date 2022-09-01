@@ -69,7 +69,7 @@ const Wrapper = (props) => {
 
   }
   const handleAddQuestion = () => {
-    setAddQuestion(!addQuestion);
+    setAddQuestion(true);
   }
 
   return (
@@ -79,7 +79,7 @@ const Wrapper = (props) => {
       <Main>
       {allQuestions.length > 0 && <QuestionDisplay questions={isSearched ? searchQuestions : displayQuestions } wantsMore = {requestCount} product={product}/>}
       {/* //TODO:Change the name when clicked to be less answered questions */}
-      {addQuestion && <QuestionModal name={product.name} productId={product.id} />}
+      {addQuestion && <QuestionModal name={product.name} productId={product.id} setAddQuestion={setAddQuestion} />}
     </Main>
       <Buttons>
       <Button onClick ={handleMoreClick}>MORE ANSWERED QUESTIONS</Button>
