@@ -15,14 +15,66 @@ app.use('/', (req, res, next) => {
   next();
 });
 
+let auth = {headers: {Authorization: process.env.API_KEY}};
+
 //GET REQUESTS
 app.get('/products', (req, res) => {
   //TODO:
-
 });
 
 app.get('/relatedProducts', (req, res) => {
-  //TODO:
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.query.productID}/related`, auth)
+    .then((relatedProds) => {
+      return relatedProds.data.map((product) => {
+        return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product}`, auth);
+      })
+    })
+    .then(promiseArr => Promise.all(promiseArr)) //returns an array of objects with object.data being the prod information
+    .then(products => {
+      return products.map((product) => {
+        return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product.data.id}/styles`, auth)
+        .then(response => {
+          let thumbnail = response.data.results.filter(style => style['default?'])[0].photos[0].thumbnail_url;
+          product.data.picture = thumbnail;
+          return product.data;
+        })
+      })
+    })
+    .then(promises => Promise.all(promises).then(productArr => res.status(200).send(productArr)))
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+app.get('/outfits', (req, res) => {
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.query.productID}`, auth)
+  .then((product) => {
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.query.productID}/styles`, auth)
+    .then(styles => {
+      let thumbnail = styles.data.results.filter(style => style['default?'])[0].photos[0].thumbnail_url;
+      product.data.picture = thumbnail;
+      res.status(200).send(product.data)
+    })
+  });
+});
+
+app.get('/storage', (req, res) => {
+  let promiseArr = req.query.stored_IDs.map((id => {
+    return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${~~id}`, auth);
+  }));
+  Promise.all(promiseArr)
+  .then(products => {
+    return products.map((product) => {
+      return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product.data.id}/styles`, auth)
+      .then(response => {
+        let thumbnail = response.data.results.filter(style => style['default?'])[0].photos[0].thumbnail_url;
+        product.data.picture = thumbnail;
+        return product.data;
+      })
+    })
+  })
+  .then(promises => Promise.all(promises)
+  .then(productArr => res.status(200).send(productArr)))
 });
 
 app.get('/reviews', (req, res) => {
