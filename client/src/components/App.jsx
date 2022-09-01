@@ -7,10 +7,10 @@ import Wrapper from './faq/QuestionWrapper.jsx';
 import RelatedProducts from './related_products/RelatedProducts.jsx';
 import styled from 'styled-components';
 
-const Chevere = styled.div`
-  margin-left: 10%;
-  margin-right: 10%;
-`
+// const Chevere = styled.div`
+//   margin-left: 10%;
+//   margin-right: 10%;
+// `
 
 const App = () => {
   const [product, setProduct] = useState({});
@@ -19,7 +19,7 @@ const App = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('/products', {params: {product_id: 37311}})
+    axios.get('/products', {params: {product_id: 37315}})
       .then((data) => {
         setProduct(data.data);
         setStyle(data.data.styles[0]);
@@ -46,7 +46,7 @@ const App = () => {
       </div>
     )
     : (
-    <Chevere>
+    <>
       <h1>Chévere</h1>
       <Overview product={product} style={style} styles={styles}/>
       <RelatedProducts setProduct={setProduct} product={product}/>
@@ -54,7 +54,7 @@ const App = () => {
         <Wrapper product={product}/>
       </FAQWrapper>
       <Reviews product={product}/>
-    </Chevere>
+    </>
     )
   )
 }

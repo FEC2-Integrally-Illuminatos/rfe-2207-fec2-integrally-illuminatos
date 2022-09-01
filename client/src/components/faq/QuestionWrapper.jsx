@@ -46,7 +46,7 @@ const Wrapper = (props) => {
       setDisplayQuestions(result.slice(0, 4))
     }
     fetchQuestions().catch(console.error)
-  }, []);
+  }, [props]);
 
   const handleMoreClick = (e) => {
     setRequestCount(requestCount + 1);
