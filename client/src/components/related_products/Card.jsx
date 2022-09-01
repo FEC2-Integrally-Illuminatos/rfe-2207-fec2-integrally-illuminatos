@@ -5,7 +5,9 @@ const Card = ({type, product, handleRemove, id, handleComparison}) => {
     return (
       <div className="card" id={id}>
         <button className="star" onClick={handleComparison}>*</button>
-        <img className="thumbnail" width="100%" src={product.picture} />
+        <div className="image-conatiner">
+          <img className="thumbnail" src={product.picture} />
+        </div>
         <p className="category">{product.category}</p>
         <h1 className="name">{product.name}</h1>
         {/* TODO: visual bussiness document shows "expanded product name with extra text" */}
@@ -19,7 +21,9 @@ const Card = ({type, product, handleRemove, id, handleComparison}) => {
     return (
       <div className="card" id={id}>
         <button className="remove" onClick={handleRemove}>x</button>
-        <img className="thumbnail" width="100%" src={product.picture} />
+        <div className="image-conatiner">
+          <img className="thumbnail" src={product.picture} />
+        </div>
         <p className="category">{product.category}</p>
         <h1 className="name">{product.name}</h1>
         {/* TODO: visual bussiness document shows "expanded product name with extra text" */}
@@ -33,7 +37,7 @@ const Card = ({type, product, handleRemove, id, handleComparison}) => {
     return (
       <div className="card">
         <h1>Add To Outfit</h1>
-        <button>+++</button>
+        <button className="add">+++</button>
       </div>
     )
   }
