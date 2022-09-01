@@ -15,7 +15,10 @@ margin-bottom: 10px;
 
 export const Body = styled.div`
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
+  border: 1px solid black;
+  padding: 20px;
 `
 
 export const HP = styled.div`
