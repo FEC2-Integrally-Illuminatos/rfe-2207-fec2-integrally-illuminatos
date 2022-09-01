@@ -40,6 +40,7 @@ app.get('/relatedProducts', (req, res) => {
         return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product}`, auth);
       })
     })
+    .catch(err => {console.log(err)})
     .then(promiseArr => Promise.all(promiseArr)) //returns an array of objects with object.data being the prod information
     .then(products => {
       return products.map((product) => {
