@@ -5,52 +5,29 @@ import ProductInfo from './productInfo.jsx';
 import ProductOverview from './productOverview.jsx';
 import MetaInfo from './metaInfo.jsx';
 import axios from 'axios';
-import SocialMedia from './socialMedia.jsx';
 
 
 const Overview = (props) => {
-  const [product, setProduct] = useState({});
-  const [style, setStyle] = useState({});
-  const [styles, setStyles] = useState({});
+  const [product, setProduct] = useState(props.product);
+  const [style, setStyle] = useState(props.style);
+  const [styles, setStyles] = useState(props.styles);
   const [loading, setLoading] = useState(true);
 
 
-  useEffect(() => {
-    axios.get('/loading')
-      .then(() => {
-        setLoading(false);
-      });
-  });
+
 
   useEffect(() => {
-    axios.get('/products', {params: {product_id: 37315}})
-      .then((data) => {
-        setProduct(data.data);
-        setStyle(data.data.styles[0]);
-        setStyles(data.data.styles);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [])
+    setProduct(props.product);
+    setStyle(props.style);
+    setStyles(props.styles);
+  }, [props]);
 
-  useEffect(() => {
-    console.log(product, style);
-  }, [product])
 
   const handleStyleChange = (newStyle) => {
     setStyle(newStyle);
   }
 
-// if (Object.keys(product).length > 0 ) {
   return (
-    loading
-    ? (
-      <div>
-        Loading...
-      </div>
-    )
-    : (
     <div className='mainImg'>
       <div>
         <MainCarousel product={product} style={style}/>
@@ -64,11 +41,7 @@ const Overview = (props) => {
       <div>
         <MetaInfo />
       </div>
-      <div>
-        <SocialMedia style={style}/>
-      </div>
     </div>
-    )
   );
   // }
 }

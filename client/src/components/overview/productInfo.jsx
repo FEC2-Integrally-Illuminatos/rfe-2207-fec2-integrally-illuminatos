@@ -7,6 +7,8 @@ import StyleName from './styleName.jsx';
 import StyleThumbnail from './styleThumbnail.jsx';
 import ThumbnailGallery from './thumbnailGallery.jsx';
 import SizeSelector from './sizeSelector.jsx';
+import SocialMedia from './socialMedia.jsx';
+
 
 
 const ProductInfo = (props) => {
@@ -25,6 +27,7 @@ const ProductInfo = (props) => {
 
   return (
     <div>
+        <SocialMedia style={style}/>
         <StarRating {...product}/>
       <div>
         <h4 data-testid="counter">{product.category}</h4>

@@ -31,6 +31,13 @@ const StarRating = (props) => {
     }
   }, [props]);
 
+  const handleClick = (e) => {
+    let offsetTop = document.getElementById(e).offsetTop;
+    window.scrollTo({
+      top: offsetTop-100,
+      behavior: "smooth"
+    });
+  };
 
   if (rating === 0) {
     return (
@@ -38,7 +45,6 @@ const StarRating = (props) => {
     );
     } else {
       return (
-        //ADD AUTO SCROLL TO REVIEWS WHEN CLICKED
         <div>
           <StarRatings
             rating={rating}
@@ -48,7 +54,7 @@ const StarRating = (props) => {
             starSpacing={'1px'}
             starDimension={'25px'}
             />&nbsp;&nbsp;
-          <a href=''>Read all 10 reviews</a>
+          <a onClick={() => {handleClick('gohere');}}>Read all 10 reviews</a>
         </div>
         );
     }
