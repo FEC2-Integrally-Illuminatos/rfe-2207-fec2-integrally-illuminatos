@@ -6,13 +6,17 @@
   "author": "Andrew Cho <cisdell@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "add": "^2.0.6",
     "axios": "^0.27.2",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "styled-components": "^5.3.5"
+    "styled-components": "^5.3.5",
+    "react-multi-carousel": "^2.8.2",
+    "styled-components": "^5.3.5",
+    "yarn": "^1.22.19"
   },
   "resolutions": {
     "styled-components": "^5"
