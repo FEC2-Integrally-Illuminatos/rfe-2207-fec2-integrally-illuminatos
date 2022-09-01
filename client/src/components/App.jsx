@@ -1,8 +1,14 @@
-import React from 'react';
-
+import React from "react";
+import Reviews from "./reviews/Reviews.jsx";
+import AddReviewForm from "./reviews/AddReviewForm.jsx";
+// import ReviewContainer from '../assets/Container.styled.js'
 const App = () => {
-  return <h1>Hello World</h1>
-}
+  // console.log('hello!')
+  return (
+    <div>
+        <Reviews />
+    </div>
+  );
+};
 
 export default App;
-
