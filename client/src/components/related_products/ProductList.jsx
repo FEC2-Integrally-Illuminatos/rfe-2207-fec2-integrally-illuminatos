@@ -34,7 +34,7 @@ const ProductList = ({relatedProducts, handleComparison}) => {
       autoPlaySpeed={3000}
       centerMode={false}
       className=""
-      containerClass="container-with-dots"
+      containerClass="carousel-products"
       dotListClass=""
       draggable
       focusOnSelect={false}

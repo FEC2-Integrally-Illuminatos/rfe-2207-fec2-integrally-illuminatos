@@ -70,7 +70,7 @@ const OutfitList = ({productNum}) => {
       autoPlaySpeed={3000}
       centerMode={false}
       className=""
-      containerClass="container-with-dots"
+      containerClass="carousel-outfit"
       dotListClass=""
       draggable
       focusOnSelect={false}

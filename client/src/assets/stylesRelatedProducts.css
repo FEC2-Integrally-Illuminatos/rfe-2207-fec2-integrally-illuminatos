@@ -3,12 +3,18 @@
 } */
 
 .container {
-  height: 100%;
+  height: 98%;
   border: 2px solid black;
 }
 
-.container img {
-  height: 200px;
+.image-conatiner {
+  text-align: center;
+}
+
+.container .thumbnail {
+  height: 8em;
+  width: 90%;
+  margin-top: 5%;
 }
 
 .container button {
@@ -17,8 +23,16 @@
   left: 85%;
 }
 
+.container .card {
+  padding-bottom: 5px;
+}
+
 .react-multi-carousel-track li {
   margin-right: 0.5%;
+}
+
+.react-multi-carousel-list {
+  width: 70%;
 }
 
 .tableContainer {
