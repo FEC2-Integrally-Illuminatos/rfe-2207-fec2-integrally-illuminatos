@@ -50,7 +50,7 @@ var Reviews = function () {
 
   //RENDERING
   return (
-    <div>
+    <div id="gohere">
       <ReviewContainer>
         <div className="ReviewsList">
           <form>

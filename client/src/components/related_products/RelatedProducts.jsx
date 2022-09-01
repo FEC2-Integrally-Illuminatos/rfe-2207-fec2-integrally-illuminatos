@@ -12,6 +12,12 @@ const RelatedProducts = ({currentProductID, handleProductChange}) => {
   const [isComparison, setIsComparison] = useState(false);
   const [itemToCompare, setItemToCompare] = useState(null);
 
+
+  useEffect(() => {
+    setProductNum(currentProductID);
+  }, [currentProductID]);
+
+
   useEffect(() => {
     axios.get('/relatedProducts', {params: {productID: productNum}})
       .then((response) => setRelatedProducts(response.data));

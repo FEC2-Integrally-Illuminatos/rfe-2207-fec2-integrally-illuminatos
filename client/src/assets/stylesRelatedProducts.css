@@ -24,6 +24,12 @@
   left: 85%;
 }
 
+.container .add {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
 .container .card {
   padding-bottom: 5px;
 }
@@ -33,7 +39,7 @@
 }
 
 .react-multi-carousel-list {
-  width: 70%;
+  width: 90%;
 }
 
 .tableContainer {

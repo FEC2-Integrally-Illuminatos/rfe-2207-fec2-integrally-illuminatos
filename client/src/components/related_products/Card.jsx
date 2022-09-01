@@ -37,7 +37,7 @@ const Card = ({type, product, handleRemove, id, handleComparison}) => {
     return (
       <div className="card">
         <h1>Add To Outfit</h1>
-        <button>+++</button>
+        <button className="add">+++</button>
       </div>
     )
   }

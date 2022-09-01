@@ -35,6 +35,18 @@ app.get('/loading', (req, res) => {
   }, 1000);
 });
 
+
+app.get('/home', (req, res) => {
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.query.product_id}`, {headers: {Authorization: process.env.API_KEY}})
+    .then((data) => {
+      console.log(data.data);
+      res.status(200).json(data.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
 app.get('/products', (req, res) => {
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.query.product_id}`, {headers: {Authorization: process.env.API_KEY}})
     .then((prodData) => {
@@ -59,9 +71,6 @@ app.get('/products', (req, res) => {
     });
 })
 
-app.get('/products', (req, res) => {
-  //TODO:
-});
 
 app.get('/relatedProducts', (req, res) => {
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.query.productID}/related`, auth)
