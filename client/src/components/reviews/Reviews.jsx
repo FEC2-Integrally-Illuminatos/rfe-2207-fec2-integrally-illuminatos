@@ -68,7 +68,7 @@ var Reviews = function () {
           </form>
           <ReviewsList Product={Product} ReviewsToDisplay={ReviewsToDisplay} />
           <button onClick={AddTwoReview}>More Reviews</button>
-          <button>Add a Review</button>
+          <button>Add a Review TEST</button>
         </div>
       </ReviewContainer>
       <RatingContainer>
