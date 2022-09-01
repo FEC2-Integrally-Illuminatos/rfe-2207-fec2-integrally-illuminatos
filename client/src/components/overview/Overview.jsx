@@ -39,7 +39,7 @@ const Overview = (props) => {
         <ProductOverview product={product} style={style}/>
       </div>
       <div>
-        <MetaInfo />
+        <MetaInfo product={product}/>
       </div>
     </div>
   );

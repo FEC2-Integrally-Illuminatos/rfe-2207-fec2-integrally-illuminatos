@@ -19,7 +19,7 @@ const App = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('/products', {params: {product_id: 37311}})
+    axios.get('/products', {params: {product_id: 37331}})
       .then((data) => {
         setProduct(data.data);
         setStyle(data.data.styles[0]);
