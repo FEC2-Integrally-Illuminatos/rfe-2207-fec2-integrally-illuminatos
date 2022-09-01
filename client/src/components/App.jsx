@@ -25,10 +25,6 @@ const App = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log('current product id', currentProductID);
-  }, [currentProductID])
-
-  useEffect(() => {
     axios.get('/products', {params: {product_id: currentProductID}})
       .then((data) => {
         setProduct(data.data);
@@ -73,7 +69,7 @@ const App = () => {
     : (
     <Chevere>
       <h1>Chévere</h1>
-      {/* <Overview product={product} style={style} styles={styles}/> */}
+      <Overview product={product} style={style} styles={styles}/>
       <RelatedProducts currentProductID={currentProductID} handleProductChange={handleProductChange} setProduct={setProduct} product={product}/>
       <FAQWrapper>
         <Wrapper product={product}/>
