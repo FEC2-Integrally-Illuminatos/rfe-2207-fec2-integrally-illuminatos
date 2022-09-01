@@ -3,7 +3,7 @@ import React from 'react';
 const Card = ({type, product, handleRemove, id, handleComparison}) => {
   if (type === 'Product') {
     return (
-      <div className="card">
+      <div className="card" id={id}>
         <button className="star" onClick={handleComparison}>*</button>
         <img className="thumbnail" width="100%" src={product.picture} />
         <p className="category">{product.category}</p>

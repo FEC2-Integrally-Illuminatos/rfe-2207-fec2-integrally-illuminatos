@@ -9,15 +9,21 @@ const RelatedProducts = (/*will take product id as prop*/) => {
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [productNum, setProductNum] = useState(37331);
   const [isComparison, setIsComparison] = useState(false);
+  const [itemToCompare, setItemToCompare] = useState(null);
 
   useEffect(() => {
     axios.get('/relatedProducts', {params: {productID: productNum}})
       .then((response) => setRelatedProducts(response.data));
   }, [productNum]);
 
-  const handleComparison = () => {
+  const handleComparison = (e) => {
+    setItemToCompare(e.target.parentElement.id);
     isComparison ? setIsComparison(false) : setIsComparison(true);
-  }
+  };
+
+  useEffect(() => {
+    console.log(itemToCompare);
+  }, [itemToCompare]); //probably dont need this
 
   if (isComparison) {
     return (

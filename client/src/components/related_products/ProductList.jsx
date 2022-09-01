@@ -59,7 +59,7 @@ const ProductList = ({relatedProducts, handleComparison}) => {
       {relatedProducts.map((product) => {
         return (
         <div className="container" key={product.id}>
-          <Card type="Product" product={product} handleComparison={handleComparison}/>
+          <Card type="Product" product={product} handleComparison={handleComparison} id={product.id}/>
         </div>
         );
       })}
