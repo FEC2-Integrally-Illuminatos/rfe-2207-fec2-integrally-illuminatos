@@ -76,7 +76,7 @@ const QuantitySelector = (props) => {
           <Select value={''} placeholder={'-'} isDisabled={true}/>
         </div>
         <div>
-          <Cart isEnabled={isEnabled} selectRef={props.selectRef} setMenuOpen={props.setMenuOpen} currentSKU={currentSKU} currentQuantity={currentQuantity} selectedSize={selectedSize}/>
+          <Cart setAlert={props.setAlert} isEnabled={isEnabled} selectRef={props.selectRef} setMenuOpen={props.setMenuOpen} currentSKU={currentSKU} currentQuantity={currentQuantity} selectedSize={selectedSize}/>
         </div>
       </div>
     );
@@ -87,7 +87,7 @@ const QuantitySelector = (props) => {
             <Select isSearchable={false} value={{value: currentQuantity, label: currentQuantity}} options={numbers} onChange={(e) => {handleOnChange(e)}}/>
           </div>
           <div>
-            <Cart isEnabled={isEnabled} selectRef={props.selectRef} setMenuOpen={props.setMenuOpen} currentSKU={currentSKU} currentQuantity={currentQuantity} selectedSize={selectedSize}/>
+            <Cart setAlert={props.setAlert} isEnabled={isEnabled} selectRef={props.selectRef} setMenuOpen={props.setMenuOpen} currentSKU={currentSKU} currentQuantity={currentQuantity} selectedSize={selectedSize}/>
           </div>
         </div>
     );

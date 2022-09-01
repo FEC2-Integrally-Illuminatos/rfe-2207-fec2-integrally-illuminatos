@@ -27,6 +27,7 @@ const Cart = (props) => {
 
   const handleOtherClick = (e) => {
       props.selectRef.current.focus();
+      props.setAlert(true);
   };
 
   if (isEnabled) {

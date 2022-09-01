@@ -22,9 +22,6 @@ const ProductInfo = (props) => {
     setStyles(props.styles);
   }, [props]);
 
-
-  //NEED TO PASS DOWN ON CHANGE FOR SIZE AND QUANTITY TO SIZESELECTOR AND QUANTIY SELECTOR
-
   return (
     <div>
         <SocialMedia style={style}/>
