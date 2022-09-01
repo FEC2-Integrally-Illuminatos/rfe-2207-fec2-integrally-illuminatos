@@ -1,0 +1,51 @@
+/* #related_products {
+
+} */
+
+.container {
+  height: 100%;
+  border: 2px solid black;
+}
+
+.container img {
+  height: 200px;
+}
+
+.container button {
+  position: absolute;
+  top: 5%;
+  left: 85%;
+}
+
+.react-multi-carousel-track li {
+  margin-right: 0.5%;
+}
+
+.tableContainer {
+  overflow: auto;
+  max-height: 200px;
+  width: 50%;
+}
+thead tr {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+.rowHeader, [scope="colgroup"] span {
+  left: 0;
+  position: sticky;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  min-width: 100px;
+  background: #ffffff;
+}
+
