@@ -1,14 +1,23 @@
-import React from "react";
+import React from 'react';
 import Reviews from "./reviews/Reviews.jsx";
-import AddReviewForm from "./reviews/AddReviewForm.jsx";
-// import ReviewContainer from '../assets/Container.styled.js'
+import {FAQWrapper} from './faq/styles/FAQWrapper.styled.js';
+import Wrapper from './faq/QuestionWrapper.jsx';
+import RelatedProducts from './related_products/RelatedProducts.jsx';
+
 const App = () => {
-  // console.log('hello!')
   return (
-    <div>
-        <Reviews />
-    </div>
-  );
-};
+    <>
+      <RelatedProducts />
+      <FAQWrapper>
+        <Wrapper/>
+      </FAQWrapper>
+      <Reviews/>
+    </>
+  )
+}
+
+
+
+
 
 export default App;
