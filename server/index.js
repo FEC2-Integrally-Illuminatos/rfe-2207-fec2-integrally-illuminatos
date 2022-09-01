@@ -52,7 +52,7 @@ app.get('/qa/questions/:id', (req, res) => {
       console.log('Error getting questions: ', err)
     })
   } else {
-    axios.get(`${url}/qa/questions/${id}/answers`, {headers: headerOptions}).then((answers) => {
+    axios.get(`${url}/qa/questions/${id}/answers`, {params: {count: count},headers: headerOptions}).then((answers) => {
       res.status(200).json(answers.data)
     }).catch((err) => {
       console.log('Error getting answers: ', err)

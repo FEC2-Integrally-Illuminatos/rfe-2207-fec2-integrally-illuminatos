@@ -77,7 +77,7 @@ const Wrapper = (props) => {
       <Search questions={displayQuestions} setSearchQuestions= {setSearchQuestions} setSearched={setSearched}/>
       {/* render either searched questions or questions for product */}
       <Main>
-      {allQuestions.length > 0 && <QuestionDisplay questions={isSearched ? searchQuestions : displayQuestions } wantsMore = {wantsMore} product={product}/>}
+      {allQuestions.length > 0 && <QuestionDisplay questions={isSearched ? searchQuestions : displayQuestions } wantsMore = {requestCount} product={product}/>}
       {/* //TODO:Change the name when clicked to be less answered questions */}
       {addQuestion && <QuestionModal name={product.name} productId={product.id} />}
     </Main>

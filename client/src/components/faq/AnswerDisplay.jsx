@@ -16,8 +16,16 @@ export const Heading = styled.h3`
   margin: 0px;
 `
 
-export default function Answers({answers, wantsMore, showAnswers, fetchAnswers}) {
-  answers = wantsMore ? answers : answers.slice(0, 2);
+export default function Answers({answers, requestCount, showAnswers, fetchAnswers, setRequestCount, setMoreAnswers, moreAnswers, setDisplayAnswers, allAnswers}) {
+  const handleMoreAnswers = () => {
+    //when this is clicked, need to show more answers
+    setRequestCount(requestCount + 1);
+    if (answers.length !== requestCount) {
+       setDisplayAnswers(allAnswers.slice(0, (2 * requestCount)));
+    } else {
+      fetchAnswers().catch(console.error);
+    }
+  }
   return (
     <Div>
       <Heading>A:</Heading>
@@ -25,7 +33,7 @@ export default function Answers({answers, wantsMore, showAnswers, fetchAnswers})
       {answers.map((answer) => {
         return (<Answer answer = {answer} key= {answer['answer_id']} fetchAnswers={fetchAnswers}/>)
       })}
-      <p>LOAD MORE ANSWERS</p>
+      <p onClick={handleMoreAnswers}>LOAD MORE ANSWERS</p>
 
       </AnswerBlock>
     </Div>

@@ -27,21 +27,27 @@ const Heading = styled.h3`
   margin: 0 20px 0 0;
   display: inline-block;
 `
-export default function IndividualQ ({question, questionID, wantsMore, count, product}) {
+export default function IndividualQ ({question, questionID, product}) {
   question = question.includes('?') ? question : question +='?';
   const [allAnswers, setAllAnswers] = useState([]);
+  const [displayAnswers, setDisplayAnswers] = useState([]);
   const [showAnswers, setShowAnswers] = useState(false);
+  const [requestCount, setRequestCount] = useState(1);
+  const [count, setCount] = useState(15);
 
   const fetchAnswers = async () => {
-    const answers = await axios.get(`qa/questions/${questionID}`);
+    const answers = await axios.get(`qa/questions/${questionID}`, {params: {count: count}});
     let result = answers.data.results.sort((a, b) => {
       return b.helpfulness - a.helpfulness
      });
      setAllAnswers(result);
+     return result;
   }
 
+
+
   useEffect(() => {
-    fetchAnswers().catch(console.error)
+    fetchAnswers().then((result) => { setDisplayAnswers(result.slice(0, 2))}).catch(console.error)
   }, [])
 
   return (
@@ -54,7 +60,7 @@ export default function IndividualQ ({question, questionID, wantsMore, count, pr
           <AddAnswer question={question} product={product} questionId={questionID}/>
         </HP>
       </Body>
-      {showAnswers && <Answers answers={allAnswers} wantsMore={wantsMore} showAnswers={showAnswers} fetchAnswers={fetchAnswers}/>}
+      {showAnswers && <Answers answers={displayAnswers} requestCount={requestCount} setRequestCount={setRequestCount} showAnswers={showAnswers} fetchAnswers={fetchAnswers} moreAnswers={moreAnswers} setMoreAnswers={setMoreAnswers} setDisplayAnswers={setDisplayAnswers} allAnswers={allAnswers}/>}
       <br></br>
     </Wrapper>
   )
