@@ -1,0 +1,17 @@
+/* @media (max-width: 900px) {
+  .carousel {
+    width:auto;
+    height:auto;
+  }
+} */
+@import "~react-image-gallery/styles/css/image-gallery.css";
+
+
+.mainImg {
+  display: flex;
+  margin: auto;
+  justify-content: space-around;
+  flex-flow: column wrap;
+  width: 50%;
+  height: auto;
+}

@@ -29,6 +29,36 @@ app.use(
 let auth = {headers: {Authorization: process.env.API_KEY}};
 
 //GET REQUESTS
+app.get('/loading', (req, res) => {
+  setTimeout(() => {
+    res.sendStatus(200);
+  }, 1000);
+});
+
+app.get('/products', (req, res) => {
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.query.product_id}`, {headers: {Authorization: process.env.API_KEY}})
+    .then((prodData) => {
+      axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.query.product_id}/styles`, {headers: {Authorization: process.env.API_KEY}})
+        .then((data) => {
+          prodData.data.styles = data.data.results;
+          axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta/`, {params: {product_id: req.query.product_id}, headers: {Authorization: process.env.API_KEY}} )
+            .then((data) => {
+              prodData.data.ratings = data.data.ratings;
+              res.status(200).json(prodData.data);
+            })
+            .catch((err) => {
+              res.sendStatus(401);
+            })
+        })
+        .catch((err) => {
+          res.sendStatus(401);
+        })
+     })
+    .catch((err) => {
+      res.sendStatus(401);
+    });
+})
+
 app.get('/products', (req, res) => {
   //TODO:
 });
@@ -114,7 +144,13 @@ app.get('/qa/questions/:id', (req, res) => {
 });
 
 app.get('/cart', (req, res) => {
-  //TODO:
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/cart`, {headers: {Authorization: process.env.API_KEY}})
+    .then((data) => {
+      res.status(200).json(data.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 
@@ -164,7 +200,20 @@ app.post('/qa/questions/:id', (req, res) => {
 });
 
 app.post('/cart', (req, res) => {
-  //TODO:
+  let promises = [];
+  for (let i = 0; i < parseInt(req.body.quantity); i++) {
+    promises.push(axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/cart`, {sku_id: req.body.sku_id}, {headers: {Authorization: process.env.API_KEY}})
+      .catch((err) => {
+        console.log(err);
+      }));
+  };
+  Promise.all(promises)
+    .then(() => {
+      res.status(201).send('added to cart!');
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 //PUT REQUESTS
