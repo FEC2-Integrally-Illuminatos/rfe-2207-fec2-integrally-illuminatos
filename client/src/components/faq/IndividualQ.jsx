@@ -23,7 +23,7 @@ export const HP = styled.div`
   justify-content: space-evenly;
 `
 
-const Heading = styled.h4`
+const Heading = styled.h3`
   margin: 0 20px 0 0;
   display: inline-block;
 `
@@ -48,7 +48,7 @@ export default function IndividualQ ({question, questionID, wantsMore, count, pr
     <Wrapper>
       <Body>
           <span onClick={() => {setShowAnswers(!showAnswers)}}>
-           <Heading>Q:</Heading> {question}</span>
+           <Heading>Q:</Heading><h3 style={{margin: 0, display: 'inline'}}>{question}</h3> </span>
         <HP>
           <Helpful questionId={questionID} count={count}/> |
           <AddAnswer question={question} product={product} questionId={questionID}/>

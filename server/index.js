@@ -43,10 +43,10 @@ app.get('/reviews', (req, res) => {
 app.get('/qa/questions/:id', (req, res) => {
   //TODO:
   let {id} = req.params;
-  let {productID} = req.query;
+  let {productID, count} = req.query;
   //if id is questions - GET ALL QUESTIONS 'qa/questions'
   if (id === 'all') {
-    axios.get(`${url}/qa/questions`, {params: {'product_id': productID }, headers: headerOptions}).then((questions) => {
+    axios.get(`${url}/qa/questions`, {params: {'product_id': productID, count: count }, headers: headerOptions}).then((questions) => {
       res.status(200).json(questions.data)
     }).catch((err) => {
       console.log('Error getting questions: ', err)

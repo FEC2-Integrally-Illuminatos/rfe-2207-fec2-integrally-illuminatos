@@ -6,7 +6,8 @@ import QuestionModal from './QuestionModal.jsx';
 import styled from 'styled-components';
 import {FAQWrapper} from './styles/FAQWrapper.styled.js';
 import {Main} from './styles/Main.styled.js';
-import {Buttons} from './styles/Buttons.styled.js'
+import {Buttons} from './styles/Buttons.styled.js';
+
 
 const Button = styled.button`
   margin: 1% 15% 1% 20%;
@@ -25,35 +26,47 @@ const Wrapper = (props) => {
 }
   const product = props.product || dummyData;
   const [allQuestions, setAllQuestions] = useState([]);
+  const [displayQuestions, setDisplayQuestions] = useState([]);
   const [searchQuestions, setSearchQuestions] = useState();
   const [isSearched, setSearched] = useState(false);
   const [wantsMore, setWantsMore] = useState(false);
   const [addQuestion, setAddQuestion] = useState(false);
+  const [requestCount, setRequestCount] = useState(1);
+  const [count, setCount] = useState(20);
+
 
 
   useEffect(() => {
     const fetchQuestions = async () => {
-      const questions = await axios.get('/qa/questions/all', {params: {productID: product.id}});
-      let result = questions.data.results.slice(0, 4).sort((a, b) => {
-       return b['question_helpfulness'] - a['question_helpfulness']
+      const questions = await axios.get('/qa/questions/all', {params: {productID: product.id, count: count}});
+      let result = questions.data.results.sort((a, b) => {
+        return b['question_helpfulness'] - a['question_helpfulness']
       });
       setAllQuestions(result);
+      setDisplayQuestions(result.slice(0, 4))
     }
     fetchQuestions().catch(console.error)
   }, []);
 
   const handleMoreClick = (e) => {
-    setWantsMore(!wantsMore);
-    if (wantsMore) {
+    setRequestCount(requestCount + 1);
+    // setWantsMore(true);
+    if (allQuestions.length !== count) {
+      setDisplayQuestions(allQuestions.slice(0, (4 * requestCount )));
+    } else {
+      setCount(count + 4);
       const fetchQuestions = async () => {
-        const questions = await axios.get('/qa/questions/all', {params: {productID: product.id}});
+        const questions = await axios.get('/qa/questions/all', {params: {productID: product.id, count: count}});
         let result = questions.data.results.sort((a, b) => {
-         return b['question_helpfulness'] - a['question_helpfulness']
+          return b['question_helpfulness'] - a['question_helpfulness']
         });
         setAllQuestions(result);
+        setDisplayQuestions(result);
       }
-      fetchQuestions().catch(console.error)
+      fetchQuestions().catch(console.error);
     }
+
+
   }
   const handleAddQuestion = () => {
     setAddQuestion(!addQuestion);
@@ -61,10 +74,10 @@ const Wrapper = (props) => {
 
   return (
     <>
-      <Search questions={allQuestions} setSearchQuestions= {setSearchQuestions} setSearched={setSearched}/>
+      <Search questions={displayQuestions} setSearchQuestions= {setSearchQuestions} setSearched={setSearched}/>
       {/* render either searched questions or questions for product */}
       <Main>
-      {allQuestions.length > 0 && <QuestionDisplay questions={isSearched ? searchQuestions : allQuestions } wantsMore = {wantsMore} product={product}/>}
+      {allQuestions.length > 0 && <QuestionDisplay questions={isSearched ? searchQuestions : displayQuestions } wantsMore = {wantsMore} product={product}/>}
       {/* //TODO:Change the name when clicked to be less answered questions */}
       {addQuestion && <QuestionModal name={product.name} productId={product.id} />}
     </Main>

@@ -12,7 +12,7 @@ const AnswerBlock = styled.div`
   flex-grow: 1;
   margin-left: 20px;
 `
-export const Heading = styled.h4`
+export const Heading = styled.h3`
   margin: 0px;
 `
 
