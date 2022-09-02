@@ -12,13 +12,10 @@ const Chevere = styled.div`
   margin-right: 10%;
 `
 
-
-
-
 const App = () => {
 
 
-  const [currentProductID, setCurrentProductID] = useState(37311);
+  const [currentProductID, setCurrentProductID] = useState(37315);
   const [product, setProduct] = useState({});
   const [style, setStyle] = useState({});
   const [styles, setStyles] = useState({});

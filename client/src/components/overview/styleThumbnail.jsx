@@ -1,19 +1,58 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'react-bootstrap/Image';
-import { Checkmark } from 'react-checkmark';
+// import { Checkmark } from 'react-checkmark';
+import styled from 'styled-components';
 
+
+const ImageBox = styled.div`
+  box-shadow: 5px 5px 5px grey;
+  border: ${props => props.selected ? "4px solid #0E216C" : "0.01px solid grey"};
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background: no-repeat center center;
+  float: left;
+  background-image: url(${(props => props.link)});
+  background-size: cover;
+  height: 0;
+  padding-bottom: 20%;
+  width: 20%;
+  margin: 6px;
+`
+const CheckPos = styled.div `
+  margin-top: 30%;
+  margin-left: 55%;
+`
+
+const MyCheckmark = styled.img `
+  width: 35%;
+  height: auto;
+  margin-top: 32%;
+  margin-left: 67%;
+  background: transparent;
+  background-color: transparent;
+`
 
 const StyleThumbnail = (props) => {
   const [style, setStyle] = useState(props.currentStyle);
   const [active, setActive] = useState(false);
 
+
   useEffect(() => {
     setStyle(props.currentStyle);
+    if (props.style.style_id === props.currentStyle.style_id) {
+      setActive(true);
+    } else {
+      setActive(false);
+    };
   }, [props]);
 
   const handleClick = (e) => {
     props.handleStyleChange(style);
   };
+
 
   const photoSetter = (item) => {
     if (item.photos[0] === undefined) {
@@ -23,13 +62,17 @@ const StyleThumbnail = (props) => {
     }
   };
 
+
   if (!active) {
     return (
-        <Image onClick={(e) => {handleClick(e)}} src={photoSetter(style)}/>
+      <ImageBox selected={active} link={photoSetter(style)} onClick={(e) => {handleClick(e)}}>
+      </ImageBox>
     );
   } else { //ADD FEATURES TO HIGHLIGHT and ADD CHECKMARK TO INDICATE SELECTED
     return (
-        <Image src={photoSetter(style)}/>
+      <ImageBox selected={active} link={photoSetter(style)} onClick={(e) => {handleClick(e)}}>
+        <MyCheckmark src='https://toppng.com/uploads/preview/12-months-blue-check-mark-icon-11563057671d6e51m4dr7.png'/>
+      </ImageBox>
   );
   }
 }

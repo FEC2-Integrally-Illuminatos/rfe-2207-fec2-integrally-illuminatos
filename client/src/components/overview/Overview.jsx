@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import '../../assets/stylesOverview.css';
 import MainCarousel from './mainCarousel.jsx';
 import ProductInfo from './productInfo.jsx';
 import ProductOverview from './productOverview.jsx';
 import MetaInfo from './metaInfo.jsx';
 import axios from 'axios';
+import styled from 'styled-components';
 
+const OverviewDiv = styled.div`
+  background: #F2F1EF;
+`
 
 const Overview = (props) => {
   const [product, setProduct] = useState(props.product);
@@ -28,7 +31,7 @@ const Overview = (props) => {
   }
 
   return (
-    <div className='mainImg'>
+    <OverviewDiv>
       <div>
         <MainCarousel product={product} style={style}/>
       </div>
@@ -41,7 +44,7 @@ const Overview = (props) => {
       <div>
         <MetaInfo product={product}/>
       </div>
-    </div>
+    </OverviewDiv>
   );
   // }
 }

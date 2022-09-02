@@ -34,7 +34,7 @@ const ProductInfo = (props) => {
       </div>
         <Price {...style}/>
         <StyleName {...style}/>
-        <ThumbnailGallery handleStyleChange={props.handleStyleChange} styles={styles}/>
+        <ThumbnailGallery handleStyleChange={props.handleStyleChange} style={style} styles={styles}/>
         <SizeSelector product={product} style={style}/>
      </div>
   )
