@@ -69,7 +69,7 @@ const App = () => {
     : (
     <Chevere>
       <h1>Chévere</h1>
-      <Overview product={product} style={style} styles={styles}/>
+      {/* <Overview product={product} style={style} styles={styles}/> */}
       <RelatedProducts currentProductID={currentProductID} handleProductChange={handleProductChange} setProduct={setProduct} product={product}/>
       <FAQWrapper>
         <Wrapper product={product}/>
