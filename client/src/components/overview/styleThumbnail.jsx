@@ -16,7 +16,7 @@ const StyleThumbnail = (props) => {
   };
 
   const photoSetter = (item) => {
-    if (item.photos[0].thumbnail_url === undefined) {
+    if (item.photos[0] === undefined) {
       return 'https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dmlld3xlbnwwfHwwfHw%3D&w=1000&q=80';
     } else {
       return item.photos[0].thumbnail_url;
@@ -25,11 +25,11 @@ const StyleThumbnail = (props) => {
 
   if (!active) {
     return (
-        <Image onClick={(e) => {handleClick(e)}} src={style.photos[0].thumbnail_url}/>
+        <Image onClick={(e) => {handleClick(e)}} src={photoSetter(style)}/>
     );
   } else { //ADD FEATURES TO HIGHLIGHT and ADD CHECKMARK TO INDICATE SELECTED
     return (
-        <Image src={style.photos[0].thumbnail_url}/>
+        <Image src={photoSetter(style)}/>
   );
   }
 }
