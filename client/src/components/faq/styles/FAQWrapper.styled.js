@@ -5,9 +5,11 @@ export const FAQWrapper = styled.div`
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gid-template-rows: 0.25fr 0.75fr;
   grid-template-areas:
-    "search search search search"
+    "title search search search"
     "main main main buttons";
-  gap: 15px 10px;
+  gap: 25px 0px;
+  background-color: #F2F1EF;
+
 `
 
 //TODO: Add media queries

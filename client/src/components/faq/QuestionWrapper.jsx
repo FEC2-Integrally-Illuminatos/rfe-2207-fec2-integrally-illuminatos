@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import {FAQWrapper} from './styles/FAQWrapper.styled.js';
 import {Main} from './styles/Main.styled.js';
 import {Buttons} from './styles/Buttons.styled.js';
+import {Title} from './styles/title.styled.js';
 
 
 const Button = styled.button`
@@ -76,6 +77,7 @@ const Wrapper = (props) => {
     <div id='faq'>
 
     <FAQWrapper >
+      <Title>Q&A</Title>
       <Search questions={displayQuestions} setSearchQuestions= {setSearchQuestions} setSearched={setSearched}/>
       {/* render either searched questions or questions for product */}
       <Main>
