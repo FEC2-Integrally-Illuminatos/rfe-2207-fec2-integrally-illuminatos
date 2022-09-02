@@ -46,7 +46,7 @@ const App = () => {
 
   const handleProductChange = (e) => {
     let productNum = null;
-    if (e.target.className === 'star') {
+    if (e.target.className === 'star' || e.target.clasName === 'remove') {
       return;
     }
     if (e.target.className === 'card') {

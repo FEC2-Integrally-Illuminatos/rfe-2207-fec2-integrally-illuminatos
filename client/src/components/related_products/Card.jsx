@@ -1,4 +1,13 @@
 import React from 'react';
+import styled from 'styled-components';
+
+// const CardWordsContainer = styled.div`
+//   padding: 2%;
+//   background-color: red;
+// `
+const CardWordsContainer = styled.div`
+
+`
 
 const Card = ({type, product, handleRemove, id, handleComparison}) => {
   if (type === 'Product') {
@@ -8,12 +17,14 @@ const Card = ({type, product, handleRemove, id, handleComparison}) => {
         <div className="image-conatiner">
           <img className="thumbnail" src={product.picture} />
         </div>
-        <p className="category">{product.category}</p>
-        <h1 className="name">{product.name}</h1>
-        {/* TODO: visual bussiness document shows "expanded product name with extra text" */}
-        <p className="price">${product.default_price}</p>
-        {/* TODO: handle sale prices */}
-        <div>Star Component</div>
+        <CardWordsContainer className="words-container">
+          <p className="category">{product.category}</p>
+          <h1 className="name">{product.name}</h1>
+          {/* TODO: visual bussiness document shows "expanded product name with extra text" */}
+          <p className="price">${product.default_price}</p>
+          {/* TODO: handle sale prices */}
+          <div>Star Component</div>
+        </CardWordsContainer>
       </div>
     )
   }
@@ -24,18 +35,20 @@ const Card = ({type, product, handleRemove, id, handleComparison}) => {
         <div className="image-conatiner">
           <img className="thumbnail" src={product.picture} />
         </div>
-        <p className="category">{product.category}</p>
-        <h1 className="name">{product.name}</h1>
-        {/* TODO: visual bussiness document shows "expanded product name with extra text" */}
-        <p className="price">${product.default_price}</p>
-        {/* TODO: handle sale prices */}
-        <div>Star Component</div>
+        <CardWordsContainer className="words-container">
+          <p className="category">{product.category}</p>
+          <h1 className="name">{product.name}</h1>
+          {/* TODO: visual bussiness document shows "expanded product name with extra text" */}
+          <p className="price">${product.default_price}</p>
+          {/* TODO: handle sale prices */}
+          <div>Star Component</div>
+        </CardWordsContainer>
       </div>
     )
   }
   if (type === 'AddOutfit') {
     return (
-      <div className="card">
+      <div className="card add-card">
         <h1>Add To Outfit</h1>
         <button className="add">+++</button>
       </div>

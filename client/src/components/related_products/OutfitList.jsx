@@ -3,7 +3,7 @@ import axios from 'axios';
 import Card from './Card.jsx';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-
+import styled from 'styled-components';
 
 const responsive = {
   superLargeDesktop: {
@@ -12,15 +12,19 @@ const responsive = {
     items: 5
   },
   desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 3.5
+    breakpoint: { max: 3000, min: 1200 },
+    items: 4
   },
   tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 2
+    breakpoint: { max: 1200, min: 880 },
+    items: 3
   },
   mobile: {
-    breakpoint: { max: 464, min: 0 },
+    breakpoint: { max: 880, min: 580 },
+    items: 2
+  },
+  small: {
+    breakpoint: { max: 580, min: 0 },
     items: 1
   }
 };
@@ -74,7 +78,6 @@ const OutfitList = ({productNum, handleProductChange}) => {
       dotListClass=""
       draggable
       focusOnSelect={false}
-      infinite
       itemClass="item"
       keyBoardControl
       minimumTouchDrag={80}

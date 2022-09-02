@@ -13,15 +13,19 @@ const responsive = {
     items: 5
   },
   desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 3.5
+    breakpoint: { max: 3000, min: 1200 },
+    items: 4
   },
   tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 2
+    breakpoint: { max: 1200, min: 880 },
+    items: 3
   },
   mobile: {
-    breakpoint: { max: 464, min: 0 },
+    breakpoint: { max: 880, min: 580 },
+    items: 2
+  },
+  small: {
+    breakpoint: { max: 580, min: 0 },
     items: 1
   }
 };
@@ -38,7 +42,6 @@ const ProductList = ({relatedProducts, handleComparison, handleProductChange}) =
       dotListClass=""
       draggable
       focusOnSelect={false}
-      infinite
       itemClass="item"
       keyBoardControl
       minimumTouchDrag={80}
@@ -55,6 +58,7 @@ const ProductList = ({relatedProducts, handleComparison, handleProductChange}) =
       sliderClass=""
       slidesToSlide={1}
       swipeable
+      partialVisible={false}
     >
       {relatedProducts.map((product) => {
         return (
