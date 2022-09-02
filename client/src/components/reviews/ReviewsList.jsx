@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ReviewsListItem from "./ReviewsListItem.jsx";
 var ReviewsList = function (props) {
-  console.log(props);
+  //console.log(props);
   // Declare a new state variable, which we'll call "count"
   //has Product, Reviews, DisplayCount
   const { Product, ReviewsToDisplay } = props;
