@@ -28,7 +28,7 @@ const Overview = (props) => {
   }
 
   return (
-    <div className='mainImg'>
+    <div className='mainImg' id='overview'>
       <div>
         <MainCarousel product={product} style={style}/>
       </div>

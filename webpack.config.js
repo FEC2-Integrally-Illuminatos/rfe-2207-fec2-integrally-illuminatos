@@ -8,7 +8,8 @@ module.exports = {
   entry: "./client/src/index.jsx",
   output: {
     path: path.join(__dirname, 'public'),
-    filename: "bundle.js"
+    filename: "bundle.js";
+    publicPath: '/'
   },
   module: {
     rules: [
@@ -39,6 +40,7 @@ module.exports = {
     static: {
       directory: path.join(__dirname, 'public'),
     },
+    historyApiFallback: true,
     compress: true,
     // [port] what port on our local machine to run the dev server
     port: process.env.PORT,

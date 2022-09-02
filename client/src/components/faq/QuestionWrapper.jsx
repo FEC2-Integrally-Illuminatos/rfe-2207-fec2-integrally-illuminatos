@@ -73,7 +73,9 @@ const Wrapper = (props) => {
   }
 
   return (
-    <>
+    <div id='faq'>
+
+    <FAQWrapper >
       <Search questions={displayQuestions} setSearchQuestions= {setSearchQuestions} setSearched={setSearched}/>
       {/* render either searched questions or questions for product */}
       <Main>
@@ -85,7 +87,8 @@ const Wrapper = (props) => {
       <Button onClick ={handleMoreClick}>MORE ANSWERED QUESTIONS</Button>
       <Button onClick={handleAddQuestion}>ADD A QUESTION + </Button>
       </Buttons>
-    </>
+    </FAQWrapper>
+    </div>
   )
 }
 
