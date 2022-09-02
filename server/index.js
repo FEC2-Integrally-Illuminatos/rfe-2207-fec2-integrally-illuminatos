@@ -129,7 +129,16 @@ app.get('/storage', (req, res) => {
 });
 
 app.get('/reviews', (req, res) => {
-  //TODO:
+  let config = {
+    url: `${url}/reviews`,
+    headers: {Authorization: process.env.API_KEY},
+    params: req.query,
+  }
+  // console.log(req.query)
+  // const params = req.query
+  return axios(config)
+  .then(result => res.send(result.data))
+  .catch(err => {console.log(err)})
 });
 
 app.get('/qa/questions/:id', (req, res) => {

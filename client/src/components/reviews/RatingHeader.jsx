@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 var RatingHeader = function (props) {
   const { metadata } = props;
-  console.log(metadata);
+  //console.log(metadata);
   const { characteristics, ratings, recommended } = metadata;
   const { Comfort, Fit, Length, Quality } = characteristics;
 
@@ -15,7 +15,7 @@ var RatingHeader = function (props) {
     Number(ratings[4]) * 4 +
     Number(ratings[5]) * 5;
   let avg = Math.round((totalScore / totalCount) * 100) / 100;
-  console.log(avg);
+  //console.log(avg);
   return (
     <div>
       RATINGS & REVIEWS
