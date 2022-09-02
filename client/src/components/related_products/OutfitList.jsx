@@ -29,33 +29,7 @@ const responsive = {
   }
 };
 
-const OutfitList = ({productNum, handleProductChange}) => {
-  const [userOutfits, setUserOutfits] = useState([]);
-  useEffect(() => {
-    //get the results from local storage and set the state with those
-    if (userOutfits.length !== localStorage.length) {
-      let keys = Object.keys(localStorage);
-      axios.get('/storage', {params: {stored_IDs: keys}})
-      .then((products) => setUserOutfits(products.data));
-    }
-  }, [userOutfits])
-
-  const handleAddClick = () => {
-    let isNewProduct = true;
-    userOutfits.forEach(outfit => {
-      if (~~outfit.id === productNum) {
-        isNewProduct = false;
-      }
-    })
-    if (isNewProduct) {
-      let stringID = productNum.toString();
-      localStorage.setItem(stringID, stringID);
-      axios.get('/outfits', {params: {productID: productNum}})
-      .then((response) => {
-        setUserOutfits([...userOutfits, response.data]);
-      })
-    }
-  };
+const OutfitList = ({productNum, handleProductChange, userOutfits, setUserOutfits, handleAddClick}) => {
 
   const handleRemove = (e) => {
     let id = e.target.parentElement.id;
@@ -64,7 +38,7 @@ const OutfitList = ({productNum, handleProductChange}) => {
       return (outfit.id !== ~~id );
     });
     setUserOutfits(filteredArr);
-  }
+  } //will need to move to app level
 
 
   return (

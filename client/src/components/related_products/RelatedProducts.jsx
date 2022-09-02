@@ -11,7 +11,7 @@ const RelatedProds = styled.div`
   padding: 1% 5% 5% 5%;
 `
 
-const RelatedProducts = ({currentProductID, handleProductChange, }) => {
+const RelatedProducts = ({currentProductID, handleProductChange, userOutfits, setUserOutfits, handleAddClick}) => {
   console.log('product id in related products', currentProductID);
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [productNum, setProductNum] = useState(currentProductID);
@@ -45,16 +45,16 @@ const RelatedProducts = ({currentProductID, handleProductChange, }) => {
         <ComparisonTable />
         <ProductList relatedProducts={relatedProducts} handleComparison={handleComparison} handleProductChange={handleProductChange}/>
         <h2>Your Outfit</h2>
-        <OutfitList productNum={productNum} handleProductChange={handleProductChange}/>
+        <OutfitList productNum={productNum} handleProductChange={handleProductChange} userOutfits={userOutfits} setUserOutfits={setUserOutfits} handleAddClick={handleAddClick}/>
       </RelatedProds>
     )
   } else {
     return (
       <RelatedProds id="related_products">
         <h2>Related Products</h2>
-        <ProductList relatedProducts={relatedProducts} handleComparison={handleComparison} handleProductChange={handleProductChange}/>
+        <ProductList relatedProducts={relatedProducts} handleComparison={handleComparison} handleProductChange={handleProductChange} />
         <h2>Your Outfit</h2>
-        <OutfitList productNum={productNum} handleProductChange={handleProductChange}/>
+        <OutfitList productNum={productNum} handleProductChange={handleProductChange} userOutfits={userOutfits} setUserOutfits={setUserOutfits} handleAddClick={handleAddClick}/>
       </RelatedProds>
     )
   }
