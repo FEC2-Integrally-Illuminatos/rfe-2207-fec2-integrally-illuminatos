@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Overview from './overview/Overview.jsx';
 import axios from 'axios';
 import Reviews from "./reviews/Reviews.jsx";
-import {FAQWrapper} from './faq/styles/FAQWrapper.styled.js';
 import Wrapper from './faq/QuestionWrapper.jsx';
 import RelatedProducts from './related_products/RelatedProducts.jsx';
+import NavBar from './faq/NavBar.jsx';
+import {BrowserRouter as Router} from 'react-router-dom';
 import styled from 'styled-components';
 
 const Chevere = styled.div`
