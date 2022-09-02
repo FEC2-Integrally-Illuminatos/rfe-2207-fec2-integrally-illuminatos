@@ -36,17 +36,6 @@ app.get('/loading', (req, res) => {
 });
 
 
-app.get('/home', (req, res) => {
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.query.product_id}`, {headers: {Authorization: process.env.API_KEY}})
-    .then((data) => {
-      console.log(data.data);
-      res.status(200).json(data.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
-
 app.get('/products', (req, res) => {
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.query.product_id}`, {headers: {Authorization: process.env.API_KEY}})
     .then((prodData) => {
@@ -129,7 +118,16 @@ app.get('/storage', (req, res) => {
 });
 
 app.get('/reviews', (req, res) => {
-  //TODO:
+  let config = {
+    url: `${url}/reviews`,
+    headers: {Authorization: process.env.API_KEY},
+    params: req.query,
+  }
+  // console.log(req.query)
+  // const params = req.query
+  return axios(config)
+  .then(result => res.send(result.data))
+  .catch(err => {console.log(err)})
 });
 
 app.get('/qa/questions/:id', (req, res) => {

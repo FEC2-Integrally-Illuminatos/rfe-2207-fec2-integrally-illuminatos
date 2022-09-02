@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Overview from './overview/Overview.jsx';
 import axios from 'axios';
 import Reviews from "./reviews/Reviews.jsx";
+import {FAQWrapper} from './faq/styles/FAQWrapper.styled.js';
 import Wrapper from './faq/QuestionWrapper.jsx';
 import RelatedProducts from './related_products/RelatedProducts.jsx';
 import styled from 'styled-components';
-import {BrowserRouter as Router} from 'react-router-dom';
-import NavBar from './faq/NavBar.jsx';
 
 const Chevere = styled.div`
   margin-left: 10%;

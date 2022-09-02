@@ -6,6 +6,7 @@
   "author": "Andrew Cho <cisdell@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@atlaskit/inline-message": "^11.4.0",
     "add": "^2.0.6",
     "axios": "^0.27.2",
     "better-react-carousel": "^1.1.1",

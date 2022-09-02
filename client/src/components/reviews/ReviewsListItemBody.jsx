@@ -4,7 +4,7 @@ import styled from "styled-components";
 var ReviewsListItemBody = function (props) {
   const {summary, body, recommend, response, helpfulness} = props;
 
-  console.log(props)
+  //console.log(props)
   return (
     <div>
       <h3>{summary}</h3>
