@@ -11,6 +11,7 @@ flex-direction: column;
 justify-content: space-between;
 cursor: pointer;
 margin-bottom: 10px;
+width: 90%;
 `
 
 export const Body = styled.div`
@@ -43,8 +44,6 @@ export default function IndividualQ ({question, questionID, product}) {
      setAllAnswers(answers.data);
      return answers.data;
   }
-
-
 
   useEffect(() => {
     fetchAnswers().then((result) => { setDisplayAnswers(result.slice(0, 2))}).catch(console.error)

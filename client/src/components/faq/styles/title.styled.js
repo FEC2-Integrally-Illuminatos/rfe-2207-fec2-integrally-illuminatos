@@ -9,4 +9,4 @@ grid-area: title;
   font-size: 105px;
   flex-grow: 1;
   margin: 15px 10px 0px 15px;
-`
+  `

@@ -11,8 +11,13 @@ import {Title} from './styles/title.styled.js';
 
 
 const Button = styled.button`
-  margin: 1% 15% 1% 20%;
+  margin: 0.5% 1% 1% 0.5%;
   height: 3rem;
+  padding: 10px;
+`
+
+const NoMore = styled.div`
+  border: 1px solid black;
 `
 
 const Wrapper = (props) => {
@@ -33,7 +38,9 @@ const Wrapper = (props) => {
   const [wantsMore, setWantsMore] = useState(false);
   const [addQuestion, setAddQuestion] = useState(false);
   const [requestCount, setRequestCount] = useState(1);
-  const [count, setCount] = useState(20);
+  const [count, setCount] = useState(50);
+  const [page, setPage] = useState(1);
+  const [noMore, setNoMore] = useState(false);
 
 
 
@@ -50,17 +57,21 @@ const Wrapper = (props) => {
   const handleMoreClick = (e) => {
     setRequestCount(requestCount + 1);
     // setWantsMore(true);
-    if (allQuestions.length !== count) {
-      setDisplayQuestions(allQuestions.slice(0, (4 * requestCount )));
+    if (allQuestions.length !== displayQuestions.length) {
+      let addedDisplay = allQuestions.slice(displayQuestions.length, displayQuestions.length + 4);
+    setDisplayQuestions([...displayQuestions, ...addedDisplay]);
     } else {
       setCount(count + 4);
+      setPage(page + 1);
       const fetchQuestions = async () => {
-        const questions = await axios.get('/qa/questions/all', {params: {productID: product.id, count: count}});
-        let result = questions.data.results.sort((a, b) => {
-          return b['question_helpfulness'] - a['question_helpfulness']
-        });
-        setAllQuestions(result);
-        setDisplayQuestions(result);
+        const questions = await axios.get('/questions/all', {params: {productID: product.id, count: count, page: page}});
+        console.log(questions.data);
+        if (questions.data.length === 0) {
+          setNoMore(true);
+        } else {
+          setAllQuestions(questions.data);
+          setDisplayQuestions(questions.data);
+        }
       }
       fetchQuestions().catch(console.error);
     }
@@ -81,6 +92,7 @@ const Wrapper = (props) => {
       <Main>
       {allQuestions.length > 0 && <QuestionDisplay questions={isSearched ? searchQuestions : displayQuestions } wantsMore = {requestCount} product={product}/>}
       {/* //TODO:Change the name when clicked to be less answered questions */}
+      {/* {noMore && <NoMore>No More Questions Available</NoMore>} */}
       {addQuestion && <QuestionModal name={product.name} productId={product.id} setAddQuestion={setAddQuestion} />}
     </Main>
       <Buttons>

@@ -132,10 +132,11 @@ app.get('/reviews', (req, res) => {
 app.get('/questions/:id', (req, res) => {
   //TODO:
   let {id} = req.params;
-  let {productID, count} = req.query;
+  let {productID, count, page} = req.query;
   //if id is questions - GET ALL QUESTIONS 'qa/questions'
   if (id === 'all') {
-    axios.get(`${url}/qa/questions`, {params: {'product_id': productID, count: count }, ...auth}).then((questions) => {
+    axios.get(`${url}/qa/questions`, {params: {'product_id': productID, count: count, page: page }, ...auth}).then((questions) => {
+      console.log(questions.data.results);
       let result = questions.data.results.sort((a, b) => {
         return b['question_helpfulness'] - a['question_helpfulness']
       });
@@ -146,8 +147,7 @@ app.get('/questions/:id', (req, res) => {
   } else {
     axios.get(`${url}/qa/questions/${id}/answers`, {params: {count: count}, ...auth}).then((answers) => {
       let result = answers.data.results.sort((a, b) => {
-        return b.helpfulness - a.helpfulness
-       });
+        return b.helpfulness - a.helpfulness });
       res.status(200).json(result)
     }).catch((err) => {
       console.log('Error getting answers: ', err)
@@ -183,7 +183,6 @@ app.post('/qa/questions/:id', (req, res) => {
   //TODO:
   let {id} = req.params;
   let {body, name, email, productID, questionID, photos} = req.body;
-  console.log(questionID);
   let questionParams = {
     body: body,
     name: name,
