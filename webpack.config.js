@@ -1,6 +1,7 @@
 const path = require("path");
 const Dotenv = require('dotenv-webpack');
 const webpack = require('webpack');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 
 module.exports = {
@@ -16,7 +17,11 @@ module.exports = {
       {
         test: /\.(jsx|js)$/,
         exclude: /node_modules/,
-        loader: "babel-loader"
+        loader: "babel-loader",
+        options: {
+          plugins: ['react-refresh/babel']
+        }
+
       },
       {
         test: /\.css$/,
@@ -45,5 +50,6 @@ module.exports = {
     // [port] what port on our local machine to run the dev server
     port: process.env.PORT,
   },
+  plugins: [new ReactRefreshWebpackPlugin(), new webpack.HotModuleReplacementPlugin()]
 
 }

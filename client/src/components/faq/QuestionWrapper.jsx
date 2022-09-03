@@ -40,11 +40,9 @@ const Wrapper = (props) => {
   useEffect(() => {
     const fetchQuestions = async () => {
       const questions = await axios.get('/qa/questions/all', {params: {productID: product.id, count: count}});
-      let result = questions.data.results.sort((a, b) => {
-        return b['question_helpfulness'] - a['question_helpfulness']
-      });
-      setAllQuestions(result);
-      setDisplayQuestions(result.slice(0, 4))
+      console.log(questions.data);
+      setAllQuestions(questions.data);
+      setDisplayQuestions(questions.data.slice(0, 4))
     }
     fetchQuestions().catch(console.error)
   }, [props]);

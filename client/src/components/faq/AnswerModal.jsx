@@ -23,7 +23,7 @@ export const Content = styled.div`
   margin: auto;
   padding: 20px;
   border: 1px solid black;
-  width: 80%
+  width: 80%;
 `
 
 export default function AnswerModal({name, question, questionId, setIsOpen}) {
