@@ -39,7 +39,7 @@ const Wrapper = (props) => {
 
   useEffect(() => {
     const fetchQuestions = async () => {
-      const questions = await axios.get('/qa/questions/all', {params: {productID: product.id, count: count}});
+      const questions = await axios.get('/questions/all', {params: {productID: product.id, count: count}});
       console.log(questions.data);
       setAllQuestions(questions.data);
       setDisplayQuestions(questions.data.slice(0, 4))

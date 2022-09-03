@@ -39,12 +39,9 @@ export default function IndividualQ ({question, questionID, product}) {
   const [count, setCount] = useState(15);
 
   const fetchAnswers = async () => {
-    const answers = await axios.get(`qa/questions/${questionID}`, {params: {count: count}});
-    let result = answers.data.results.sort((a, b) => {
-      return b.helpfulness - a.helpfulness
-     });
-     setAllAnswers(result);
-     return result;
+    const answers = await axios.get(`/questions/${questionID}`, {params: {count: count}});
+     setAllAnswers(answers.data);
+     return answers.data;
   }
 
 

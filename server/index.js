@@ -129,7 +129,7 @@ app.get('/reviews', (req, res) => {
   .catch(err => {console.log(err)})
 });
 
-app.get('/qa/questions/:id', (req, res) => {
+app.get('/questions/:id', (req, res) => {
   //TODO:
   let {id} = req.params;
   let {productID, count} = req.query;
@@ -145,7 +145,10 @@ app.get('/qa/questions/:id', (req, res) => {
     })
   } else {
     axios.get(`${url}/qa/questions/${id}/answers`, {params: {count: count}, ...auth}).then((answers) => {
-      res.status(200).json(answers.data)
+      let result = answers.data.results.sort((a, b) => {
+        return b.helpfulness - a.helpfulness
+       });
+      res.status(200).json(result)
     }).catch((err) => {
       console.log('Error getting answers: ', err)
     })
