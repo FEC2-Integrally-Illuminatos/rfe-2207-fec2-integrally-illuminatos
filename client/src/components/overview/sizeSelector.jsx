@@ -4,7 +4,14 @@ import _ from 'underscore';
 import QuantitySelector from './quantitySelector.jsx';
 import Alert from './alert.jsx';
 import Select from 'react-select'
+import styled from 'styled-components';
 
+const SizeDiv = styled.div`
+  width: 60%;
+  margin-bottom: 3%;
+  font-family: 'Yeseva One', cursive;
+  font-size: 14px;
+`
 
 
 const SizeSelector = (props) => {
@@ -78,15 +85,17 @@ const SizeSelector = (props) => {
     return (
       <div>
         <Alert alert={alert}/>
-        <Select value={selectedSize} ref={selectRef} openMenuOnFocus={true} isSearchable={false} options={options} placeholder={'Select Size'}  onChange={(e) => {handleChange(e);}}/>
+        <SizeDiv>
+          <Select value={selectedSize} ref={selectRef} openMenuOnFocus={true} isSearchable={false} options={options} placeholder={'Select Size'}  onChange={(e) => {handleChange(e);}}/>
+        </SizeDiv>
         <QuantitySelector setAlert={setAlert} currentSKU={currentSKU} selectRef={selectRef} setMenuOpen={setMenuOpen} style={style} quantity={quantity} selectedSize={selectedSize.value} quantityEnabled={quantityEnabled}/>
       </div>
   );
   } else {
     return (
-      <div>
+      <SizeDiv>
         <Select placeholder='OUT OF STOCK' isDisabled={true}/>
-    </div>
+    </SizeDiv>
   );
   }
 }

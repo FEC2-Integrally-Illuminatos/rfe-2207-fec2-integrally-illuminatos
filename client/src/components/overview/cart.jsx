@@ -1,6 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 
+const CartDiv = styled.div`
+  width: 100%;
+  margin-top: 3%
+  margin-bottom: 3%;
+  text-align: center;
+`
+const CartButton = styled.button`
+  width: 60%;
+  font-color: white;
+  font-size: 16px;
+  padding: 3% 10% 3% 10%;
+  background-color: #E98074;
+  border: none;
+  margin-top: 5%;
+  margin-bottom: 8%;
+  font-family: 'Yeseva One', cursive;
+
+`
 
 const Cart = (props) => {
   const [isEnabled, setEnabled] = useState(props.isEnabled);
@@ -33,17 +52,17 @@ const Cart = (props) => {
   if (isEnabled) {
     return (
       <div>
-        <div>
-          <button onClick={(e) => {handleClick(e);}}>Add to Cart</button>
-        </div>
+        <CartDiv>
+          <CartButton onClick={(e) => {handleClick(e);}}>Add to Cart</CartButton>
+        </CartDiv>
       </div>
     );
   } else {
     return (
       <div>
-        <div>
-          <button onClick={(e) => {handleOtherClick(e);}}>Add to Cart</button>
-        </div>
+        <CartDiv>
+          <CartButton onClick={(e) => {handleOtherClick(e);}}>Add to Cart</CartButton>
+        </CartDiv>
       </div>
     );
   }

@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Checkmark } from 'react-checkmark'
 import Detail from './detail.jsx';
+import styled from 'styled-components';
+
+const MetaDiv = styled.div`
+  width: 100%;
+  margin-top: 3%
+  margin-bottom: 3%;
+  font-family: 'Yeseva One', cursive;
+`
 
 
 

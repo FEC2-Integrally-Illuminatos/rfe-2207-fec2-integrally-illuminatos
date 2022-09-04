@@ -3,7 +3,7 @@ import StarRatings from 'react-star-ratings';
 import styled from 'styled-components';
 
 const ReadReviewsText = styled.a`
-  font-size: 12px;
+  font-size: 10px;
 `
 
 const StarRating = (props) => {

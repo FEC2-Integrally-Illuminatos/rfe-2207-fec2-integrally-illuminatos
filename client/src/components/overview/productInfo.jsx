@@ -13,7 +13,19 @@ import styled from 'styled-components';
 const SocialStarDiv = styled.div`
   display: flex;
   justify-content: space-between;
-  border: solid;
+  font-family: 'Yeseva One', cursive;
+`
+const CategoryDiv = styled.div`
+  font-size: 16px;
+  margin-top: 5%;
+  margin-bottom: 3%;
+  font-family: 'Yeseva One', cursive;
+`
+const NameDiv = styled.div`
+  font-size: 30px;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  font-family: 'Yeseva One', cursive;
 `
 
 
@@ -35,10 +47,10 @@ const ProductInfo = (props) => {
         <StarRating {...product}/>
       </SocialStarDiv>
       <div>
-        <h4 data-testid="counter">{product.category}</h4>
+        <CategoryDiv data-testid="counter">{product.category}</CategoryDiv>
         </div>
       <div>
-        <h4>{product.name}</h4>
+        <NameDiv>{product.name}</NameDiv>
       </div>
         <Price {...style}/>
         <StyleName {...style}/>

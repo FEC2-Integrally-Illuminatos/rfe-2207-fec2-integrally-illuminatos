@@ -9,18 +9,15 @@ import styled from 'styled-components';
 const OverviewDiv = styled.div`
   background: #F2F1EF;
   display: flex;
-  border: solid;
 `
 
 const CarouselDiv = styled.div`
   width: 67%;
   margin: 2% 0.5% 2% 2%;
-  border: solid;
 `
 const InfoDiv = styled.div`
   width: 33%;
   margin: 2% 2% 2% 0.5%;
-  border: solid;
 
 `
 
