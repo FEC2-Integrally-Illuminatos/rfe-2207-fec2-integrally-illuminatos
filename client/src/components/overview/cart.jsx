@@ -41,7 +41,6 @@ const Cart = (props) => {
   } else {
     return (
       <div>
-        COMPONENT FOR MESSAGE
         <div>
           <button onClick={(e) => {handleOtherClick(e);}}>Add to Cart</button>
         </div>

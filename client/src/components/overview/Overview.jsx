@@ -8,6 +8,20 @@ import styled from 'styled-components';
 
 const OverviewDiv = styled.div`
   background: #F2F1EF;
+  display: flex;
+  border: solid;
+`
+
+const CarouselDiv = styled.div`
+  width: 67%;
+  margin: 2% 0.5% 2% 2%;
+  border: solid;
+`
+const InfoDiv = styled.div`
+  width: 33%;
+  margin: 2% 2% 2% 0.5%;
+  border: solid;
+
 `
 
 const Overview = (props) => {
@@ -32,18 +46,20 @@ const Overview = (props) => {
 
   return (
     <OverviewDiv>
-      <div>
+      <CarouselDiv>
         <MainCarousel product={product} style={style}/>
-      </div>
-      <div>
-        <ProductInfo handleStyleChange={handleStyleChange} styles={styles} product={product} style={style}/>
-      </div>
-      <div>
-        <ProductOverview product={product} style={style}/>
-      </div>
-      <div>
-        <MetaInfo product={product}/>
-      </div>
+      </CarouselDiv>
+      <InfoDiv>
+        <div>
+          <ProductInfo handleStyleChange={handleStyleChange} styles={styles} product={product} style={style}/>
+        </div>
+        <div>
+          <ProductOverview product={product} style={style}/>
+        </div>
+        <div>
+          <MetaInfo product={product}/>
+        </div>
+      </InfoDiv>
     </OverviewDiv>
   );
   // }

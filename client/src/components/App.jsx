@@ -8,8 +8,8 @@ import RelatedProducts from './related_products/RelatedProducts.jsx';
 import styled from 'styled-components';
 
 const Chevere = styled.div`
-  margin-left: 10%;
-  margin-right: 10%;
+  margin-left: 7%;
+  margin-right: 7%;
 `
 
 const App = () => {

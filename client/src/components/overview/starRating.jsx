@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import StarRatings from 'react-star-ratings';
+import styled from 'styled-components';
 
-
+const ReadReviewsText = styled.a`
+  font-size: 12px;
+`
 
 const StarRating = (props) => {
   const [product, setProduct] = useState(props);
@@ -53,10 +56,10 @@ const StarRating = (props) => {
             starRatedColor="gold"
             numberOfStars={5}
             name='rating'
-            starSpacing={'1px'}
-            starDimension={'25px'}
+            starSpacing={'0.1px'}
+            starDimension={'15px'}
             />&nbsp;&nbsp;
-          <a onClick={() => {handleClick('gohere');}}>Read all {total} reviews</a>
+          <ReadReviewsText onClick={() => {handleClick('gohere');}}>Read all {total} reviews</ReadReviewsText>
         </div>
         );
     }

@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const GalleryStyled = styled.div `
   display: flex;
   flex-wrap: wrap;
-  width: 40%;
+  width: 95%;
   margin-bottom: 20px;
   justify-content: left;
   `
