@@ -44,9 +44,9 @@ const Overview = (props) => {
 
   return (
     <div>
-    {/* <CarouselDiv>
+    <CarouselDiv>
       <AlexCarousel product={product} style={style}/>
-    </CarouselDiv> */}
+    </CarouselDiv>
     <OverviewDiv>
       <CarouselDiv>
         <MainCarousel product={product} style={style}/>
