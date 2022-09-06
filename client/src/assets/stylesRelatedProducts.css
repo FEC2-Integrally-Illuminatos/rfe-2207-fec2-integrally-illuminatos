@@ -1,4 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
+
 #related_products {
+  font-family: 'Yeseva One', cursive;
+}
+.related-title {
+  margin-bottom: 10px;
+}
+.outfit-title {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 /* this is the caoursel */
@@ -72,6 +82,14 @@
 }
 /* add a div with a black background to help the star stand out */
 
+.fa-plus {
+  position: absolute;
+  top: 125px;
+  left: 62.5px;
+  font-size: 80px;
+  opacity: 0.3;
+}
+
 .container .add {
   position: absolute;
   top: 50%;
@@ -80,6 +98,7 @@
 
 .add-card h1 {
   margin: 0;
+  font-size: 1.8em;
 }
 
 /* working to get the star component on the bottom left no matter what */

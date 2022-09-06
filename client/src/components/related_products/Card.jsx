@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faStar} from '@fortawesome/free-solid-svg-icons';
+import {faPlus} from '@fortawesome/free-solid-svg-icons'
 import StarRating from './Stars.jsx';
 
 // const CardWordsContainer = styled.div`
@@ -54,6 +55,7 @@ const Card = ({type, product, handleRemove, id, handleComparison, productWithRat
     return (
       <div className="card add-card">
         <h1>Add To Outfit</h1>
+        <FontAwesomeIcon icon={faPlus} />
       </div>
     )
   }
