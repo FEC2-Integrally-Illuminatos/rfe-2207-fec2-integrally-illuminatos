@@ -3,6 +3,7 @@ import MainCarousel from './mainCarousel.jsx';
 import ProductInfo from './productInfo.jsx';
 import ProductOverview from './productOverview.jsx';
 import MetaInfo from './metaInfo.jsx';
+import AlexCarousel from './alexCarousel.jsx';
 import axios from 'axios';
 import styled from 'styled-components';
 
@@ -42,6 +43,10 @@ const Overview = (props) => {
   }
 
   return (
+    <div>
+    <CarouselDiv>
+      <AlexCarousel product={product} style={style}/>
+    </CarouselDiv>
     <OverviewDiv>
       <CarouselDiv>
         <MainCarousel product={product} style={style}/>
@@ -58,6 +63,7 @@ const Overview = (props) => {
         </div>
       </InfoDiv>
     </OverviewDiv>
+    </div>
   );
   // }
 }
