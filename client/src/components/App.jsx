@@ -30,7 +30,6 @@ const App = () => {
       let keys = Object.keys(localStorage);
       axios.get('/storage', {params: {stored_IDs: keys}})
       .then((products) => {
-        console.log(products.data);
       setUserOutfits(products.data)
     });
     }
@@ -58,9 +57,6 @@ const App = () => {
 
   const handleProductChange = (e) => {
     let productNum = null;
-    if (e.target.className === 'star' || e.target.clasName === 'remove') {
-      return;
-    }
     if (e.target.className === 'card') {
       productNum = e.target.id;
     } else if (e.target.parentElement.className === 'card') {

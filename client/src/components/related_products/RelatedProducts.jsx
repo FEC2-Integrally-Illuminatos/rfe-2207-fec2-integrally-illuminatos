@@ -12,11 +12,15 @@ const RelatedProds = styled.div`
 `
 
 const RelatedProducts = ({currentProductID, handleProductChange, userOutfits, setUserOutfits, handleAddClick}) => {
-  console.log('product id in related products', currentProductID);
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [productNum, setProductNum] = useState(currentProductID);
   const [isComparison, setIsComparison] = useState(false);
   const [itemToCompare, setItemToCompare] = useState(null);
+  const [localOutfits, setLocalOutfits] = useState([1, 2, 3, 4, 5]);
+
+  useEffect(() => {
+    setLocalOutfits(userOutfits);
+  }, [userOutfits])
 
 
   useEffect(() => {
@@ -30,6 +34,7 @@ const RelatedProducts = ({currentProductID, handleProductChange, userOutfits, se
   }, [productNum]);
 
   const handleComparison = (e) => {
+    e.stopPropagation();
     setItemToCompare(e.target.parentElement.id);
     isComparison ? setIsComparison(false) : setIsComparison(true);
   };
@@ -45,7 +50,7 @@ const RelatedProducts = ({currentProductID, handleProductChange, userOutfits, se
         <ComparisonTable />
         <ProductList relatedProducts={relatedProducts} handleComparison={handleComparison} handleProductChange={handleProductChange}/>
         <h2>Your Outfit</h2>
-        <OutfitList productNum={productNum} handleProductChange={handleProductChange} userOutfits={userOutfits} setUserOutfits={setUserOutfits} handleAddClick={handleAddClick}/>
+        <OutfitList productNum={productNum} handleProductChange={handleProductChange} userOutfits={localOutfits} setUserOutfits={setUserOutfits} handleAddClick={handleAddClick}/>
       </RelatedProds>
     )
   } else {
@@ -54,7 +59,7 @@ const RelatedProducts = ({currentProductID, handleProductChange, userOutfits, se
         <h2>Related Products</h2>
         <ProductList relatedProducts={relatedProducts} handleComparison={handleComparison} handleProductChange={handleProductChange} />
         <h2>Your Outfit</h2>
-        <OutfitList productNum={productNum} handleProductChange={handleProductChange} userOutfits={userOutfits} setUserOutfits={setUserOutfits} handleAddClick={handleAddClick}/>
+        <OutfitList productNum={productNum} handleProductChange={handleProductChange} userOutfits={localOutfits} setUserOutfits={setUserOutfits} handleAddClick={handleAddClick}/>
       </RelatedProds>
     )
   }

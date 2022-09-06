@@ -41,6 +41,7 @@ const OutfitList = ({productNum, handleProductChange, userOutfits, setUserOutfit
   } //will need to move to app level
 
 
+
   return (
     <Carousel
       additionalTransfrom={0}
@@ -56,7 +57,7 @@ const OutfitList = ({productNum, handleProductChange, userOutfits, setUserOutfit
       keyBoardControl
       minimumTouchDrag={80}
       pauseOnHover
-      renderArrowsWhenDisabled={true}
+      renderArrowsWhenDisabled={false}
       renderButtonGroupOutside={false}
       renderDotsOutside={false}
       responsive={responsive}
