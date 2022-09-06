@@ -9,12 +9,13 @@ import Rating from "./Rating.jsx";
 import RatingProdInfo from "./RatingProdInfo.jsx";
 import RatingHeader from "./RatingHeader.jsx";
 import AddReviewForm from "./AddReviewForm.jsx";
-const axios = require('axios');
+const axios = require("axios");
 var Reviews = function () {
   // Declare a new state variable, which we'll call "count"
   const [openModal, setOpenModal] = useState(false);
   const ratings = ["*****", "****", "***", "**", "*"];
   const [Product, setProduct] = useState(37331);
+  const [Sorted, setSorted] = useState('');
   const [Reviews, setReviews] = useState([]);
 
   // const [ResetReviews, setResetReviews] = useState(sampleReview.results);
@@ -49,25 +50,76 @@ var Reviews = function () {
     const StarFilter = Reviews.filter((item) => item.rating === starNum);
     setReviews(ResetReviews);
   }
+  function SubmitReview(reviewData) {
+    const {
+      rating,
+      recommend,
+      size,
+      width,
+      comfort,
+      quality,
+      length,
+      fit,
+      summary,
+      body,
+      photos,
+      name,
+      email
+    } = reviewData;
+    const params = {
+      product_id: 37331,
+      rating: rating,
+      recommend: recommend,
+      summary: summary,
+      body: body,
+      photos: photos,
+      name: name,
+      email: email,
+      characteristics: {
+        Size: { id: 14, value: size },
+        Width: { id: 15, value: width },
+        Comfort: { id: 16, value: comfort },
+        Quality: { id: 17, value: quality },
+        Length: { id: 17, value: length },
+        Fit: { id: 17, value: fit },
+      },
+    };
+    return axios
+      .post("/reviews", { params })
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   //sort options are "newest", "helpful", or "relevant"
-  function GetReviews(product_id=37331, sort="newest", count=20, page=1) {
+  function GetReviews(
+    product_id = 37331,
+    sort = "newest",
+    count = 20,
+    page = 1
+  ) {
     const params = {
       product_id: product_id,
       sort: sort,
       count: count,
       page: page,
     };
-    return axios.get('/reviews', {params})
-    .then(result =>{
-      console.log(result)
-      setReviews(result.data.results)
-    })
-    .catch(err => {console.log(err)})
+    return axios
+      .get("/reviews", { params })
+      .then((result) => {
+        console.log(result);
+        setReviews(result.data.results);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
-  useEffect(()=> {
-    GetReviews()
-  }, [])
+  useEffect(() => {
+    GetReviews();
+  }, []);
 
   //RENDERING
   return (
@@ -77,21 +129,17 @@ var Reviews = function () {
           <label>{sampleReview.count} Reviews: Select By:</label>
           <select>
             {/* https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_select */}
-            <option value="Rating">Rating</option>
-            <option value="Helpfulness">Rating</option>
-            <option value="Average Review">Average Review</option>
-            <option value="Highest ">Highest Reviews</option>
+            <option value="helpful" >Helpful </option>
+            <option value="newest">Newest</option>
+            <option value="rating">Rating</option>
           </select>
-          <button>SUBMIT</button>
+          <button onClick={()=>GetReviews(37331, Sorted, 20, 1)}>SUBMIT</button>
           <button onClick={ResetFilter}>RESET REVIEW FILTER</button>
           <p></p>
         </form>
         <ReviewsList Product={Product} ReviewsToDisplay={ReviewsToDisplay} />
-        {/* Button to Add More Reviews */}
         <button onClick={AddTwoReview}>More Reviews</button>
-        {/* <button onClick={()=>GetReviews()}>CHOPIN</button> */}
 
-        {/* //Button to Add a review and launching Modal */}
         <button
           className="openModalBtn"
           onClick={() => {
@@ -100,7 +148,12 @@ var Reviews = function () {
         >
           Add a Review
         </button>
-        {openModal && <AddReviewForm closeModal={setOpenModal} />}
+        {openModal && (
+          <AddReviewForm
+            closeModal={setOpenModal}
+            submitReview={SubmitReview}
+          />
+        )}
       </div>
       <div>
         <RatingHeader metadata={sampleMetaData} />
