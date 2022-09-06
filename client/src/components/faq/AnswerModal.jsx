@@ -3,6 +3,7 @@ import ImageThumb from './ImageThumb.jsx';
 import ImageDisplay from './ImageDisplay.jsx';
 import styled from 'styled-components';
 import axios from 'axios';
+// import {Image} from 'cloudinary-react';
 
 export const ModalWrap = styled.div`
   position: fixed;
@@ -29,12 +30,10 @@ export const Content = styled.div`
 export default function AnswerModal({name, question, questionId, setIsOpen}) {
   const [images, setImages] = useState([]);
   const [answer, setAnswer] = useState({});
-  const [urls, setUrls] = useState([]);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    //TODO: make some kind of post request
-    let submission = {...answer, photos: urls, questionID: questionId }
+    let submission = {...answer, photos: images, questionID: questionId }
     axios.post('/qa/questions/answers', submission).then(() => {
       console.log('Answer submitted');
       setIsOpen(false);
@@ -51,8 +50,7 @@ export default function AnswerModal({name, question, questionId, setIsOpen}) {
     })
   }
 
-  const fileUploader = (e) => {
-    //an object of files with numeric keys
+  const handleImageChange = (e) => {
     let fileList = e.target.files;
     console.log(fileList)
     //if they select multiple?
@@ -62,10 +60,11 @@ export default function AnswerModal({name, question, questionId, setIsOpen}) {
         ['image/jpeg', 'image/png'].includes(file.type)
     );
       validImages.forEach((image) => {
-        setUrls((prev) => {return [...prev, URL.createObjectURL(image).slice(5)]});
+        // setUrls((prev) => {return [...prev, URL.createObjectURL(image).slice(5)]});
         const reader = new FileReader();
         reader.readAsDataURL(image);
         reader.addEventListener('load', (e) => {
+          console.log(e.target.result);
           setImages((prev) => [...prev, e.target.result])
         })
       })
@@ -87,7 +86,7 @@ export default function AnswerModal({name, question, questionId, setIsOpen}) {
           <input type="email" maxLength='60' placeholder="Example: jack@email.com" name="email" required onChange={changeHandler}></input>
           For authentication reasons, you will not be emailed
           <label>Upload Your Photos</label>
-        { images.length < 5 && <input type="file" name="image" accept="image/png, image/jpeg"onChange={fileUploader} multiple></input>}
+        { images.length < 5 && <input type="file" name="image" accept="image/png, image/jpeg"onChange={handleImageChange} multiple></input>}
           {/* <input type="submit" name="submit" value="Upload"></input> */}
           <input type="submit" value="Submit Answer"></input>
           {images.length > 0 && <ImageDisplay images={images}/>}

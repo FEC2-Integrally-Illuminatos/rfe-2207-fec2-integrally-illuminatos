@@ -7,6 +7,13 @@ const axios = require('axios');
 require('dotenv').config();
 const auth = {headers: {Authorization: process.env.API_KEY}};
 const url = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe";
+const cloudinary = require('cloudinary').v2;
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+})
+
 
 //MIDDLEWARE
 app.use(cors());
@@ -202,11 +209,29 @@ app.post('/qa/questions/:id', (req, res) => {
       console.log('Error posting a question: ', err);
     })
   } else if (id === 'answers') {
-    axios.post(`${url}/qa/questions/${questionID}/answers`, answerParams, auth).then(() => {
-      res.status(201).send('Answer posted');
-    }).catch((err) => {
-      console.log('Error posting an answer: ', err);
+    const promiseArray = photos.map((photo) => {
+      return cloudinary.uploader.upload(photo, {
+        'upload_preset': 'xg5c9fdz'
+      })
     })
+    Promise.all(promiseArray).then((photosArray) => {
+      let newPhotoArray = photosArray.map((photoResponse) => {
+        return photoResponse.url;
+      })
+      answerParams = {
+        body: body,
+        name: name,
+        email: email,
+        photos: newPhotoArray
+      };
+      axios.post(`${url}/qa/questions/${questionID}/answers`, answerParams, auth).then(() => {
+        res.status(201).send('Answer posted');
+      }).catch((err) => {
+        console.log('Error posting an answer: ', err);
+      })
+
+    }).catch((err) => console.log(error));
+
   }
 });
 

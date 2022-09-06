@@ -38,42 +38,58 @@ const Wrapper = (props) => {
   const [wantsMore, setWantsMore] = useState(false);
   const [addQuestion, setAddQuestion] = useState(false);
   const [requestCount, setRequestCount] = useState(1);
-  const [count, setCount] = useState(50);
+  const [count, setCount] = useState(20);
   const [page, setPage] = useState(1);
   const [noMore, setNoMore] = useState(false);
 
 
 
   useEffect(() => {
+    console.log('this is the prop', props)
+    setPage(1);
     const fetchQuestions = async () => {
-      const questions = await axios.get('/questions/all', {params: {productID: product.id, count: count}});
+      const questions = await axios.get('/questions/all', {params: {productID: product.id, count: count, page: page}});
       console.log(questions.data);
-      setAllQuestions(questions.data);
-      setDisplayQuestions(questions.data.slice(0, 4))
+      if (questions.data.length === 0) {
+        setNoMore(true);
+      }
+        setAllQuestions(questions.data);
+        //error
+        setDisplayQuestions(questions.data.slice(0,4));
+
+      // setAllQuestions(questions.data);
+      // setDisplayQuestions(questions.data.slice(0, 4))
     }
     fetchQuestions().catch(console.error)
   }, [props]);
+
+  useEffect(() => {
+    const fetchQuestions = async () => {
+      const questions = await axios.get('/questions/all', {params: {productID: product.id, count: count, page: page}});
+      console.log(questions.data);
+      if (questions.data.length === 0) {
+        setNoMore(true);
+      } else {
+        setAllQuestions([...allQuestions, ...questions.data]);
+        //error
+        setDisplayQuestions([...displayQuestions, ...questions.data.slice(0,4)]);
+      }
+      // setAllQuestions(questions.data);
+      // setDisplayQuestions(questions.data.slice(0, 4))
+    }
+    fetchQuestions().catch(console.error)
+  }, [page]);
 
   const handleMoreClick = (e) => {
     setRequestCount(requestCount + 1);
     // setWantsMore(true);
     if (allQuestions.length !== displayQuestions.length) {
       let addedDisplay = allQuestions.slice(displayQuestions.length, displayQuestions.length + 4);
-    setDisplayQuestions([...displayQuestions, ...addedDisplay]);
+      setDisplayQuestions([...displayQuestions, ...addedDisplay]);
     } else {
-      setCount(count + 4);
+      // setCount(count + 4);
       setPage(page + 1);
-      const fetchQuestions = async () => {
-        const questions = await axios.get('/questions/all', {params: {productID: product.id, count: count, page: page}});
-        console.log(questions.data);
-        if (questions.data.length === 0) {
-          setNoMore(true);
-        } else {
-          setAllQuestions(questions.data);
-          setDisplayQuestions(questions.data);
-        }
-      }
-      fetchQuestions().catch(console.error);
+      // fetchQuestions().catch(console.error);
     }
 
 
@@ -92,11 +108,11 @@ const Wrapper = (props) => {
       <Main>
       {allQuestions.length > 0 && <QuestionDisplay questions={isSearched ? searchQuestions : displayQuestions } wantsMore = {requestCount} product={product}/>}
       {/* //TODO:Change the name when clicked to be less answered questions */}
-      {/* {noMore && <NoMore>No More Questions Available</NoMore>} */}
+      {noMore && <NoMore>No More Questions Available</NoMore>}
       {addQuestion && <QuestionModal name={product.name} productId={product.id} setAddQuestion={setAddQuestion} />}
     </Main>
       <Buttons>
-      <Button onClick ={handleMoreClick}>MORE ANSWERED QUESTIONS</Button>
+      <Button data-testid="more questions button" onClick ={handleMoreClick}>MORE ANSWERED QUESTIONS</Button>
       <Button onClick={handleAddQuestion}>ADD A QUESTION + </Button>
       </Buttons>
     </FAQWrapper>

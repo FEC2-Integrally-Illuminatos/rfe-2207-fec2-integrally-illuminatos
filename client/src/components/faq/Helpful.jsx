@@ -24,5 +24,5 @@ export default function Helpful({count, answerId, questionId}) {
       setIsHelpful(true);
     }
   }
-  return (<HelpfulContainer>Helpful? <span onClick={helpfulClickHandler}><u>Yes</u>{` (${helpCount})`} </span></HelpfulContainer>)
+  return (<HelpfulContainer>Helpful? <span onClick={helpfulClickHandler}><u>Yes</u>{` (${count})`} </span></HelpfulContainer>)
 }

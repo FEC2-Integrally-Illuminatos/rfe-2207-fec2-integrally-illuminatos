@@ -45,11 +45,17 @@ module.exports = {
     static: {
       directory: path.join(__dirname, 'public'),
     },
+    devMiddleware: {
+      writeToDisk: (filePath) => {
+        return !/hot-update/i.test(filePath); // you can change it to whatever you need
+      },
+    },
     historyApiFallback: true,
     compress: true,
     // [port] what port on our local machine to run the dev server
     port: process.env.PORT,
   },
   plugins: [new ReactRefreshWebpackPlugin(), new webpack.HotModuleReplacementPlugin()]
+
 
 }

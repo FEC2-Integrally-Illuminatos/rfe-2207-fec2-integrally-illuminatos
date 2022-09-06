@@ -31,13 +31,13 @@ const Heading = styled.h3`
   margin: 0 20px 0 0;
   display: inline-block;
 `
-export default function IndividualQ ({question, questionID, product}) {
+export default function IndividualQ ({question, questionID, product, count}) {
   question = question.includes('?') ? question : question +='?';
   const [allAnswers, setAllAnswers] = useState([]);
   const [displayAnswers, setDisplayAnswers] = useState([]);
   const [showAnswers, setShowAnswers] = useState(false);
   const [requestCount, setRequestCount] = useState(1);
-  const [count, setCount] = useState(15);
+  // const [count, setCount] = useState(15);
 
   const fetchAnswers = async () => {
     const answers = await axios.get(`/questions/${questionID}`, {params: {count: count}});
