@@ -1,5 +1,4 @@
 #related_products {
-  /* max-height: 100vh; */
 }
 
 /* this is the caoursel */
@@ -43,6 +42,7 @@
 
 .words-container {
   height: 60%;
+  padding-top: 5px;
 }
 
 .container .thumbnail {
@@ -71,8 +71,6 @@
   left: 50%;
 }
 
-
-
 .add-card h1 {
   margin: 0;
 }
@@ -82,9 +80,23 @@
   margin-left: 2%;
 }
 
+.words-container .category{
+  height: 15%;
+}
 
-.words-container h1{
-  height: 30%;
+.words-container .name{
+  height: 50%;
+  bottom: 10%;
+}
+
+
+.words-container .price{
+
+}
+
+.words-container div {
+  position: absolute;
+  bottom: 0;
 }
 
 
