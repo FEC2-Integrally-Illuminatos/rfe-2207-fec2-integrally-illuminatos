@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faStar} from '@fortawesome/free-solid-svg-icons';
+import StarRating from './Stars.jsx';
 
 // const CardWordsContainer = styled.div`
 //   padding: 2%;
@@ -26,7 +27,7 @@ const Card = ({type, product, handleRemove, id, handleComparison, productWithRat
           {/* TODO: visual bussiness document shows "expanded product name with extra text" */}
           <p className="price">${product.default_price}</p>
           {/* TODO: handle sale prices */}
-          <div>Star Component</div>
+          <StarRating ratings={productWithRatings.ratings}/>
         </CardWordsContainer>
       </div>
     )
@@ -44,7 +45,7 @@ const Card = ({type, product, handleRemove, id, handleComparison, productWithRat
           {/* TODO: visual bussiness document shows "expanded product name with extra text" */}
           <p className="price">${product.default_price}</p>
           {/* TODO: handle sale prices */}
-          <div>Star Component</div>
+          <StarRating ratings={productWithRatings.ratings}/>
         </CardWordsContainer>
       </div>
     )

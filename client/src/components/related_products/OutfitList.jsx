@@ -73,7 +73,7 @@ const OutfitList = ({productNum, handleProductChange, userOutfits, setUserOutfit
       {userOutfits.map(product => {
         return (
         <div className="container" key={product.id} onClick={handleProductChange}>
-          <Card type="Outfit" product={product} handleRemove={handleRemove} id={product.id} productWithRatings={product}/>
+          <Card type="Outfit" product={product} handleRemove={handleRemove} id={product.id} productWithRatings={productWithRatings}/>
         </div>
         )
       })}
