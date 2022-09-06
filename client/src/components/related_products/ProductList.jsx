@@ -30,7 +30,7 @@ const responsive = {
   }
 };
 
-const ProductList = ({relatedProducts, handleComparison, handleProductChange}) => {
+const ProductList = ({relatedProducts, handleComparison, handleProductChange, productWithRatings}) => {
   return (
     <Carousel
       additionalTransfrom={0}
@@ -63,7 +63,7 @@ const ProductList = ({relatedProducts, handleComparison, handleProductChange}) =
       {relatedProducts.map((product) => {
         return (
         <div className="container" key={product.id} onClick={handleProductChange}>
-          <Card type="Product" product={product} handleComparison={handleComparison} id={product.id} />
+          <Card type="Product" product={product} handleComparison={handleComparison} id={product.id} productWithRatings={product}/>
         </div>
         );
       })}

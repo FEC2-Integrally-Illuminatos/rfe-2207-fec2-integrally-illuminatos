@@ -12,7 +12,7 @@ const CardWordsContainer = styled.div`
 `
 
 
-const Card = ({type, product, handleRemove, id, handleComparison}) => {
+const Card = ({type, product, handleRemove, id, handleComparison, productWithRatings}) => {
   if (type === 'Product') {
     return (
       <div className="card" id={id}>

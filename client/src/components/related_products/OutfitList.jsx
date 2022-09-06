@@ -29,8 +29,7 @@ const responsive = {
   }
 };
 
-const OutfitList = ({productNum, handleProductChange, userOutfits, setUserOutfits, handleAddClick}) => {
-
+const OutfitList = ({productNum, handleProductChange, userOutfits, setUserOutfits, handleAddClick, productWithRatings}) => {
   const handleRemove = (e) => {
     let id = e.target.parentElement.id;
     localStorage.removeItem(id);
@@ -38,9 +37,7 @@ const OutfitList = ({productNum, handleProductChange, userOutfits, setUserOutfit
       return (outfit.id !== ~~id );
     });
     setUserOutfits(filteredArr);
-  } //will need to move to app level
-
-
+  } //TODO: will need to move to app level
 
   return (
     <Carousel
@@ -76,7 +73,7 @@ const OutfitList = ({productNum, handleProductChange, userOutfits, setUserOutfit
       {userOutfits.map(product => {
         return (
         <div className="container" key={product.id} onClick={handleProductChange}>
-          <Card type="Outfit" product={product} handleRemove={handleRemove} id={product.id} />
+          <Card type="Outfit" product={product} handleRemove={handleRemove} id={product.id} productWithRatings={product}/>
         </div>
         )
       })}
