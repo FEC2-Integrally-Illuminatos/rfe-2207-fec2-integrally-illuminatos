@@ -27,7 +27,7 @@ export const Content = styled.div`
   width: 80%;
 `
 
-const Label = styled.label`
+export const Label = styled.label`
   &:after {
     content: "*";
     color: red;
@@ -87,10 +87,10 @@ export default function AnswerModal({name, question, questionId, setIsOpen}) {
           <Label className='required'>Your Answer</Label>
           {/* <input type="text" name="body" maxLength="1000" onChange={changeHandler}></input> */}
           <textarea name="body"  maxLength="1000" onChange={changeHandler} onInvalid={(e) => e.target.setCustomValidity('You must enter the following: Your answer')} required></textarea>
-          <label>What is your nickname?</label>
+          <Label>What is your nickname?</Label>
           <input type="text" maxLength='60' placeholder="Example: jack543!" name="name" onChange={changeHandler} onInvalid={(e) => e.target.setCustomValidity('You must enter the following: Your nickname')}required ></input>
           <p>For privacy reasons, do not use your full name or email address</p>
-          <label>Your Email:</label>
+          <Label>Your Email:</Label>
           <input type="email" maxLength='60' placeholder="Example: jack@email.com" name="email" required onChange={changeHandler} onInvalid={(e) => e.target.setCustomValidity('You must enter the following: Your email')}></input>
           For authentication reasons, you will not be emailed
           <label>Upload Your Photos</label>
