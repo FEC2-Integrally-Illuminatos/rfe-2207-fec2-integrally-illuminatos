@@ -7,18 +7,19 @@ import '../../assets/stylesOverview.css';
 const MainCarousel = (props) => {
   const [product, setProduct] = useState(props.product);
   const [style, setStyle] = useState(props.style);
-  let [count, setCount] = useState(0);
-  let [count2, setCount2] = useState(0);
+  let count = 0;
+  let count2 = 0;
 
   useEffect(() => {
-    setCount(0);
-    setCount2(0);
     setProduct(props.product);
     setStyle(props.style);
   }, [props]);
 
+
   const photoSetter = (item) => {
+    console.log('THIS IS COUNT:', count);
     if (item.photos[count] === undefined) {
+      count++;
       return 'http://mapandan.gov.ph/wp-content/uploads/2018/03/no_image.jpg';
     } else {
       let photo = item.photos[count].url;
@@ -28,7 +29,8 @@ const MainCarousel = (props) => {
   };
 
   const photoSetterThumb = (item) => {
-    if (item.photos[count] === undefined) {
+    if (item.photos[count2] === undefined) {
+      count2++;
       return 'http://mapandan.gov.ph/wp-content/uploads/2018/03/no_image.jpg';
     } else {
       let photo = item.photos[count2].thumbnail_url;
@@ -40,7 +42,7 @@ const MainCarousel = (props) => {
   const images = [
     {
       original: photoSetter(style),
-      thumbnail: photoSetterThumb(style)
+      thumbnail: photoSetterThumb(style),
     },
     {
       original: photoSetter(style),

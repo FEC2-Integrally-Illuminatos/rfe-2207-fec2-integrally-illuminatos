@@ -1,5 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 
+const SloganDiv = styled.div`
+  width: 100%;
+  margin-top: 8%
+  margin-bottom: 8%;
+  font-family: 'Yeseva One', cursive;
+  font-size: 22px;
+`
+const DescriptionP = styled.p`
+  width: 100%;
+  font-family: 'Yeseva One', cursive;
+  font-size: 13px;
+  margin-bottom: 10%
+`
 
 const ProductOverview = (props) => {
   const [product, setStyle] = useState(props.product);
@@ -11,20 +25,20 @@ const ProductOverview = (props) => {
   if (product.description.length > 0) {
     return (
       <div>
-        <h3>
+        <SloganDiv>
           {product.slogan}
-        </h3>
-        <p>
+        </SloganDiv>
+        <DescriptionP>
           {product.description}
-        </p>
+        </DescriptionP>
       </div>
     )
   } else {
     return (
       <div>
-        <h2>
+        <SloganDiv>
           {product.slogan}
-        </h2>
+        </SloganDiv>
       </div>
     )
   };

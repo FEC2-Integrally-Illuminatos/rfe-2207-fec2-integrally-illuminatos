@@ -1,11 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import '../../assets/stylesOverview.css';
 import MainCarousel from './mainCarousel.jsx';
 import ProductInfo from './productInfo.jsx';
 import ProductOverview from './productOverview.jsx';
 import MetaInfo from './metaInfo.jsx';
+import AlexCarousel from './alexCarousel.jsx';
 import axios from 'axios';
+import styled from 'styled-components';
 
+const OverviewDiv = styled.div`
+  background: #F2F1EF;
+  display: flex;
+`
+
+const CarouselDiv = styled.div`
+  width: 67%;
+  margin: 2% 0.5% 2% 2%;
+`
+const InfoDiv = styled.div`
+  width: 33%;
+  margin: 2% 2% 2% 0.5%;
+
+`
 
 const Overview = (props) => {
   const [product, setProduct] = useState(props.product);
@@ -28,19 +43,26 @@ const Overview = (props) => {
   }
 
   return (
-    <div className='mainImg'>
-      <div>
+    <div>
+    {/* <CarouselDiv>
+      <AlexCarousel product={product} style={style}/>
+    </CarouselDiv> */}
+    <OverviewDiv>
+      <CarouselDiv>
         <MainCarousel product={product} style={style}/>
-      </div>
-      <div>
-        <ProductInfo handleStyleChange={handleStyleChange} styles={styles} product={product} style={style}/>
-      </div>
-      <div>
-        <ProductOverview product={product} style={style}/>
-      </div>
-      <div>
-        <MetaInfo product={product}/>
-      </div>
+      </CarouselDiv>
+      <InfoDiv>
+        <div>
+          <ProductInfo handleStyleChange={handleStyleChange} styles={styles} product={product} style={style}/>
+        </div>
+        <div>
+          <ProductOverview product={product} style={style}/>
+        </div>
+        <div>
+          <MetaInfo product={product}/>
+        </div>
+      </InfoDiv>
+    </OverviewDiv>
     </div>
   );
   // }

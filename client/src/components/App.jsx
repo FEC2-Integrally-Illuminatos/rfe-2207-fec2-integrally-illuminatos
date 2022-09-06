@@ -8,17 +8,14 @@ import RelatedProducts from './related_products/RelatedProducts.jsx';
 import styled from 'styled-components';
 
 const Chevere = styled.div`
-  margin-left: 10%;
-  margin-right: 10%;
+  margin-left: 7%;
+  margin-right: 7%;
 `
-
-
-
 
 const App = () => {
 
 
-  const [currentProductID, setCurrentProductID] = useState(37311);
+  const [currentProductID, setCurrentProductID] = useState(37315);
   const [product, setProduct] = useState({});
   const [style, setStyle] = useState({});
   const [styles, setStyles] = useState({});
