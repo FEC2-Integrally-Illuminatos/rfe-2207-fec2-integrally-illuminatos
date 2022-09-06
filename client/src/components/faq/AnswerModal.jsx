@@ -94,7 +94,7 @@ export default function AnswerModal({name, question, questionId, setIsOpen}) {
           <input type="email" maxLength='60' placeholder="Example: jack@email.com" name="email" required onChange={changeHandler} onInvalid={(e) => e.target.setCustomValidity('You must enter the following: Your email')}></input>
           For authentication reasons, you will not be emailed
           <label>Upload Your Photos</label>
-        { images.length < 5 && <input type="file" name="image" accept="image/png, image/jpeg"onChange={handleImageChange} multiple></input>}
+        { images.length < 5 && <input type="file" name="image" accept="image/png, image/jpeg"onChange={handleImageChange} multiple onError={(e) => e.target.setCustomValidity('You must enter the following: png or jpeg image')}></input>}
           {/* <input type="submit" name="submit" value="Upload"></input> */}
           <input type="submit" value="Submit Answer"></input>
           {images.length > 0 && <ImageDisplay images={images}/>}

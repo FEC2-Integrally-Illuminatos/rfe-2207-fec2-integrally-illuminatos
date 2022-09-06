@@ -112,7 +112,7 @@ const Wrapper = (props) => {
       {addQuestion && <QuestionModal name={product.name} productId={product.id} setAddQuestion={setAddQuestion} />}
     </Main>
       <Buttons>
-      {allQuestions.length > 0 || allQuestions.length === displayQuestions.length && <Button data-testid="more questions button" onClick ={handleMoreClick}>MORE ANSWERED QUESTIONS</Button>}
+      {allQuestions.length > 0 && allQuestions.length !== displayQuestions.length && <Button data-testid="more questions button" onClick ={handleMoreClick}>MORE ANSWERED QUESTIONS</Button>}
       <Button onClick={handleAddQuestion}>ADD A QUESTION + </Button>
       </Buttons>
     </FAQWrapper>
