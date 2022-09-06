@@ -57,6 +57,13 @@ const Card = ({type, product, handleRemove, id, handleComparison, productWithRat
       </div>
     )
   }
+  if (type === 'noProducts') {
+    return (
+      <div className="card no-products">
+        <h1>No Related Products</h1>
+      </div>
+    )
+  }
 }
 
 export default Card;
