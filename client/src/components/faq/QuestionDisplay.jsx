@@ -4,7 +4,7 @@ import {Container} from './styles/QContainer.styled.js';
 import styled from 'styled-components';
 
 const Display = styled.div`
-  max-height: 600px;
+  max-height: 75vh;
   overflow-y: auto;
 `
 

@@ -16,10 +16,6 @@ const Button = styled.button`
   padding: 10px;
 `
 
-const NoMore = styled.div`
-  border: 1px solid black;
-`
-
 const Wrapper = (props) => {
   //TODO: REMOVE WHEN YOU GET APPROPRIATE DATA
   const dummyData = {
@@ -40,12 +36,10 @@ const Wrapper = (props) => {
   const [requestCount, setRequestCount] = useState(1);
   const [count, setCount] = useState(20);
   const [page, setPage] = useState(1);
-  const [noMore, setNoMore] = useState(false);
 
 
 
   useEffect(() => {
-    console.log('this is the prop', props)
     setPage(1);
     const fetchQuestions = async () => {
       const questions = await axios.get('/questions/all', {params: {productID: product.id, count: count, page: page}});
@@ -108,7 +102,6 @@ const Wrapper = (props) => {
       <Main>
       {allQuestions.length > 0 && <QuestionDisplay questions={isSearched ? searchQuestions : displayQuestions } wantsMore = {requestCount} product={product}/>}
       {/* //TODO:Change the name when clicked to be less answered questions */}
-      {noMore && <NoMore>No More Questions Available</NoMore>}
       {addQuestion && <QuestionModal name={product.name} productId={product.id} setAddQuestion={setAddQuestion} />}
     </Main>
       <Buttons>

@@ -72,7 +72,6 @@ export default function AnswerModal({name, question, questionId, setIsOpen}) {
         const reader = new FileReader();
         reader.readAsDataURL(image);
         reader.addEventListener('load', (e) => {
-          console.log(e.target.result);
           setImages((prev) => [...prev, e.target.result])
         })
       })
