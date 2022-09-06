@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Checkmark } from 'react-checkmark'
+import styled from 'styled-components';
 
+const DetailDiv = styled.div`
+  width: 100%;
+  margin-top: 3%;
+  font-family: 'Yeseva One', cursive;
+  font-size: 13px;
+`
 
 const Detail = (props) => {
   const [detail, setDetail] = useState(props.detail);
@@ -11,17 +18,17 @@ const Detail = (props) => {
 
   if (!!detail.feature && !detail.value) {
     return (
-      <div>
+      <DetailDiv>
         <span>&#10003;</span>
         &nbsp;&nbsp;&nbsp;{detail.feature}
-      </div>
+      </DetailDiv>
     );
   } else if (detail.feature && detail.value) {
     return (
-      <div>
+      <DetailDiv>
         <span>&#10003;</span>
         &nbsp;&nbsp;&nbsp;{detail.feature}:&nbsp;&nbsp;{detail.value}
-      </div>
+      </DetailDiv>
     );
   } else {
     return (
