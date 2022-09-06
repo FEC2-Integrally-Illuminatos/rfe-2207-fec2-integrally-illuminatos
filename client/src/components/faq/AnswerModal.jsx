@@ -27,6 +27,13 @@ export const Content = styled.div`
   width: 80%;
 `
 
+const Label = styled.label`
+  &:after {
+    content: "*";
+    color: red;
+  }
+`
+
 export default function AnswerModal({name, question, questionId, setIsOpen}) {
   const [images, setImages] = useState([]);
   const [answer, setAnswer] = useState({});
@@ -43,6 +50,7 @@ export default function AnswerModal({name, question, questionId, setIsOpen}) {
   }
 
   const changeHandler = (e) => {
+    e.target.setCustomValidity('');
     let key = e.target.name;
     let value = e.target.value;
     setAnswer((prev) => {
@@ -76,14 +84,14 @@ export default function AnswerModal({name, question, questionId, setIsOpen}) {
         <h4>Submit your Answer</h4>
         <h5>{`${name} : ${question}`}</h5>
         <form onSubmit={submitHandler}>
-          <label>Your Answer</label>
+          <Label className='required'>Your Answer</Label>
           {/* <input type="text" name="body" maxLength="1000" onChange={changeHandler}></input> */}
-          <textarea name="body"  maxLength="1000" onChange={changeHandler} required></textarea>
+          <textarea name="body"  maxLength="1000" onChange={changeHandler} onInvalid={(e) => e.target.setCustomValidity('You must enter the following: Your answer')} required></textarea>
           <label>What is your nickname?</label>
-          <input type="text" maxLength='60' placeholder="Example: jack543!" name="name" onChange={changeHandler} required ></input>
+          <input type="text" maxLength='60' placeholder="Example: jack543!" name="name" onChange={changeHandler} onInvalid={(e) => e.target.setCustomValidity('You must enter the following: Your nickname')}required ></input>
           <p>For privacy reasons, do not use your full name or email address</p>
           <label>Your Email:</label>
-          <input type="email" maxLength='60' placeholder="Example: jack@email.com" name="email" required onChange={changeHandler}></input>
+          <input type="email" maxLength='60' placeholder="Example: jack@email.com" name="email" required onChange={changeHandler} onInvalid={(e) => e.target.setCustomValidity('You must enter the following: Your email')}></input>
           For authentication reasons, you will not be emailed
           <label>Upload Your Photos</label>
         { images.length < 5 && <input type="file" name="image" accept="image/png, image/jpeg"onChange={handleImageChange} multiple></input>}

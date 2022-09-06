@@ -3,7 +3,6 @@ const Dotenv = require('dotenv-webpack');
 const webpack = require('webpack');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
-
 module.exports = {
   mode: "development",
   entry: "./client/src/index.jsx",
@@ -56,6 +55,4 @@ module.exports = {
     port: process.env.PORT,
   },
   plugins: [new ReactRefreshWebpackPlugin(), new webpack.HotModuleReplacementPlugin()]
-
-
 }
