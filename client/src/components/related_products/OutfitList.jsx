@@ -31,6 +31,7 @@ const responsive = {
 
 const OutfitList = ({productNum, handleProductChange, userOutfits, setUserOutfits, handleAddClick, productWithRatings}) => {
   const handleRemove = (e) => {
+    e.stopPropagation();
     let id = e.target.parentElement.id;
     localStorage.removeItem(id);
     let filteredArr = userOutfits.filter((outfit) => {
