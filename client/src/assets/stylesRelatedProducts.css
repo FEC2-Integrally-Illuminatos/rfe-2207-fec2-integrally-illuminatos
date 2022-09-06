@@ -82,6 +82,10 @@
 }
 /* add a div with a black background to help the star stand out */
 
+.container .fa-star:hover {
+  color: whitesmoke;
+}
+
 .fa-plus {
   position: absolute;
   top: 125px;
