@@ -11,6 +11,7 @@ flex-direction: column;
 justify-content: space-between;
 cursor: pointer;
 margin-bottom: 10px;
+width: 90%;
 `
 
 export const Body = styled.div`
@@ -30,24 +31,19 @@ const Heading = styled.h3`
   margin: 0 20px 0 0;
   display: inline-block;
 `
-export default function IndividualQ ({question, questionID, product}) {
+export default function IndividualQ ({question, questionID, product, count}) {
   question = question.includes('?') ? question : question +='?';
   const [allAnswers, setAllAnswers] = useState([]);
   const [displayAnswers, setDisplayAnswers] = useState([]);
   const [showAnswers, setShowAnswers] = useState(false);
   const [requestCount, setRequestCount] = useState(1);
-  const [count, setCount] = useState(15);
+  // const [count, setCount] = useState(15);
 
   const fetchAnswers = async () => {
-    const answers = await axios.get(`qa/questions/${questionID}`, {params: {count: count}});
-    let result = answers.data.results.sort((a, b) => {
-      return b.helpfulness - a.helpfulness
-     });
-     setAllAnswers(result);
-     return result;
+    const answers = await axios.get(`/questions/${questionID}`, {params: {count: count}});
+     setAllAnswers(answers.data);
+     return answers.data;
   }
-
-
 
   useEffect(() => {
     fetchAnswers().then((result) => { setDisplayAnswers(result.slice(0, 2))}).catch(console.error)

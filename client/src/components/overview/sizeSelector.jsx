@@ -2,7 +2,16 @@ import React, { useState, useEffect, useRef } from 'react';
 import SizeOption from './sizeOption.jsx';
 import _ from 'underscore';
 import QuantitySelector from './quantitySelector.jsx';
+import Alert from './alert.jsx';
 import Select from 'react-select'
+import styled from 'styled-components';
+
+const SizeDiv = styled.div`
+  width: 60%;
+  margin-bottom: 3%;
+  font-family: 'Yeseva One', cursive;
+  font-size: 14px;
+`
 
 
 const SizeSelector = (props) => {
@@ -14,6 +23,7 @@ const SizeSelector = (props) => {
   const [quantity, setQuantity] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
   const [currentSKU, setCurrentSKU] = useState('');
+  const [alert, setAlert] = useState(false);
   const [options, setOptions] = useState(() => {
     let temp = [];
     _.each(props.style.skus, (styleID) => {
@@ -28,6 +38,7 @@ const SizeSelector = (props) => {
 
   useEffect(() => {
     setProduct(props.product);
+    setAlert(false);
     setQuantity(0);
     setMenuOpen(false);
     setCurrentSKU('');
@@ -62,6 +73,7 @@ const SizeSelector = (props) => {
   const handleChange = (e) => {
     setSize({value: e.value, label: e.value});
     setMenuOpen(false);
+    setAlert(false);
   };
 
   const handleOnFocus = (e) => {
@@ -72,15 +84,18 @@ const SizeSelector = (props) => {
   if (!style.skus.null) {
     return (
       <div>
-        <Select value={selectedSize} ref={selectRef} openMenuOnFocus={true} isSearchable={false} options={options} placeholder={'Select Size'}  onChange={(e) => {handleChange(e);}}/>
-        <QuantitySelector currentSKU={currentSKU} selectRef={selectRef} setMenuOpen={setMenuOpen} style={style} quantity={quantity} selectedSize={selectedSize.value} quantityEnabled={quantityEnabled}/>
+        <Alert alert={alert}/>
+        <SizeDiv>
+          <Select value={selectedSize} ref={selectRef} openMenuOnFocus={true} isSearchable={false} options={options} placeholder={'Select Size'}  onChange={(e) => {handleChange(e);}}/>
+        </SizeDiv>
+        <QuantitySelector setAlert={setAlert} currentSKU={currentSKU} selectRef={selectRef} setMenuOpen={setMenuOpen} style={style} quantity={quantity} selectedSize={selectedSize.value} quantityEnabled={quantityEnabled}/>
       </div>
   );
   } else {
     return (
-      <div>
+      <SizeDiv>
         <Select placeholder='OUT OF STOCK' isDisabled={true}/>
-    </div>
+    </SizeDiv>
   );
   }
 }

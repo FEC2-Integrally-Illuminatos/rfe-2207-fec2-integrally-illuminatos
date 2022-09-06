@@ -3,7 +3,14 @@ import React, { useState, useEffect } from 'react';
 import _ from 'underscore';
 import Select from 'react-select'
 import Cart from './cart.jsx';
+import styled from 'styled-components';
 
+const QuantityDiv = styled.div`
+  width: 60%;
+  margin-bottom: 5%;
+  font-family: 'Yeseva One', cursive;
+  font-size: 14px;
+`
 
 
 const QuantitySelector = (props) => {
@@ -72,22 +79,22 @@ const QuantitySelector = (props) => {
   if (!isEnabled) {
     return (
       <div>
-        <div>
+        <QuantityDiv>
           <Select value={''} placeholder={'-'} isDisabled={true}/>
-        </div>
+        </QuantityDiv>
         <div>
-          <Cart isEnabled={isEnabled} selectRef={props.selectRef} setMenuOpen={props.setMenuOpen} currentSKU={currentSKU} currentQuantity={currentQuantity} selectedSize={selectedSize}/>
+          <Cart setAlert={props.setAlert} isEnabled={isEnabled} selectRef={props.selectRef} setMenuOpen={props.setMenuOpen} currentSKU={currentSKU} currentQuantity={currentQuantity} selectedSize={selectedSize}/>
         </div>
       </div>
     );
   } else {
       return (
         <div>
-          <div>
+          <QuantityDiv>
             <Select isSearchable={false} value={{value: currentQuantity, label: currentQuantity}} options={numbers} onChange={(e) => {handleOnChange(e)}}/>
-          </div>
+          </QuantityDiv>
           <div>
-            <Cart isEnabled={isEnabled} selectRef={props.selectRef} setMenuOpen={props.setMenuOpen} currentSKU={currentSKU} currentQuantity={currentQuantity} selectedSize={selectedSize}/>
+            <Cart setAlert={props.setAlert} isEnabled={isEnabled} selectRef={props.selectRef} setMenuOpen={props.setMenuOpen} currentSKU={currentSKU} currentQuantity={currentQuantity} selectedSize={selectedSize}/>
           </div>
         </div>
     );

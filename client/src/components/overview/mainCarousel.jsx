@@ -7,24 +7,50 @@ import '../../assets/stylesOverview.css';
 const MainCarousel = (props) => {
   const [product, setProduct] = useState(props.product);
   const [style, setStyle] = useState(props.style);
+  let count = 0;
+  let count2 = 0;
 
   useEffect(() => {
     setProduct(props.product);
     setStyle(props.style);
   }, [props]);
 
+
+  const photoSetter = (item) => {
+    console.log('THIS IS COUNT:', count);
+    if (item.photos[count] === undefined) {
+      count++;
+      return 'http://mapandan.gov.ph/wp-content/uploads/2018/03/no_image.jpg';
+    } else {
+      let photo = item.photos[count].url;
+      count++;
+      return photo;
+    }
+  };
+
+  const photoSetterThumb = (item) => {
+    if (item.photos[count2] === undefined) {
+      count2++;
+      return 'http://mapandan.gov.ph/wp-content/uploads/2018/03/no_image.jpg';
+    } else {
+      let photo = item.photos[count2].thumbnail_url;
+      count2++;
+      return photo;
+    }
+  };
+
   const images = [
     {
-      original: style.photos[0].url,
-      thumbnail: style.photos[0].thumbnail_url,
+      original: photoSetter(style),
+      thumbnail: photoSetterThumb(style),
     },
     {
-      original: style.photos[1].url,
-      thumbnail: style.photos[1].thumbnail_url,
+      original: photoSetter(style),
+      thumbnail: photoSetterThumb(style),
     },
     {
-      original: style.photos[2].url,
-      thumbnail: style.photos[2].thumbnail_url,
+      original: photoSetter(style),
+      thumbnail: photoSetterThumb(style),
     },
   ];
 

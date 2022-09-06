@@ -8,7 +8,25 @@ import StyleThumbnail from './styleThumbnail.jsx';
 import ThumbnailGallery from './thumbnailGallery.jsx';
 import SizeSelector from './sizeSelector.jsx';
 import SocialMedia from './socialMedia.jsx';
+import styled from 'styled-components';
 
+const SocialStarDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Yeseva One', cursive;
+`
+const CategoryDiv = styled.div`
+  font-size: 16px;
+  margin-top: 5%;
+  margin-bottom: 3%;
+  font-family: 'Yeseva One', cursive;
+`
+const NameDiv = styled.div`
+  font-size: 30px;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  font-family: 'Yeseva One', cursive;
+`
 
 
 const ProductInfo = (props) => {
@@ -22,22 +40,21 @@ const ProductInfo = (props) => {
     setStyles(props.styles);
   }, [props]);
 
-
-  //NEED TO PASS DOWN ON CHANGE FOR SIZE AND QUANTITY TO SIZESELECTOR AND QUANTIY SELECTOR
-
   return (
     <div>
+      <SocialStarDiv>
         <SocialMedia style={style}/>
         <StarRating {...product}/>
+      </SocialStarDiv>
       <div>
-        <h4 data-testid="counter">{product.category}</h4>
+        <CategoryDiv data-testid="counter">{product.category}</CategoryDiv>
         </div>
       <div>
-        <h4>{product.name}</h4>
+        <NameDiv>{product.name}</NameDiv>
       </div>
         <Price {...style}/>
         <StyleName {...style}/>
-        <ThumbnailGallery handleStyleChange={props.handleStyleChange} styles={styles}/>
+        <ThumbnailGallery handleStyleChange={props.handleStyleChange} style={style} styles={styles}/>
         <SizeSelector product={product} style={style}/>
      </div>
   )
