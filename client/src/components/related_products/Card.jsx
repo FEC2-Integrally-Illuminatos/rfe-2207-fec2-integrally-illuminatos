@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faStar} from '@fortawesome/free-solid-svg-icons';
 import {faPlus} from '@fortawesome/free-solid-svg-icons'
+import {faXmark} from '@fortawesome/free-solid-svg-icons'
 import StarRating from './Stars.jsx';
 
 // const CardWordsContainer = styled.div`
@@ -36,7 +37,9 @@ const Card = ({type, product, handleRemove, id, handleComparison, productWithRat
   if (type === 'Outfit') {
     return (
       <div className="card" id={id}>
-        <button className="remove" onClick={handleRemove}>x</button>
+        <div className="remove">
+        <FontAwesomeIcon icon={faXmark} onClick={handleRemove} />
+        </div>
         <div className="image-conatiner">
           <img className="thumbnail" src={product.picture} />
         </div>
