@@ -18,8 +18,8 @@ const ImageBox = styled.div`
   background-size: cover;
   height: 0;
   padding-bottom: 20%;
-  width: 17%;
-  margin: 2px;
+  width: 20%;
+  margin: 8px;
 `
 const CheckPos = styled.div `
   margin-top: 30%;

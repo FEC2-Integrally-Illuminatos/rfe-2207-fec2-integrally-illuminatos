@@ -5,14 +5,14 @@ const SocialMedia = (props) => {
 
   return (
     <div>
-      <FacebookShareButton url={window.location.href}>
-        <FacebookIcon round={true} size={20}/>
+      <FacebookShareButton url={window.location.href}>&nbsp;
+        <FacebookIcon round={true} size={24}/>
       </FacebookShareButton>
-      <PinterestShareButton url={window.location.href} media={props.style.photos[0].url}>
-        <PinterestIcon round={true} size={20}/>
+      <PinterestShareButton url={window.location.href} media={props.style.photos[0].url}>&nbsp;
+        <PinterestIcon round={true} size={24}/>
       </PinterestShareButton>
-      <TwitterShareButton url={window.location.href}>
-        <TwitterIcon round={true} size={20}/>
+      <TwitterShareButton url={window.location.href}>&nbsp;
+        <TwitterIcon round={true} size={24}/>
       </TwitterShareButton>
     </div>
     );

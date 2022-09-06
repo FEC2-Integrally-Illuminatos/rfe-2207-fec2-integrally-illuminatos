@@ -17,7 +17,6 @@ const MainCarousel = (props) => {
 
 
   const photoSetter = (item) => {
-    console.log('THIS IS COUNT:', count);
     if (item.photos[count] === undefined) {
       count++;
       return 'http://mapandan.gov.ph/wp-content/uploads/2018/03/no_image.jpg';
@@ -43,6 +42,7 @@ const MainCarousel = (props) => {
     {
       original: photoSetter(style),
       thumbnail: photoSetterThumb(style),
+      sizes: 100,
     },
     {
       original: photoSetter(style),

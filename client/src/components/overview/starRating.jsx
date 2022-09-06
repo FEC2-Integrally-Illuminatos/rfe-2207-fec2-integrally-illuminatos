@@ -3,7 +3,7 @@ import StarRatings from 'react-star-ratings';
 import styled from 'styled-components';
 
 const ReadReviewsText = styled.a`
-  font-size: 10px;
+  font-size: 12px;
 `
 
 const StarRating = (props) => {
@@ -57,7 +57,7 @@ const StarRating = (props) => {
             numberOfStars={5}
             name='rating'
             starSpacing={'0.1px'}
-            starDimension={'15px'}
+            starDimension={'17px'}
             />&nbsp;&nbsp;
           <ReadReviewsText onClick={() => {handleClick('gohere');}}>Read all {total} reviews</ReadReviewsText>
         </div>
