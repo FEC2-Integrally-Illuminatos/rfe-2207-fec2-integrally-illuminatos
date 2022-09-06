@@ -7,11 +7,13 @@ import styled from 'styled-components';
 import {FAQWrapper} from './styles/FAQWrapper.styled.js';
 import {Main} from './styles/Main.styled.js';
 import {Buttons} from './styles/Buttons.styled.js';
+import {Title} from './styles/title.styled.js';
 
 
 const Button = styled.button`
-  margin: 1% 15% 1% 20%;
+  margin: 0.5% 1% 1% 0.5%;
   height: 3rem;
+  padding: 10px;
 `
 
 const Wrapper = (props) => {
@@ -33,37 +35,55 @@ const Wrapper = (props) => {
   const [addQuestion, setAddQuestion] = useState(false);
   const [requestCount, setRequestCount] = useState(1);
   const [count, setCount] = useState(20);
+  const [page, setPage] = useState(1);
 
 
 
   useEffect(() => {
+    setPage(1);
     const fetchQuestions = async () => {
-      const questions = await axios.get('/qa/questions/all', {params: {productID: product.id, count: count}});
-      let result = questions.data.results.sort((a, b) => {
-        return b['question_helpfulness'] - a['question_helpfulness']
-      });
-      setAllQuestions(result);
-      setDisplayQuestions(result.slice(0, 4))
+      const questions = await axios.get('/questions/all', {params: {productID: product.id, count: count, page: page}});
+      console.log(questions.data);
+      if (questions.data.length === 0) {
+        setNoMore(true);
+      }
+        setAllQuestions(questions.data);
+        //error
+        setDisplayQuestions(questions.data.slice(0,4));
+
+      // setAllQuestions(questions.data);
+      // setDisplayQuestions(questions.data.slice(0, 4))
     }
     fetchQuestions().catch(console.error)
-  }, []);
+  }, [props]);
+
+  useEffect(() => {
+    const fetchQuestions = async () => {
+      const questions = await axios.get('/questions/all', {params: {productID: product.id, count: count, page: page}});
+      console.log(questions.data);
+      if (questions.data.length === 0) {
+        setNoMore(true);
+      } else {
+        setAllQuestions([...allQuestions, ...questions.data]);
+        //error
+        setDisplayQuestions([...displayQuestions, ...questions.data.slice(0,4)]);
+      }
+      // setAllQuestions(questions.data);
+      // setDisplayQuestions(questions.data.slice(0, 4))
+    }
+    fetchQuestions().catch(console.error)
+  }, [page]);
 
   const handleMoreClick = (e) => {
     setRequestCount(requestCount + 1);
     // setWantsMore(true);
-    if (allQuestions.length !== count) {
-      setDisplayQuestions(allQuestions.slice(0, (4 * requestCount )));
+    if (allQuestions.length !== displayQuestions.length) {
+      let addedDisplay = allQuestions.slice(displayQuestions.length, displayQuestions.length + 4);
+      setDisplayQuestions([...displayQuestions, ...addedDisplay]);
     } else {
-      setCount(count + 4);
-      const fetchQuestions = async () => {
-        const questions = await axios.get('/qa/questions/all', {params: {productID: product.id, count: count}});
-        let result = questions.data.results.sort((a, b) => {
-          return b['question_helpfulness'] - a['question_helpfulness']
-        });
-        setAllQuestions(result);
-        setDisplayQuestions(result);
-      }
-      fetchQuestions().catch(console.error);
+      // setCount(count + 4);
+      setPage(page + 1);
+      // fetchQuestions().catch(console.error);
     }
 
 
@@ -73,7 +93,10 @@ const Wrapper = (props) => {
   }
 
   return (
-    <>
+    <div id='faq'>
+
+    <FAQWrapper >
+      <Title>Q&A</Title>
       <Search questions={displayQuestions} setSearchQuestions= {setSearchQuestions} setSearched={setSearched}/>
       {/* render either searched questions or questions for product */}
       <Main>
@@ -82,10 +105,11 @@ const Wrapper = (props) => {
       {addQuestion && <QuestionModal name={product.name} productId={product.id} setAddQuestion={setAddQuestion} />}
     </Main>
       <Buttons>
-      <Button onClick ={handleMoreClick}>MORE ANSWERED QUESTIONS</Button>
+      {allQuestions.length > 0 && allQuestions.length !== displayQuestions.length && <Button data-testid="more questions button" onClick ={handleMoreClick}>MORE ANSWERED QUESTIONS</Button>}
       <Button onClick={handleAddQuestion}>ADD A QUESTION + </Button>
       </Buttons>
-    </>
+    </FAQWrapper>
+    </div>
   )
 }
 

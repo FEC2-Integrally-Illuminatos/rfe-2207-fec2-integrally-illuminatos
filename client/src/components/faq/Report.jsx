@@ -20,5 +20,5 @@ export default function Report({answerId, questionId, fetchAnswers}) {
       })
     }
   }
-  return (<HelpfulContainer><span onClick={handleReportClick}>{!isReported ? <u>Report</u> : 'Report'}</span></HelpfulContainer>)
+  return (<HelpfulContainer><span onClick={handleReportClick}>{!isReported ? <u>Report</u> : 'Reported'}</span></HelpfulContainer>)
 }

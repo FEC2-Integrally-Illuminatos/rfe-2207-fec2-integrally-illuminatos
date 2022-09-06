@@ -7,6 +7,8 @@ const Form = styled.form`
   display: flex;
   align-items: center;
   margin: auto 2%;
+  flex-grow: 0.95;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `
 
 const Input = styled.input`

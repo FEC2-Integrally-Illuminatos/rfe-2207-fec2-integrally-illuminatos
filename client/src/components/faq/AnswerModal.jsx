@@ -3,6 +3,7 @@ import ImageThumb from './ImageThumb.jsx';
 import ImageDisplay from './ImageDisplay.jsx';
 import styled from 'styled-components';
 import axios from 'axios';
+// import {Image} from 'cloudinary-react';
 
 export const ModalWrap = styled.div`
   position: fixed;
@@ -23,18 +24,23 @@ export const Content = styled.div`
   margin: auto;
   padding: 20px;
   border: 1px solid black;
-  width: 80%
+  width: 80%;
+`
+
+export const Label = styled.label`
+  &:after {
+    content: "*";
+    color: red;
+  }
 `
 
 export default function AnswerModal({name, question, questionId, setIsOpen}) {
   const [images, setImages] = useState([]);
   const [answer, setAnswer] = useState({});
-  const [urls, setUrls] = useState([]);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    //TODO: make some kind of post request
-    let submission = {...answer, photos: urls, questionID: questionId }
+    let submission = {...answer, photos: images, questionID: questionId }
     axios.post('/qa/questions/answers', submission).then(() => {
       console.log('Answer submitted');
       setIsOpen(false);
@@ -44,6 +50,7 @@ export default function AnswerModal({name, question, questionId, setIsOpen}) {
   }
 
   const changeHandler = (e) => {
+    e.target.setCustomValidity('');
     let key = e.target.name;
     let value = e.target.value;
     setAnswer((prev) => {
@@ -51,8 +58,7 @@ export default function AnswerModal({name, question, questionId, setIsOpen}) {
     })
   }
 
-  const fileUploader = (e) => {
-    //an object of files with numeric keys
+  const handleImageChange = (e) => {
     let fileList = e.target.files;
     console.log(fileList)
     //if they select multiple?
@@ -62,7 +68,7 @@ export default function AnswerModal({name, question, questionId, setIsOpen}) {
         ['image/jpeg', 'image/png'].includes(file.type)
     );
       validImages.forEach((image) => {
-        setUrls((prev) => {return [...prev, URL.createObjectURL(image).slice(5)]});
+        // setUrls((prev) => {return [...prev, URL.createObjectURL(image).slice(5)]});
         const reader = new FileReader();
         reader.readAsDataURL(image);
         reader.addEventListener('load', (e) => {
@@ -77,17 +83,17 @@ export default function AnswerModal({name, question, questionId, setIsOpen}) {
         <h4>Submit your Answer</h4>
         <h5>{`${name} : ${question}`}</h5>
         <form onSubmit={submitHandler}>
-          <label>Your Answer</label>
+          <Label className='required'>Your Answer</Label>
           {/* <input type="text" name="body" maxLength="1000" onChange={changeHandler}></input> */}
-          <textarea name="body"  maxLength="1000" onChange={changeHandler} required></textarea>
-          <label>What is your nickname?</label>
-          <input type="text" maxLength='60' placeholder="Example: jack543!" name="name" onChange={changeHandler} required ></input>
+          <textarea name="body"  maxLength="1000" onChange={changeHandler} onInvalid={(e) => e.target.setCustomValidity('You must enter the following: Your answer')} required></textarea>
+          <Label>What is your nickname?</Label>
+          <input type="text" maxLength='60' placeholder="Example: jack543!" name="name" onChange={changeHandler} onInvalid={(e) => e.target.setCustomValidity('You must enter the following: Your nickname')}required ></input>
           <p>For privacy reasons, do not use your full name or email address</p>
-          <label>Your Email:</label>
-          <input type="email" maxLength='60' placeholder="Example: jack@email.com" name="email" required onChange={changeHandler}></input>
+          <Label>Your Email:</Label>
+          <input type="email" maxLength='60' placeholder="Example: jack@email.com" name="email" required onChange={changeHandler} onInvalid={(e) => e.target.setCustomValidity('You must enter the following: Your email')}></input>
           For authentication reasons, you will not be emailed
           <label>Upload Your Photos</label>
-        { images.length < 5 && <input type="file" name="image" accept="image/png, image/jpeg"onChange={fileUploader} multiple></input>}
+        { images.length < 5 && <input type="file" name="image" accept="image/png, image/jpeg"onChange={handleImageChange} multiple onError={(e) => e.target.setCustomValidity('You must enter the following: png or jpeg image')}></input>}
           {/* <input type="submit" name="submit" value="Upload"></input> */}
           <input type="submit" value="Submit Answer"></input>
           {images.length > 0 && <ImageDisplay images={images}/>}

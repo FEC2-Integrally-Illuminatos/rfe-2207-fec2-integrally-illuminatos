@@ -13,7 +13,6 @@ export default function Helpful({count, answerId, questionId}) {
 
   const helpfulClickHandler = (e) => {
     if (!isHelpful) {
-      console.log(answerId);
       let endpoint = answerId ? 'answer' : 'question'
       axios.put(`/qa/questions/${endpoint}_helpful`, body).then((response) => {
         console.log(response);

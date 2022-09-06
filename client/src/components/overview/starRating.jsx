@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import StarRatings from 'react-star-ratings';
+import styled from 'styled-components';
 
-
+const ReadReviewsText = styled.a`
+  font-size: 10px;
+`
 
 const StarRating = (props) => {
   const [product, setProduct] = useState(props);
   const [rating, setRating] = useState(0);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     setProduct(props);
@@ -16,6 +20,7 @@ const StarRating = (props) => {
         totalReviews += parseInt(props.ratings[key]);
         sum += (parseInt(key) * parseInt(props.ratings[key]));
       }
+      setTotal(totalReviews);
       let tempRating = sum / totalReviews;
       let wholeDigit = Math.floor(tempRating);
       let decimal = tempRating - wholeDigit;
@@ -51,10 +56,10 @@ const StarRating = (props) => {
             starRatedColor="gold"
             numberOfStars={5}
             name='rating'
-            starSpacing={'1px'}
-            starDimension={'25px'}
+            starSpacing={'0.1px'}
+            starDimension={'15px'}
             />&nbsp;&nbsp;
-          <a onClick={() => {handleClick('gohere');}}>Read all 10 reviews</a>
+          <ReadReviewsText onClick={() => {handleClick('gohere');}}>Read all {total} reviews</ReadReviewsText>
         </div>
         );
     }

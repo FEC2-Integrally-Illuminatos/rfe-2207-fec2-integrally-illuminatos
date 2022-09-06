@@ -5,8 +5,15 @@ const cors = require('cors');
 const path = require('path');
 const axios = require('axios');
 require('dotenv').config();
-const headerOptions = {Authorization: process.env.API_KEY};
+const auth = {headers: {Authorization: process.env.API_KEY}};
 const url = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe";
+const cloudinary = require('cloudinary').v2;
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+})
+
 
 //MIDDLEWARE
 app.use(cors());
@@ -26,7 +33,6 @@ app.use(
   })
 )
 
-let auth = {headers: {Authorization: process.env.API_KEY}};
 
 //GET REQUESTS
 app.get('/loading', (req, res) => {
@@ -35,17 +41,6 @@ app.get('/loading', (req, res) => {
   }, 1000);
 });
 
-
-app.get('/home', (req, res) => {
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.query.product_id}`, {headers: {Authorization: process.env.API_KEY}})
-    .then((data) => {
-      console.log(data.data);
-      res.status(200).json(data.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
 
 app.get('/products', (req, res) => {
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.query.product_id}`, {headers: {Authorization: process.env.API_KEY}})
@@ -141,20 +136,26 @@ app.get('/reviews', (req, res) => {
   .catch(err => {console.log(err)})
 });
 
-app.get('/qa/questions/:id', (req, res) => {
+app.get('/questions/:id', (req, res) => {
   //TODO:
   let {id} = req.params;
-  let {productID, count} = req.query;
+  let {productID, count, page} = req.query;
   //if id is questions - GET ALL QUESTIONS 'qa/questions'
   if (id === 'all') {
-    axios.get(`${url}/qa/questions`, {params: {'product_id': productID, count: count }, headers: headerOptions}).then((questions) => {
-      res.status(200).json(questions.data)
+    axios.get(`${url}/qa/questions`, {params: {'product_id': productID, count: count, page: page }, ...auth}).then((questions) => {
+      console.log(questions.data.results);
+      let result = questions.data.results.sort((a, b) => {
+        return b['question_helpfulness'] - a['question_helpfulness']
+      });
+      res.status(200).json(result)
     }).catch((err) => {
       console.log('Error getting questions: ', err)
     })
   } else {
-    axios.get(`${url}/qa/questions/${id}/answers`, {params: {count: count},headers: headerOptions}).then((answers) => {
-      res.status(200).json(answers.data)
+    axios.get(`${url}/qa/questions/${id}/answers`, {params: {count: count}, ...auth}).then((answers) => {
+      let result = answers.data.results.sort((a, b) => {
+        return b.helpfulness - a.helpfulness });
+      res.status(200).json(result)
     }).catch((err) => {
       console.log('Error getting answers: ', err)
     })
@@ -189,7 +190,6 @@ app.post('/qa/questions/:id', (req, res) => {
   //TODO:
   let {id} = req.params;
   let {body, name, email, productID, questionID, photos} = req.body;
-  console.log(questionID);
   let questionParams = {
     body: body,
     name: name,
@@ -203,17 +203,35 @@ app.post('/qa/questions/:id', (req, res) => {
     photos: photos
   };
   if (id === 'questions') {
-    axios.post(`${url}/qa/questions`, questionParams, {headers: headerOptions}).then(() => {
+    axios.post(`${url}/qa/questions`, questionParams, auth).then(() => {
       res.status(201).send('Question posted');
     }).catch((err) => {
       console.log('Error posting a question: ', err);
     })
   } else if (id === 'answers') {
-    axios.post(`${url}/qa/questions/${questionID}/answers`, answerParams, {headers: headerOptions}).then(() => {
-      res.status(201).send('Answer posted');
-    }).catch((err) => {
-      console.log('Error posting an answer: ', err);
+    const promiseArray = photos.map((photo) => {
+      return cloudinary.uploader.upload(photo, {
+        'upload_preset': 'xg5c9fdz'
+      })
     })
+    Promise.all(promiseArray).then((photosArray) => {
+      let newPhotoArray = photosArray.map((photoResponse) => {
+        return photoResponse.url;
+      })
+      answerParams = {
+        body: body,
+        name: name,
+        email: email,
+        photos: newPhotoArray
+      };
+      axios.post(`${url}/qa/questions/${questionID}/answers`, answerParams, auth).then(() => {
+        res.status(201).send('Answer posted');
+      }).catch((err) => {
+        console.log('Error posting an answer: ', err);
+      })
+
+    }).catch((err) => console.log(error));
+
   }
 });
 
@@ -241,25 +259,25 @@ app.put('/qa/questions/:id', (req, res) => {
   console.log(answerId);
   console.log(questionId)
   if (id === 'question_helpful') {
-    axios.put(`${url}/qa/questions/${questionId}/helpful`, {}, {headers: headerOptions}).then(() => {
+    axios.put(`${url}/qa/questions/${questionId}/helpful`, {}, auth).then(() => {
       res.status(204).send('Question marked as helpful');
     }).catch((err) => {
       console.log('Error marking question helpful: ', err);
     })
   } else if (id === 'question_report') {
-    axios.put(`${url}/qa/questions/${questionId}/report`, {}, {headers: headerOptions}).then(() => {
+    axios.put(`${url}/qa/questions/${questionId}/report`, {}, auth).then(() => {
       res.status(204).send('Question marked as reported');
     }).catch((err) => {
       console.log('Error reporting question: ', err);
     })
   } else if (id === 'answer_helpful') {
-    axios.put(`${url}/qa/answers/${answerId}/helpful`, {}, {headers: headerOptions}).then(() => {
+    axios.put(`${url}/qa/answers/${answerId}/helpful`, {}, auth).then(() => {
       res.status(204).send('Answer marked as helpful');
     }).catch((err) => {
       console.log('Error marking answer helpful: ', err);
     })
   } else if (id === 'answer_report') {
-    axios.put(`${url}/qa/answers/${answerId}/report`, {}, {headers: headerOptions}).then(() => {
+    axios.put(`${url}/qa/answers/${answerId}/report`, {}, auth).then(() => {
       res.status(204).send('Answer marked as reported');
     }).catch((err) => {
       console.log('Error reporting answer: ', err);
