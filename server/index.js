@@ -1,5 +1,6 @@
-const express = require('express')
+const express = require("express");
 const app = express();
+
 const { queryParser } = require('express-query-parser')
 const cors = require('cors');
 const path = require('path');
@@ -18,10 +19,10 @@ cloudinary.config({
 //MIDDLEWARE
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({extended: false }));
-app.use(express.static(path.join(__dirname, '../public')));
-app.use('/', (req, res, next) => {
-  console.log('Received ' + req.method + ' request to ' + req.url);
+app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, "../public")));
+app.use("/", (req, res, next) => {
+  console.log("Received " + req.method + " request to " + req.url);
   next();
 });
 app.use(
@@ -29,111 +30,163 @@ app.use(
     parseNull: true,
     parseUndefined: true,
     parseBoolean: true,
-    parseNumber: true
+    parseNumber: true,
   })
-)
+);
 
 
 //GET REQUESTS
-app.get('/loading', (req, res) => {
+app.get("/loading", (req, res) => {
   setTimeout(() => {
     res.sendStatus(200);
   }, 1000);
 });
 
-
 app.get('/products', (req, res) => {
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.query.product_id}`, {headers: {Authorization: process.env.API_KEY}})
     .then((prodData) => {
-      axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.query.product_id}/styles`, {headers: {Authorization: process.env.API_KEY}})
+      axios
+        .get(
+          `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.query.product_id}/styles`,
+          { headers: { Authorization: process.env.API_KEY } }
+        )
         .then((data) => {
           prodData.data.styles = data.data.results;
-          axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta/`, {params: {product_id: req.query.product_id}, headers: {Authorization: process.env.API_KEY}} )
+          axios
+            .get(
+              `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta/`,
+              {
+                params: { product_id: req.query.product_id },
+                headers: { Authorization: process.env.API_KEY },
+              }
+            )
             .then((data) => {
               prodData.data.ratings = data.data.ratings;
               res.status(200).json(prodData.data);
             })
             .catch((err) => {
               res.sendStatus(401);
-            })
+            });
         })
         .catch((err) => {
           res.sendStatus(401);
-        })
-     })
+        });
+    })
     .catch((err) => {
       res.sendStatus(401);
     });
-})
+});
 
-
-app.get('/relatedProducts', (req, res) => {
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.query.productID}/related`, auth)
+app.get("/relatedProducts", (req, res) => {
+  axios
+    .get(
+      `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.query.productID}/related`,
+      auth
+    )
     .then((relatedProds) => {
       return relatedProds.data.map((product) => {
-        return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product}`, auth);
-      })
+        return axios.get(
+          `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product}`,
+          auth
+        );
+      });
     })
-    .catch(err => {console.log(err)})
-    .then(promiseArr => Promise.all(promiseArr)) //returns an array of objects with object.data being the prod information
-    .then(products => {
+    .catch((err) => {
+      console.log(err);
+    })
+    .then((promiseArr) => Promise.all(promiseArr)) //returns an array of objects with object.data being the prod information
+    .then((products) => {
       return products.map((product) => {
-        return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product.data.id}/styles`, auth)
-        .then(response => {
-          let thumbnail = response.data.results.filter(style => style['default?'])[0].photos[0].thumbnail_url;
-          product.data.picture = thumbnail;
-          return product.data;
-        })
-      })
+        return axios
+          .get(
+            `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product.data.id}/styles`,
+            auth
+          )
+          .then((response) => {
+            let thumbnail = response.data.results.filter(
+              (style) => style["default?"]
+            )[0].photos[0].thumbnail_url;
+            product.data.picture = thumbnail;
+            return product.data;
+          });
+      });
     })
-    .then(promises => Promise.all(promises).then(productArr => res.status(200).send(productArr)))
+    .then((promises) =>
+      Promise.all(promises).then((productArr) =>
+        res.status(200).send(productArr)
+      )
+    )
     .catch((err) => {
       console.log(err);
     });
 });
 
-app.get('/outfits', (req, res) => {
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.query.productID}`, auth)
-  .then((product) => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.query.productID}/styles`, auth)
-    .then(styles => {
-      let thumbnail = styles.data.results.filter(style => style['default?'])[0].photos[0].thumbnail_url;
-      product.data.picture = thumbnail;
-      res.status(200).send(product.data)
-    })
+app.get("/outfits", (req, res) => {
+  axios
+    .get(
+      `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.query.productID}`,
+      auth
+    )
+    .then((product) => {
+      axios
+        .get(
+          `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.query.productID}/styles`,
+          auth
+        )
+        .then((styles) => {
+          let thumbnail = styles.data.results.filter(
+            (style) => style["default?"]
+          )[0].photos[0].thumbnail_url;
+          product.data.picture = thumbnail;
+          res.status(200).send(product.data);
+        });
+    });
+});
+
+app.get("/storage", (req, res) => {
+  let promiseArr = req.query.stored_IDs.map((id) => {
+    return axios.get(
+      `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${~~id}`,
+      auth
+    );
   });
-});
-
-app.get('/storage', (req, res) => {
-  let promiseArr = req.query.stored_IDs.map((id => {
-    return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${~~id}`, auth);
-  }));
   Promise.all(promiseArr)
-  .then(products => {
-    return products.map((product) => {
-      return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product.data.id}/styles`, auth)
-      .then(response => {
-        let thumbnail = response.data.results.filter(style => style['default?'])[0].photos[0].thumbnail_url;
-        product.data.picture = thumbnail;
-        return product.data;
-      })
+    .then((products) => {
+      return products.map((product) => {
+        return axios
+          .get(
+            `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product.data.id}/styles`,
+            auth
+          )
+          .then((response) => {
+            let thumbnail = response.data.results.filter(
+              (style) => style["default?"]
+            )[0].photos[0].thumbnail_url;
+            product.data.picture = thumbnail;
+            return product.data;
+          });
+      });
     })
-  })
-  .then(promises => Promise.all(promises)
-  .then(productArr => res.status(200).send(productArr)))
+    .then((promises) =>
+      Promise.all(promises).then((productArr) =>
+        res.status(200).send(productArr)
+      )
+    );
 });
 
-app.get('/reviews', (req, res) => {
+app.get("/reviews", (req, res) => {
   let config = {
     url: `${url}/reviews`,
-    headers: {Authorization: process.env.API_KEY},
+    headers: { Authorization: process.env.API_KEY },
     params: req.query,
-  }
+  };
   // console.log(req.query)
   // const params = req.query
   return axios(config)
-  .then(result => res.send(result.data))
-  .catch(err => {console.log(err)})
+    .then((result) => res.send(result.data))
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 app.get('/questions/:id', (req, res) => {
@@ -162,8 +215,11 @@ app.get('/questions/:id', (req, res) => {
   }
 });
 
-app.get('/cart', (req, res) => {
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/cart`, {headers: {Authorization: process.env.API_KEY}})
+app.get("/cart", (req, res) => {
+  axios
+    .get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/cart`, {
+      headers: { Authorization: process.env.API_KEY },
+    })
     .then((data) => {
       res.status(200).json(data.data);
     })
@@ -172,36 +228,52 @@ app.get('/cart', (req, res) => {
     });
 });
 
-
 //POST REQUESTS
 
-app.post('/interactions', (req, res) => {
+app.post("/interactions", (req, res) => {
   //TODO:
 });
 
-app.post('/relatedProducts', (req, res) => {
+app.post("/relatedProducts", (req, res) => {
   //TODO:
 });
-app.post('/reviews', (req, res) => {
-  //TODO:
+app.post("/reviews", (req, res) => {
+    let config = {
+      url: `${url}/reviews`,
+      method: "post",
+      headers: { Authorization: process.env.API_KEY },
+      params: req.query,
+    };
+    console.log(req.query);
+    return axios(config).then((result) => {
+      res.status(201);
+      console.log("successful post");
+    })
+  .catch((err) => {
+    console.log(err);
+    res.status(500);
+  });
 });
 
-app.post('/qa/questions/:id', (req, res) => {
+app.post("/qa/questions/:id", (req, res) => {
   //TODO:
-  let {id} = req.params;
-  let {body, name, email, productID, questionID, photos} = req.body;
+
+  let { id } = req.params;
+  let { body, name, email, productID, questionID, photos } = req.body;
+
   let questionParams = {
     body: body,
     name: name,
     email: email,
-    'product_id': productID
+    product_id: productID,
   };
   let answerParams = {
     body: body,
     name: name,
     email: email,
-    photos: photos
+    photos: photos,
   };
+
   if (id === 'questions') {
     axios.post(`${url}/qa/questions`, questionParams, auth).then(() => {
       res.status(201).send('Question posted');
@@ -235,17 +307,24 @@ app.post('/qa/questions/:id', (req, res) => {
   }
 });
 
-app.post('/cart', (req, res) => {
+app.post("/cart", (req, res) => {
   let promises = [];
   for (let i = 0; i < parseInt(req.body.quantity); i++) {
-    promises.push(axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/cart`, {sku_id: req.body.sku_id}, {headers: {Authorization: process.env.API_KEY}})
-      .catch((err) => {
-        console.log(err);
-      }));
-  };
+    promises.push(
+      axios
+        .post(
+          `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/cart`,
+          { sku_id: req.body.sku_id },
+          { headers: { Authorization: process.env.API_KEY } }
+        )
+        .catch((err) => {
+          console.log(err);
+        })
+    );
+  }
   Promise.all(promises)
     .then(() => {
-      res.status(201).send('added to cart!');
+      res.status(201).send("added to cart!");
     })
     .catch((err) => {
       console.log(err);
@@ -253,9 +332,9 @@ app.post('/cart', (req, res) => {
 });
 
 //PUT REQUESTS
-app.put('/qa/questions/:id', (req, res) => {
-  let {id} = req.params;
-  let {questionId, answerId} = req.body;
+app.put("/qa/questions/:id", (req, res) => {
+  let { id } = req.params;
+  let { questionId, answerId } = req.body;
   console.log(answerId);
   console.log(questionId)
   if (id === 'question_helpful') {
@@ -282,9 +361,10 @@ app.put('/qa/questions/:id', (req, res) => {
     }).catch((err) => {
       console.log('Error reporting answer: ', err);
     })
+
   }
-})
+});
 
 app.listen(process.env.PORT, () => {
-  console.log(`Example app listening on port ${process.env.PORT}`)
-})
+  console.log(`Example app listening on port ${process.env.PORT}`);
+});

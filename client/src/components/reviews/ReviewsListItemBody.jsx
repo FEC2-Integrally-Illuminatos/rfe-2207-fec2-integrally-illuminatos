@@ -9,7 +9,7 @@ var ReviewsListItemBody = function (props) {
     <div>
       <h3>{summary}</h3>
       <div>{body}</div>
-      {recommend? <div>✅ I recommend this product!✅</div>: null}
+      {recommend? <div>✅ I recommend this product!</div>: null}
       {response? <div>{response}</div> : null}
       <div>Helpful? 👍 ({helpfulness})</div>
       <br></br>

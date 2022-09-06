@@ -42,7 +42,6 @@ const Overview = (props) => {
   }
 
   return (
-
     <div>
     <OverviewDiv>
       <CarouselDiv>
