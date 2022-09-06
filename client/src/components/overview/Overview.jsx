@@ -43,12 +43,17 @@ const Overview = (props) => {
   }
 
   return (
+<<<<<<< HEAD
+    <div className='mainImg' id='overview'>
+      <div>
+=======
     <div>
     {/* <CarouselDiv>
       <AlexCarousel product={product} style={style}/>
     </CarouselDiv> */}
     <OverviewDiv>
       <CarouselDiv>
+>>>>>>> 651472d6ffd0233e50d24117b29878812743f4a3
         <MainCarousel product={product} style={style}/>
       </CarouselDiv>
       <InfoDiv>

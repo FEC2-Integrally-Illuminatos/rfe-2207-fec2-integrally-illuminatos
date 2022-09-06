@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Overview from './overview/Overview.jsx';
 import axios from 'axios';
 import Reviews from "./reviews/Reviews.jsx";
-import {FAQWrapper} from './faq/styles/FAQWrapper.styled.js';
 import Wrapper from './faq/QuestionWrapper.jsx';
 import RelatedProducts from './related_products/RelatedProducts.jsx';
+import NavBar from './faq/NavBar.jsx';
+import {BrowserRouter as Router} from 'react-router-dom';
 import styled from 'styled-components';
 
 const Chevere = styled.div`
@@ -13,9 +14,7 @@ const Chevere = styled.div`
 `
 
 const App = () => {
-
-
-  const [currentProductID, setCurrentProductID] = useState(37315);
+  const [currentProductID, setCurrentProductID] = useState(37311);
   const [product, setProduct] = useState({});
   const [style, setStyle] = useState({});
   const [styles, setStyles] = useState({});
@@ -56,6 +55,10 @@ const App = () => {
     setCurrentProductID(~~productNum);
   }
 
+  const Home = () => {
+    return <div>Home</div>
+  }
+
   return (
     loading
     ? (
@@ -64,18 +67,19 @@ const App = () => {
       </div>
     )
     : (
-    <Chevere>
-      <h1>Chévere</h1>
-      <Overview product={product} style={style} styles={styles}/>
-      <RelatedProducts currentProductID={currentProductID} handleProductChange={handleProductChange} setProduct={setProduct} product={product}/>
-      <FAQWrapper>
-        <Wrapper product={product}/>
-      </FAQWrapper>
-      <Reviews product={product}/>
-    </Chevere>
+    <>
+      <Router>
+        <NavBar/>
+          <Chevere>
+            <Overview product={product} style={style} styles={styles}/>
+            <RelatedProducts currentProductID={currentProductID} handleProductChange={handleProductChange} setProduct={setProduct} product={product}/>
+            <Wrapper product={product}/>
+            <Reviews product={product}/>
+          </Chevere>
+      </Router>
+    </>
     )
   )
 }
-
 
 export default App;
