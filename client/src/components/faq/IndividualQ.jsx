@@ -47,7 +47,6 @@ export default function IndividualQ ({question, questionID, product, count}) {
 
   useEffect(() => {
     fetchAnswers().then((result) => {
-      console.log(result);
       setDisplayAnswers(result.slice(0, 2))}).catch(console.error)
   }, [])
 
