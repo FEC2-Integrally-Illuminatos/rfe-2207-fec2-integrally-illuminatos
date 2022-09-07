@@ -31,8 +31,9 @@ const responsive = {
 
 const OutfitList = ({productNum, handleProductChange, userOutfits, setUserOutfits, handleAddClick, productWithRatings}) => {
   const handleRemove = (e) => {
+    console.log('in handle remove', e.target.parentElement.parentElement)
     e.stopPropagation();
-    let id = e.target.parentElement.id;
+    let id = e.target.parentElement.parentElement.id;
     localStorage.removeItem(id);
     let filteredArr = userOutfits.filter((outfit) => {
       return (outfit.id !== ~~id );

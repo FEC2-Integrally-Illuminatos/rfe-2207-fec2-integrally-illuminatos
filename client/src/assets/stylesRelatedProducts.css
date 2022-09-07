@@ -173,7 +173,10 @@ add background for start
   overflow: auto;
   max-height: 200px;
   width: 50%;
+  margin-left: auto;
+  margin-right: auto;
 }
+
 thead tr {
   position: sticky;
   top: 0;
