@@ -5,20 +5,18 @@ import styled from 'styled-components';
 
 
 const StyledButton = styled(MdFullscreen)`
-  color: gray;
+  color: white;
   font-size: 55px;
   &:hover {
     font-size: 60px;
-    color: white;
+    color: #4652DF;
+    cursor: pointer;
   }
 `
 
 export default function ExpandButton(props) {
   const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    console.log(isOpen);
-  }, [isOpen]);
 
   return (
     <div>

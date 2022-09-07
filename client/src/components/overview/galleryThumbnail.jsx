@@ -17,6 +17,9 @@ const ThumbBox = styled.div`
   padding-bottom: 14%;
   width: 14%;
   margin: 1px;
+  &:hover {
+    cursor: pointer;
+  };
 `
 
 const GalleryThumbnail = (props) => {
@@ -41,8 +44,8 @@ const GalleryThumbnail = (props) => {
   }, [props]);
 
   const handleClick = (e) => {
-    console.log('click');
     props.handleThumbClick(props.index);
+    e.stopPropagation();
   };
 
   const photoSetter = (item) => {

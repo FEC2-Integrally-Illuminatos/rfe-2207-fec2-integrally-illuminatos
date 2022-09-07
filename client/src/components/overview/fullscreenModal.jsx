@@ -3,15 +3,16 @@ import styled from 'styled-components';
 import {MdArrowRight, MdArrowLeft, MdClose, MdCircle, MdOutlineTripOrigin} from 'react-icons/md';
 
 const StyledCircle = styled(MdCircle)`
-  color: gray;
+  color: #E98074;
   font-size: 20px;
 `
 
 const StyledOutline = styled(MdOutlineTripOrigin)`
-  color: gray;
+  color: #E98074;
   font-size: 20px;
   &:hover {
     color: white;
+    cursor: pointer;
   }
 `
 
@@ -20,6 +21,7 @@ const StyledClose = styled(MdClose)`
   font-size: 70px;
   &:hover {
     color: gray;
+    cursor: pointer;
   }
 `
 const StyledRightArrow = styled(MdArrowRight)`
@@ -27,7 +29,8 @@ const StyledRightArrow = styled(MdArrowRight)`
   font-size: 100px;
   &:hover {
     color: gray;
-    font-size: 110px
+    font-size: 110px;
+    cursor: pointer;
   }
 `
 
@@ -36,7 +39,8 @@ const StyledLeftArrow = styled(MdArrowLeft)`
   font-size: 100px;
   &:hover {
     color: gray;
-    font-size: 110px
+    font-size: 110px;
+    cursor: pointer;
   }
 `
 
@@ -44,9 +48,9 @@ const ThumbnailDiv = styled.div`
   position: absolute;
   display: flex;
   justify-content: space-between;
-  width: 33%;
+  width: 25%;
   bottom: 7%;
-  left: 33%;
+  left: 36%;
 `
 
 const LeftArrowDiv = styled.div`
@@ -102,26 +106,10 @@ export const CloseButtonDiv = styled.div`
   width: 12px !important;
   height; 12px !important;
 `
-export const MainImageDiv = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  background: no-repeat center center;
-  float: left;
-  background-image: url(${(props => props.image_url)});
-  background-size: cover;
-  height: 0;
-  padding-bottom: 100%;
-  width: 100%;
-`
 
 export default function FullscreenModal (props) {
   const [product, setProduct] = useState(props.product);
   const [style, setStyle] = useState(props.style);
-
-//props.length
 
   const createIcons = () => {
     let arr = [];

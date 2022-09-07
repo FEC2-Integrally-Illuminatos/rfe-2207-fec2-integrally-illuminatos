@@ -4,6 +4,9 @@ import styled from 'styled-components';
 
 const ReadReviewsText = styled.a`
   font-size: 12px;
+  &:hover {
+    cursor: pointer;
+  }
 `
 
 const StarRating = (props) => {

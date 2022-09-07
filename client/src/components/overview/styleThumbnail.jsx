@@ -19,6 +19,9 @@ const ImageBox = styled.div`
   padding-bottom: 18%;
   width: 18%;
   margin: 8px;
+  &:hover {
+    cursor: pointer;
+  }
 `
 const CheckPos = styled.div `
   margin-top: 30%;
@@ -26,7 +29,7 @@ const CheckPos = styled.div `
 `
 
 const MyCheckmark = styled.img `
-  width: 35%;
+  width: 32%;
   height: auto;
   border-radius: 50%;
   margin-top: 32%;

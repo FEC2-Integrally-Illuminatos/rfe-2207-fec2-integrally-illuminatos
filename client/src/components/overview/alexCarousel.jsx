@@ -3,6 +3,7 @@ import '../../assets/stylesOverview.css';
 import styled from 'styled-components';
 import GalleryThumbnail from './galleryThumbnail.jsx';
 import ExpandButton from './expandButton.jsx';
+import FullscreenModal from './fullscreenModal.jsx';
 import {MdOutlineArrowForwardIos, MdOutlineArrowBackIos, MdFullscreen, MdClose} from 'react-icons/md';
 
 
@@ -17,12 +18,14 @@ const ContainerDiv = styled.div`
     padding-top: 100%;
   }
 `
+
 const StyledRightArrow = styled(MdOutlineArrowForwardIos)`
   color: white;
   font-size: 72px;
   &:hover {
     color: #4652DF;
-    font-size: 80px
+    font-size: 80px;
+    cursor: pointer;
   }
 `
 
@@ -31,7 +34,8 @@ const StyledLeftArrow = styled(MdOutlineArrowBackIos)`
   font-size: 72px;
   &:hover {
     color: #4652DF;
-    font-size: 80px
+    font-size: 80px;
+    cursor: pointer;
   }
 `
 
@@ -90,6 +94,7 @@ const AlexCarousel = (props) => {
   const [product, setProduct] = useState(props.product);
   const [style, setStyle] = useState(props.style);
   const [current, setCurrent] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
   const [length, setLength] = useState(() => {
     if (props.style.photos.length > 6) {
       return 7;
@@ -122,6 +127,7 @@ const AlexCarousel = (props) => {
   useEffect(() => {
     setProduct(props.product);
     setStyle(props.style);
+    setIsOpen(false);
     setCurrent(0);
     setLength(() => {
       if (props.style.photos.length > 6) {
@@ -160,6 +166,7 @@ const AlexCarousel = (props) => {
       let temp = current + 1;
       setCurrent(temp);
     };
+    e.stopPropagation();
   }
 
   const handleBackClick = (e) => {
@@ -170,6 +177,7 @@ const AlexCarousel = (props) => {
       let temp = current - 1;
       setCurrent(temp);
     };
+    e.stopPropagation();
   }
 
   const handleThumbClick = (val) => {
@@ -177,7 +185,8 @@ const AlexCarousel = (props) => {
   }
 
   return (
-      <MainImageDiv image_url={MainImageData[current]}>
+    <>
+      <MainImageDiv image_url={MainImageData[current]} onClick={() => setIsOpen(true)}>
         <ThumbnailDiv>
           {ThumbImageData.map((thumbnail, index) => {
             return <GalleryThumbnail handleThumbClick={handleThumbClick} current={current} thumbnail={thumbnail} index={index}/>
@@ -190,11 +199,13 @@ const AlexCarousel = (props) => {
           <RightArrowDiv>
             <StyledRightArrow onClick={(e) => {handleNextClick(e);}}/>
           </RightArrowDiv>
-          <FullscreenDiv>
+          {/* <FullscreenDiv>
             <ExpandButton length={length} setCurrent={setCurrent} handleNextClick={handleNextClick} handleBackClick={handleBackClick} product={product} style={style} current={current}/>
-          </FullscreenDiv>
-        {/* </IconContainer> */}
+          </FullscreenDiv> */}
+        {/* </IconContainer>*/}
       </MainImageDiv>
+      {isOpen && <FullscreenModal length={length} setIsOpen={setIsOpen} handleBackClick={handleBackClick} handleNextClick={handleNextClick} setCurrent={setCurrent} current={current} product={product} style={style}/> }
+      </>
   );
 }
 

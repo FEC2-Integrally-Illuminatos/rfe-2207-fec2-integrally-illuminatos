@@ -20,6 +20,7 @@ const CartButton = styled.button`
   font-family: 'Yeseva One', cursive;
   &:hover {
     background-color: #E24E0E;
+    cursor: pointer;
   };
   &:active {
     transform: translateY(4px);
