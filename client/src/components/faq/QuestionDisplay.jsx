@@ -3,18 +3,18 @@ import IndividualQ from './IndividualQ.jsx';
 import {Container} from './styles/QContainer.styled.js';
 import styled from 'styled-components';
 
-const Display = styled.div`
+export const Display = styled.div`
   max-height: 75vh;
   overflow-y: auto;
 `
 
 
 
-const QuestionDisplay = ({questions, wantsMore, product}) => {
+const QuestionDisplay = ({questions, product}) => {
   return (
     <Display>
       {questions.map((question) => {
-      return <IndividualQ question={question['question_body']} key={question['question_id']} questionID={question['question_id']} wantsMore={wantsMore} count={question['question_helpfulness']} product={product} />
+      return <IndividualQ question={question['question_body']} key={question['question_id']} questionID={question['question_id']} count={question['question_helpfulness']} product={product} />
     })}
     </Display>
   )
