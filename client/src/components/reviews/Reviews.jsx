@@ -9,13 +9,16 @@ import Rating from "./Rating.jsx";
 import RatingProdInfo from "./RatingProdInfo.jsx";
 import RatingHeader from "./RatingHeader.jsx";
 import AddReviewForm from "./AddReviewForm.jsx";
+
 const axios = require("axios");
-var Reviews = function () {
+var Reviews = function (props) {
+  // console.log(props);
+  const ProductID = props.product.id;
   // Declare a new state variable, which we'll call "count"
   const [openModal, setOpenModal] = useState(false);
   const ratings = ["*****", "****", "***", "**", "*"];
   const [Product, setProduct] = useState(37331);
-  const [Sorted, setSorted] = useState('');
+  const [Sorted, setSorted] = useState("");
   const [Reviews, setReviews] = useState([]);
 
   // const [ResetReviews, setResetReviews] = useState(sampleReview.results);
@@ -64,10 +67,10 @@ var Reviews = function () {
       body,
       photos,
       name,
-      email
+      email,
     } = reviewData;
     const params = {
-      product_id: 37331,
+      product_id: ProductID,
       rating: rating,
       recommend: recommend,
       summary: summary,
@@ -96,7 +99,7 @@ var Reviews = function () {
 
   //sort options are "newest", "helpful", or "relevant"
   function GetReviews(
-    product_id = 37331,
+    product_id = ProductID,
     sort = "newest",
     count = 20,
     page = 1
@@ -117,9 +120,12 @@ var Reviews = function () {
         console.log(err);
       });
   }
+
   useEffect(() => {
     GetReviews();
-  }, []);
+  }, [ReviewsList, ReviewsToDisplay]);
+
+
 
   //RENDERING
   return (
@@ -129,11 +135,18 @@ var Reviews = function () {
           <label>{sampleReview.count} Reviews: Select By:</label>
           <select>
             {/* https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_select */}
-            <option value="helpful" >Helpful </option>
+            <option value="helpful">Helpful </option>
             <option value="newest">Newest</option>
             <option value="rating">Rating</option>
           </select>
-          <button onClick={()=>GetReviews(37331, Sorted, 20, 1)}>SUBMIT</button>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              GetReviews(ProductID, Sorted, 20, 1);
+            }}
+          >
+            SUBMIT
+          </button>
           <button onClick={ResetFilter}>RESET REVIEW FILTER</button>
           <p></p>
         </form>
@@ -159,7 +172,7 @@ var Reviews = function () {
         <RatingHeader metadata={sampleMetaData} />
       </div>
       <div>
-        <Rating FilterFunc={FilterByStars} />
+        <Rating FilterFunc={FilterByStars} metadata={sampleMetaData}/>
       </div>
       <br></br>
       <div>

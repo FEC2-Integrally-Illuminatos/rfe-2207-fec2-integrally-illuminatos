@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import SR from "./SR.jsx"
 var RatingHeader = function (props) {
   const { metadata } = props;
   //console.log(metadata);
@@ -14,16 +15,19 @@ var RatingHeader = function (props) {
     Number(ratings[3]) * 3 +
     Number(ratings[4]) * 4 +
     Number(ratings[5]) * 5;
-  let avg = Math.round((totalScore / totalCount) * 100) / 100;
+  let avg = Math.round((totalScore / totalCount) * 10) / 10;
   //console.log(avg);
   return (
     <div>
-      RATINGS & REVIEWS
-      <h1>{avg}★★★★☆</h1>
+      RATING BREAKDOWN
+      <div>Average Rating: {avg}</div>
+      <div>Total Ratings Count: {totalCount}</div>
+      <h2><SR rating={avg} totalCount={totalCount}/></h2>
       <div>
         {Math.round((recCount / totalCount) * 100)}% of the reviewers recommend
         this product.
       </div>
+
 
     </div>
   );

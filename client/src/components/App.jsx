@@ -49,7 +49,8 @@ const App = () => {
     axios.get('/loading')
       .then(() => {
         setLoading(false);
-      });
+      })
+      .catch(err => {console.log(err)})
   });
 
   const handleProductChange = (e) => {
@@ -78,6 +79,7 @@ const App = () => {
       .then((response) => {
         setUserOutfits([...userOutfits, response.data]);
       })
+      .catch(err => {console.log(err)})
     }
   };
 

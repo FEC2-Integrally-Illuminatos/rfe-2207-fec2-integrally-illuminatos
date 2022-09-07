@@ -38,6 +38,7 @@ var ReviewsList = function (props) {
 
 export default ReviewsList;
 
+//sample data
 // body: "Consectetur voluptate sit cillum in occaecat sit. Commodo ipsum ad adipisicing adipisicing. Cupidatat non esse elit proident duis incididunt laborum. Laboris eiusmod in pariatur. Excepteur sint occaecat ullamco cillum ea minim deserunt. Officia labore id sunt consectetur amet eiusmod. Mollit do nisi ipsum aute. Laborum eiusmod occaecat sunt enim enim laborum."
 // date: "2021-12-30T00:00:00.000Z"
 // helpfulness: 27

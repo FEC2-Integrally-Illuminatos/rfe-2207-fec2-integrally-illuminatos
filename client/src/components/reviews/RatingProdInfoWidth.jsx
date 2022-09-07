@@ -3,16 +3,15 @@ import React from "react";
 import styled from 'styled-components';
 
 
-var RatingProdInfoComfort = function (props) {
+var RatingProdInfoWidth = function (props) {
   const {characteristics} = props;
-  const num = characteristics.Comfort.value;
+  const num = characteristics.Width.value;
   const pointer = num/5;
-  console.log(pointer);
+  //console.log(pointer);
   return (
     <div>
-      RatingProdInfoComfort
       <TotalBar>
-      <div class="comfortContainer">
+      <div class="Container">
         <GreenBar>
           <div class="col1">&nbsp;</div>
           </GreenBar>
@@ -56,5 +55,5 @@ const Triangle = styled.div`
   border-bottom: 20px solid #555;
 `
 
-export default RatingProdInfoComfort;
+export default RatingProdInfoWidth;
 
