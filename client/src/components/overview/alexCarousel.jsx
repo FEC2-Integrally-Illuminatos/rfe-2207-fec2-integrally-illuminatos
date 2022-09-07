@@ -173,7 +173,6 @@ const AlexCarousel = (props) => {
   }
 
   const handleThumbClick = (val) => {
-    console.log('clicked');
     setCurrent(val);
   }
 
@@ -192,7 +191,7 @@ const AlexCarousel = (props) => {
             <StyledRightArrow onClick={(e) => {handleNextClick(e);}}/>
           </RightArrowDiv>
           <FullscreenDiv>
-            <ExpandButton product={product} style={style} current={current}/>
+            <ExpandButton length={length} setCurrent={setCurrent} handleNextClick={handleNextClick} handleBackClick={handleBackClick} product={product} style={style} current={current}/>
           </FullscreenDiv>
         {/* </IconContainer> */}
       </MainImageDiv>

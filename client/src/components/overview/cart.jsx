@@ -18,7 +18,12 @@ const CartButton = styled.button`
   margin-top: 5%;
   margin-bottom: 8%;
   font-family: 'Yeseva One', cursive;
-
+  &:hover {
+    background-color: #E24E0E;
+  };
+  &:active {
+    transform: translateY(4px);
+  };
 `
 
 const Cart = (props) => {

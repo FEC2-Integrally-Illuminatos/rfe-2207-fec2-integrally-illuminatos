@@ -1,13 +1,66 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
-import { MdClose } from 'react-icons/md';
+import {MdArrowRight, MdArrowLeft, MdClose, MdCircle, MdOutlineTripOrigin} from 'react-icons/md';
 
-const StyledClose = styled(MdClose)`
+const StyledCircle = styled(MdCircle)`
   color: gray;
-  font-size: 70px;
+  font-size: 20px;
+`
+
+const StyledOutline = styled(MdOutlineTripOrigin)`
+  color: gray;
+  font-size: 20px;
   &:hover {
     color: white;
   }
+`
+
+const StyledClose = styled(MdClose)`
+  color: white;
+  font-size: 70px;
+  &:hover {
+    color: gray;
+  }
+`
+const StyledRightArrow = styled(MdArrowRight)`
+  color: white;
+  font-size: 100px;
+  &:hover {
+    color: gray;
+    font-size: 110px
+  }
+`
+
+const StyledLeftArrow = styled(MdArrowLeft)`
+  color: white;
+  font-size: 100px;
+  &:hover {
+    color: gray;
+    font-size: 110px
+  }
+`
+
+const ThumbnailDiv = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  width: 33%;
+  bottom: 7%;
+  left: 33%;
+`
+
+const LeftArrowDiv = styled.div`
+  position: absolute;
+  width: 5%;
+  top: 40%;
+  left: 6%;
+`
+
+const RightArrowDiv = styled.div`
+  position: absolute;
+  width: 5%;
+  top: 40%;
+  right: 5%;
 `
 
 export const ModalWrap = styled.div`
@@ -17,7 +70,7 @@ export const ModalWrap = styled.div`
   top: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.8);
   display: inline-flex;
   flex-direction: column;
   align-items: center;
@@ -68,6 +121,15 @@ export default function FullscreenModal (props) {
   const [product, setProduct] = useState(props.product);
   const [style, setStyle] = useState(props.style);
 
+//props.length
+
+  const createIcons = () => {
+    let arr = [];
+    for (let i = 0; i < props.length; i++) {
+      arr.push(i);
+    };
+    return arr;
+  };
 
   return (
     <ModalWrap>
@@ -75,6 +137,21 @@ export default function FullscreenModal (props) {
       <CloseButtonDiv>
         <StyledClose onClick={(e) => {props.setIsOpen(false);}}/>
       </CloseButtonDiv>
+      <ThumbnailDiv>
+        {createIcons().map((item, key) => {
+          if (item === props.current) {
+            return <StyledCircle onClick={(e) => {props.setCurrent(item);}}/>;
+          } else {
+            return <StyledOutline onClick={(e) => {props.setCurrent(item);}}/>;
+          }
+        })}
+      </ThumbnailDiv>
+      <LeftArrowDiv>
+        <StyledLeftArrow onClick={(e) => {props.handleBackClick(e)}}/>
+      </LeftArrowDiv>
+      <RightArrowDiv>
+        <StyledRightArrow onClick={(e) => {props.handleNextClick(e)}}/>
+      </RightArrowDiv>
     </ModalWrap>
   )
 }

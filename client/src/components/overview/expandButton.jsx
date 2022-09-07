@@ -23,7 +23,7 @@ export default function ExpandButton(props) {
   return (
     <div>
       <StyledButton onClick={() => setIsOpen(true)}/>
-      {isOpen && <FullscreenModal setIsOpen={setIsOpen} current={props.current} product={props.product} style={props.style}/> }
+      {isOpen && <FullscreenModal length={props.length} setIsOpen={setIsOpen} handleBackClick={props.handleBackClick} handleNextClick={props.handleNextClick} setCurrent={props.setCurrent} current={props.current} product={props.product} style={props.style}/> }
     </div>
   )
 }
