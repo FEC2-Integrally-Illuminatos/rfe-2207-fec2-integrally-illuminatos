@@ -37,16 +37,16 @@ export const Label = styled.label`
     color: red;
   }
 `
-const PhotoLabel = styled.label`
+export const PhotoLabel = styled.label`
   display: inline-block;
   font: bold 1.5rem;
   margin-bottom: 0.5rem;
 `
-const Form = styled.form`
+export const Form = styled.form`
   box-sizing: border-box;
   padding: 2rem;
   border-radius: 1rem;
-  background-color: white;
+  background-color: #F2F1EF;
   border: 1px solid #A9A9AC ;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -54,7 +54,7 @@ const Form = styled.form`
   margin-top: 5px;
 `
 
-const Input = styled.input`
+export const Input = styled.input`
   border: 2px solid #333;
   background-color: white;
   border-radius: 0.25rem;
@@ -72,7 +72,7 @@ const Input = styled.input`
     box-shadow: 0 0 0 4px #E98074;
   }
 `
-const TextArea = styled.textarea`
+export const TextArea = styled.textarea`
   border: 2px solid #333;
   background-color: white;
   border-radius: 0.25rem;
@@ -86,10 +86,10 @@ const TextArea = styled.textarea`
     box-shadow: 0 0 0 4px #E98074;
   }
 `
-const Submit = styled.div`
+export const Submit = styled.div`
   grid-column: span 2;
 `
-const Button = styled.input`
+export const InputButton = styled.input`
   font: 1.25rem;
   border-radius: 0.25rem;
   cursor: pointer;
@@ -106,9 +106,34 @@ const Button = styled.input`
   }
 `
 
-const ImgContainer = styled.div`
+export const Button = styled.button`
+  font: 1.25rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  padding: 0.75rem 1.25rem;
+  background-color: white;
+  color: black;
+  border-color: transparent;
+  margin-left: 5px;
+  &:hover {
+    border: 2px solid black;
+    transition: border-color 0s, width;
+  }
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px black;
+  }
+`
+
+export const ImgContainer = styled.div`
   display: flex;
   justify-content: flex-start;
+`
+export const Heading = styled.h1`
+  text-align: center;
+`
+export const SubHeading = styled.h5`
+  text-align: center;
 `
 
 export default function AnswerModal({name, question, questionId, setIsOpen}) {
@@ -153,8 +178,8 @@ export default function AnswerModal({name, question, questionId, setIsOpen}) {
   return (
     <ModalWrap>
       <Content>
-        <h4>Submit your Answer</h4>
-        <h5>{`${name} : ${question}`}</h5>
+        <Heading>Submit your Answer</Heading>
+        <SubHeading>{`${name} : ${question}`}</SubHeading>
         <Form onSubmit={submitHandler}>
           <div>
           <Label>What is your nickname?</Label>
@@ -180,10 +205,10 @@ export default function AnswerModal({name, question, questionId, setIsOpen}) {
           {images.length > 0 && <ImageDisplay images={images}/>}
         </ImgContainer>
           <Submit>
-          <Button type="submit" value="Submit Answer"></Button>
+          <InputButton type="submit" value="Submit Answer"></InputButton>
+          <Button onClick={() => {setIsOpen(false)}}>Close</Button>
           </Submit>
         </Form>
-        <button onClick={() => {setIsOpen(false)}}>Close</button>
       </Content>
     </ModalWrap>
   )
