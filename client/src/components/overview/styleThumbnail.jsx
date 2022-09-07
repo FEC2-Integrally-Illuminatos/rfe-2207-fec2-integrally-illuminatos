@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'react-bootstrap/Image';
-// import { Checkmark } from 'react-checkmark';
 import styled from 'styled-components';
 
 
 const ImageBox = styled.div`
   box-shadow: 5px 5px 5px grey;
   border: ${props => props.selected ? "4px solid #0E216C" : "0.01px solid grey"};
-  border-radius: 8px;
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,8 +16,8 @@ const ImageBox = styled.div`
   background-image: url(${(props => props.link)});
   background-size: cover;
   height: 0;
-  padding-bottom: 20%;
-  width: 20%;
+  padding-bottom: 18%;
+  width: 18%;
   margin: 8px;
 `
 const CheckPos = styled.div `
@@ -29,6 +28,7 @@ const CheckPos = styled.div `
 const MyCheckmark = styled.img `
   width: 35%;
   height: auto;
+  border-radius: 50%;
   margin-top: 32%;
   margin-left: 67%;
   background: transparent;

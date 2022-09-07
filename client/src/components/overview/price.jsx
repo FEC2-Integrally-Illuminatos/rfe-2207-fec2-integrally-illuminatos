@@ -8,6 +8,20 @@ const PriceDiv = styled.div`
   font-family: 'Yeseva One', cursive;
 `
 
+const SaleDiv = styled.div`
+  font-size: 16px;
+  text-decoration: line-through;
+  color: red;
+  margin-top: 3%;
+  margin-bottom: 3%;
+  font-family: 'Yeseva One', cursive;
+`
+const PriceContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 26%;
+`
+
 const Price = (props) => {
   const [style, setStyle] = useState(props);
 
@@ -17,15 +31,16 @@ const Price = (props) => {
 
   if (style.sale_price === null || style.sale_price === undefined) {
     return (
-      <div>
-        <PriceDiv>{style.original_price}</PriceDiv>
-      </div>
+      <PriceContainer>
+        <PriceDiv>${style.original_price}</PriceDiv>
+      </PriceContainer>
     )
   } else {
     return (
-      <div>
-        <PriceDiv>{style.sale_price}  {style.original_price}</PriceDiv>
-      </div>
+      <PriceContainer>
+        <PriceDiv>${style.sale_price}</PriceDiv>
+        <SaleDiv>${style.original_price}</SaleDiv>
+      </PriceContainer>
     )
   };
 }
