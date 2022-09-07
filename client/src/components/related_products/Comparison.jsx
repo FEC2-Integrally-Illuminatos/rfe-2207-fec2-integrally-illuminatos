@@ -5,9 +5,6 @@ const ComparisonTable = () => {
   return (
     <div className="tableContainer">
       <table>
-          <caption>
-            Comparing
-          </caption>
           <thead>
             <tr>
                 <th scope="col">Item 1 Value</th>

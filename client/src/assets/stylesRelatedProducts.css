@@ -175,6 +175,18 @@ add background for start
   width: 50%;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 10px;
+  background-color: #D9D9D9;
+  border-style: solid;
+  border-width: 2px;
+  border-color: grey;
+}
+
+.tableContainer table {
+  border-collapse:separate;
+  border-spacing: 1px;
+  border-style: solid;
+  background-color: #000;
 }
 
 thead tr {
@@ -197,6 +209,8 @@ td, th {
   text-align: left;
   padding: 8px;
   min-width: 100px;
-  background: #ffffff;
+  background: #D9D9D9;
 }
+
+
 
