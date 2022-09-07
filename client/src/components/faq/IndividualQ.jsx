@@ -40,7 +40,6 @@ export default function IndividualQ ({question, questionID, product, count}) {
 
   const fetchAnswers = async () => {
     const answers = await axios.get(`/questions/${questionID}`);
-    console.log(answers.data);
       setAllAnswers(answers.data);
       return answers.data;
   }
