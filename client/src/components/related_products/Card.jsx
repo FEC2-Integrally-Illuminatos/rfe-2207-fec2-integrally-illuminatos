@@ -6,10 +6,6 @@ import {faPlus} from '@fortawesome/free-solid-svg-icons'
 import {faXmark} from '@fortawesome/free-solid-svg-icons'
 import StarRating from './Stars.jsx';
 
-// const CardWordsContainer = styled.div`
-//   padding: 2%;
-//   background-color: red;
-// `
 const CardWordsContainer = styled.div`
 
 `
@@ -19,7 +15,9 @@ const Card = ({type, product, handleRemove, id, handleComparison, productWithRat
   if (type === 'Product') {
     return (
       <div className="card" id={id}>
-        <FontAwesomeIcon icon={faStar} onClick={handleComparison}/>
+        <div className="star">
+          <FontAwesomeIcon icon={faStar} onClick={handleComparison}/>
+        </div>
         <div className="image-conatiner">
           <img className="thumbnail" src={product.picture} />
         </div>

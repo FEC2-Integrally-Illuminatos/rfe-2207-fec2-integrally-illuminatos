@@ -46,19 +46,19 @@ const RelatedProducts = ({currentProductID, handleProductChange, userOutfits, se
   if (isComparison) {
     return (
       <RelatedProds id="related_products">
-        <h2>Related Products</h2>
+        <p>Related Products</p>
         <ComparisonTable />
         <ProductList relatedProducts={relatedProducts} handleComparison={handleComparison} handleProductChange={handleProductChange} productWithRatings={product}/>
-        <h2>Your Outfit</h2>
+        <p>Your Outfit</p>
         <OutfitList productNum={productNum} handleProductChange={handleProductChange} userOutfits={localOutfits} setUserOutfits={setUserOutfits} handleAddClick={handleAddClick} productWithRatings={product}/>
       </RelatedProds>
     )
   } else {
     return (
       <RelatedProds id="related_products">
-        <h2 class="related-title">Related Products</h2>
+        <p class="related-title">Related Products</p>
         <ProductList relatedProducts={relatedProducts} handleComparison={handleComparison} handleProductChange={handleProductChange} productWithRatings={product}/>
-        <h2 class="outfit-title">Your Outfit</h2>
+        <p class="outfit-title">Your Outfit</p>
         <OutfitList productNum={productNum} handleProductChange={handleProductChange} userOutfits={localOutfits} setUserOutfits={setUserOutfits} handleAddClick={handleAddClick} productWithRatings={product}/>
       </RelatedProds>
     )

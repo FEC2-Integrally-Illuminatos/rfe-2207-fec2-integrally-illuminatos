@@ -1,14 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap'); */
+/* @font-face {
+  font-family: Rosmatika;
+  src: url('../components/faq/fonts/RosmatikaRegular.ttf');
+} */
 
 #related_products {
-  font-family: 'Yeseva One', cursive;
+  font-family: 'Rosmatika', Times;
 }
 .related-title {
   margin-bottom: 10px;
+  font-size: 32px;
 }
+
+/*
+change font (size and style)
+add background for start
+ */
 .outfit-title {
   margin-top: 10px;
   margin-bottom: 10px;
+  font-size: 32px;
 }
 
 /* this is the caoursel */
@@ -19,8 +31,8 @@
 }
 
 /* this is the list of items */
-.react-multi-carousel-track {
-}
+/* .react-multi-carousel-track {
+} */
 
 .react-multi-carousel-track .item {
   max-height: 100%;
@@ -70,29 +82,39 @@
 
 .container .remove {
   position: absolute;
-  top: 5%;
+  color: grey;
+  top: 3%;
   left: 180px;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: 50%;
   height: 20px;
   width: 20px;
   text-align: center;
 }
 
-.remove:hover {
-  color: white;
-}
-
-.container .fa-star {
+.container .star {
   position: absolute;
   top: 3%;
   left: 180px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 4px;
+  height: 20px;
+  width: 20px;
+  text-align: center;
+}
+
+.container .fa-star {
   color: grey;
 }
+
+.remove:hover {
+  color: black;
+}
+
 /* add a div with a black background to help the star stand out */
 
 .container .fa-star:hover {
-  color: whitesmoke;
+  color: black;
 }
 
 .fa-plus {
@@ -109,9 +131,18 @@
   left: 50%;
 }
 
+.add-card {
+  text-align: center;
+}
 .add-card h1 {
   margin: 0;
-  font-size: 1.8em;
+  font-size: 27px;
+  font-weight: normal;
+}
+
+.no-products h1{
+  font-size: 27px;
+  font-weight: normal;
 }
 
 /* working to get the star component on the bottom left no matter what */
@@ -120,29 +151,23 @@
 }
 
 .words-container .category{
-  height: 15%;
+  width: fit-content;
+  background-color: #D8CFD0;
+  height: fit-content;
+  border-radius: 10%;
+  margin-bottom: 3%;
 }
 
 .words-container .name{
   height: 50%;
   bottom: 10%;
-}
-
-
-.words-container .price{
-
+  font-weight: normal;
 }
 
 .words-container div {
   position: absolute;
   bottom: 0;
 }
-
-
-
-
-
-
 
 .tableContainer {
   overflow: auto;

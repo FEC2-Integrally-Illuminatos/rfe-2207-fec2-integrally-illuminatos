@@ -39,7 +39,7 @@ app.use(
 app.get("/loading", (req, res) => {
   setTimeout(() => {
     res.sendStatus(200);
-  }, 2000);
+  }, 1000);
 });
 
 app.get('/products', (req, res) => {
