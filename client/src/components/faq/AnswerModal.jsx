@@ -19,13 +19,13 @@ export const ModalWrap = styled.div`
 `
 
 export const Content = styled.div`
-  background-color: #97A3BF;
+  background-color: #D8CFD0;
   margin: auto;
   padding: 20px;
   border: 1px solid black;
   border-radius: 15px;
   width: 80%;
-  height: 60%;
+  height: auto;
 `
 
 export const Label = styled.label`
@@ -47,10 +47,11 @@ const Form = styled.form`
   padding: 2rem;
   border-radius: 1rem;
   background-color: white;
-  border: 4px solid black;
+  border: 1px solid #A9A9AC ;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
+  margin-top: 5px;
 `
 
 const Input = styled.input`
@@ -103,6 +104,11 @@ const Button = styled.input`
     outline: none;
     box-shadow: 0 0 0 4px black;
   }
+`
+
+const ImgContainer = styled.div`
+  display: flex;
+  justify-content: flex-start;
 `
 
 export default function AnswerModal({name, question, questionId, setIsOpen}) {
@@ -169,8 +175,10 @@ export default function AnswerModal({name, question, questionId, setIsOpen}) {
           <PhotoLabel>Upload Your Photos</PhotoLabel>
         { images.length < 5 && <Input type="file" name="image" accept="image/png, image/jpeg"onChange={handleImageChange} multiple onError={(e) => e.target.setCustomValidity('You must enter the following: png or jpeg image')}></Input>}
           {/* <input type="submit" name="submit" value="Upload"></input> */}
-          {images.length > 0 && <ImageDisplay images={images}/>}
           </div>
+        <ImgContainer>
+          {images.length > 0 && <ImageDisplay images={images}/>}
+        </ImgContainer>
           <Submit>
           <Button type="submit" value="Submit Answer"></Button>
           </Submit>
