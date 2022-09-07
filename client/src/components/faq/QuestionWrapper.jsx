@@ -14,6 +14,10 @@ const Button = styled.button`
   margin: 0.5% 1% 1% 0.5%;
   height: 3rem;
   padding: 10px;
+  background-color: #E98074;
+  border-radius: 6px;
+  border-color: transparent;
+  cursor: pointer;
 `
 
 const Wrapper = (props) => {

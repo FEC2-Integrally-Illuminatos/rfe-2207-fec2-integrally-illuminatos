@@ -20,6 +20,7 @@ export const Body = styled.div`
   justify-content: space-between;
   border: 1px solid black;
   padding: 20px;
+  background-color: #B1A6A4;
 `
 
 export const HP = styled.div`
@@ -39,12 +40,15 @@ export default function IndividualQ ({question, questionID, product, count}) {
 
   const fetchAnswers = async () => {
     const answers = await axios.get(`/questions/${questionID}`);
+    console.log(answers.data);
       setAllAnswers(answers.data);
       return answers.data;
   }
 
   useEffect(() => {
-    fetchAnswers().then((result) => { setDisplayAnswers(result.slice(0, 2))}).catch(console.error)
+    fetchAnswers().then((result) => {
+      console.log(result);
+      setDisplayAnswers(result.slice(0, 2))}).catch(console.error)
   }, [])
 
   return (
@@ -57,7 +61,7 @@ export default function IndividualQ ({question, questionID, product, count}) {
           <AddAnswer question={question} product={product} questionId={questionID}/>
         </HP>
       </Body>
-      {showAnswers && <Answers answers={displayAnswers} fetchAnswers={fetchAnswers} setDisplayAnswers={setDisplayAnswers} allAnswers={allAnswers}/>}
+      {showAnswers && allAnswers.length > 0 && <Answers answers={displayAnswers} fetchAnswers={fetchAnswers} setDisplayAnswers={setDisplayAnswers} allAnswers={allAnswers}/>}
       <br></br>
     </Wrapper>
   )

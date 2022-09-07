@@ -203,19 +203,23 @@ app.get('/questions/:id', (req, res) => {
     })
   } else {
     axios.get(`${url}/qa/questions/${id}/answers`, {params: {count: 15}, ...auth}).then((answers) => {
-      let sorted = answers.data.results.sort((a, b) => {
-        return b.helpfulness - a.helpfulness });
-      let index = 0
-      let Seller = sorted[0];
-      for (let i = 0; i < sorted.length; i++) {
-        if (sorted[i]['answerer_name'].toLowerCase() === 'seller') {
-          index = i;
-          Seller = sorted[i];
+      if (answers.data.results.length > 0) {
+        let sorted = answers.data.results.sort((a, b) => {
+          return b.helpfulness - a.helpfulness });
+        let index = 0
+        let Seller = sorted[0];
+        for (let i = 0; i < sorted.length; i++) {
+          if (sorted[i]['answerer_name'].toLowerCase() === 'seller') {
+            index = i;
+            Seller = sorted[i];
+          }
         }
+        sorted.splice(index, 1);
+        let result = [Seller].concat(sorted);
+        res.status(200).json(result)
+      } else {
+        res.status(200).json(answers.data.results);
       }
-      sorted.splice(index, 1);
-      let result = [Seller].concat(sorted);
-      res.status(200).json(result)
     }).catch((err) => {
       console.log('Error getting answers: ', err)
     })

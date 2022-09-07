@@ -5,6 +5,7 @@ import styled from "styled-components";
 const Div = styled.div`
   display: flex;
   align-items: flex-start;
+  background-color: #D8CFD0;
 `
 const AnswerBlock = styled.div`
   display:flex;
