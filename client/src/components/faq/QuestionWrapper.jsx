@@ -17,16 +17,8 @@ const Button = styled.button`
 `
 
 const Wrapper = (props) => {
-  //TODO: REMOVE WHEN YOU GET APPROPRIATE DATA
-  const dummyData = {
-    "id": 37335,
-    "name": "Camo Onesie",
-    "slogan": "Blend in to your crowd",
-    "description": "The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.",
-    "category": "Jackets",
-    "default_price": "140"
-}
-  const product = props.product || dummyData;
+
+  const product = props.product;
   const [allQuestions, setAllQuestions] = useState([]);
   const [displayQuestions, setDisplayQuestions] = useState([]);
   const [searchQuestions, setSearchQuestions] = useState();
