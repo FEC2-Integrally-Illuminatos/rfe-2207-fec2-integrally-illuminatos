@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Answer from './Answer.jsx';
 import styled from "styled-components";
 
@@ -16,19 +16,22 @@ export const Heading = styled.h3`
   margin: 0px;
 `
 
-export default function Answers({answers, requestCount, showAnswers, fetchAnswers, setRequestCount, setDisplayAnswers, allAnswers}) {
-  const handleMoreAnswers = () => {
-    //when this is clicked, need to show more answers
-    // setRequestCount(requestCount + 1);
-    // if (answers.length !== requestCount) {
-    //    setDisplayAnswers(allAnswers.slice(0, (2 * requestCount)));
-    // } else {
-    //   fetchAnswers().catch(console.error);
-    // }
+export default function Answers({answers, fetchAnswers, setDisplayAnswers, allAnswers}) {
 
-    //display all the answers
-    setDisplayAnswers(allAnswers);
+  const [seeMore, setSeeMore] = useState(false);
+
+  const handleMoreAnswers = () => {
+    setSeeMore(!seeMore);
   }
+
+  useEffect(()=> {
+    if (seeMore) {
+      setDisplayAnswers(allAnswers);
+    } else {
+      setDisplayAnswers(allAnswers.slice(0,2))
+    }
+  }, [seeMore]);
+
   return (
     <Div>
       <Heading>A:</Heading>
@@ -36,8 +39,7 @@ export default function Answers({answers, requestCount, showAnswers, fetchAnswer
       {answers.map((answer) => {
         return (<Answer answer = {answer} key= {answer['answer_id']} fetchAnswers={fetchAnswers}/>)
       })}
-      <button onClick={handleMoreAnswers}>SEE MORE ANSWERS</button>
-
+      <button onClick={handleMoreAnswers}>{seeMore ? 'COLLAPSE ANSWERS' : 'SEE MORE ANSWERS'}</button>
       </AnswerBlock>
     </Div>
   )

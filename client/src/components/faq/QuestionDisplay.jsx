@@ -10,11 +10,11 @@ const Display = styled.div`
 
 
 
-const QuestionDisplay = ({questions, wantsMore, product}) => {
+const QuestionDisplay = ({questions, product}) => {
   return (
     <Display>
       {questions.map((question) => {
-      return <IndividualQ question={question['question_body']} key={question['question_id']} questionID={question['question_id']} wantsMore={wantsMore} count={question['question_helpfulness']} product={product} />
+      return <IndividualQ question={question['question_body']} key={question['question_id']} questionID={question['question_id']} count={question['question_helpfulness']} product={product} />
     })}
     </Display>
   )

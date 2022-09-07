@@ -36,13 +36,11 @@ export default function IndividualQ ({question, questionID, product, count}) {
   const [allAnswers, setAllAnswers] = useState([]);
   const [displayAnswers, setDisplayAnswers] = useState([]);
   const [showAnswers, setShowAnswers] = useState(false);
-  const [requestCount, setRequestCount] = useState(1);
-  // const [count, setCount] = useState(15);
 
   const fetchAnswers = async () => {
-    const answers = await axios.get(`/questions/${questionID}`, {params: {count: count}});
-     setAllAnswers(answers.data);
-     return answers.data;
+    const answers = await axios.get(`/questions/${questionID}`);
+      setAllAnswers(answers.data);
+      return answers.data;
   }
 
   useEffect(() => {
@@ -53,13 +51,13 @@ export default function IndividualQ ({question, questionID, product, count}) {
     <Wrapper>
       <Body>
           <span onClick={() => {setShowAnswers(!showAnswers)}}>
-           <Heading>Q:</Heading><h3 style={{margin: 0, display: 'inline'}}>{question}</h3> </span>
+          <Heading>Q:</Heading><h3 style={{margin: 0, display: 'inline'}}>{question}</h3> </span>
         <HP>
           <Helpful questionId={questionID} count={count}/> |
           <AddAnswer question={question} product={product} questionId={questionID}/>
         </HP>
       </Body>
-      {showAnswers && <Answers answers={displayAnswers} requestCount={requestCount} setRequestCount={setRequestCount} showAnswers={showAnswers} fetchAnswers={fetchAnswers} setDisplayAnswers={setDisplayAnswers} allAnswers={allAnswers}/>}
+      {showAnswers && <Answers answers={displayAnswers} fetchAnswers={fetchAnswers} setDisplayAnswers={setDisplayAnswers} allAnswers={allAnswers}/>}
       <br></br>
     </Wrapper>
   )
