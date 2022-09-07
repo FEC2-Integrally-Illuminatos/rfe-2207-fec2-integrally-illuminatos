@@ -9,13 +9,13 @@ import {BrowserRouter as Router} from 'react-router-dom';
 import styled from 'styled-components';
 
 const Chevere = styled.div`
-  margin-left: 7%;
-  margin-right: 7%;
+  margin-left: 10%;
+  margin-right: 10%;
 `
 
 const App = () => {
 
-  const [currentProductID, setCurrentProductID] = useState(37311);
+  const [currentProductID, setCurrentProductID] = useState(37315);
   const [product, setProduct] = useState({});
   const [style, setStyle] = useState({});
   const [styles, setStyles] = useState({});

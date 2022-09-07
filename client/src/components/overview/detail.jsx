@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Checkmark } from 'react-checkmark'
 import styled from 'styled-components';
 
 const DetailDiv = styled.div`

@@ -23,9 +23,7 @@ const Alert = (props) => {
   } else {
     return (
       <div>
-          <p>
-            <strong></strong>
-          </p>
+        <br></br>
       </div>
     );
   }
