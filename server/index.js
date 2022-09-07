@@ -194,7 +194,6 @@ app.get('/questions/:id', (req, res) => {
   let {productID} = req.query;
   if (id === 'all') {
     axios.get(`${url}/qa/questions`, {params: {'product_id': productID, count: 30 }, ...auth}).then((questions) => {
-      console.log(questions.data.results);
       let result = questions.data.results.sort((a, b) => {
         return b['question_helpfulness'] - a['question_helpfulness']
       });
@@ -204,8 +203,18 @@ app.get('/questions/:id', (req, res) => {
     })
   } else {
     axios.get(`${url}/qa/questions/${id}/answers`, {params: {count: 15}, ...auth}).then((answers) => {
-      let result = answers.data.results.sort((a, b) => {
+      let sorted = answers.data.results.sort((a, b) => {
         return b.helpfulness - a.helpfulness });
+      let index = 0
+      let Seller = sorted[0];
+      for (let i = 0; i < sorted.length; i++) {
+        if (sorted[i]['answerer_name'].toLowerCase() === 'seller') {
+          index = i;
+          Seller = sorted[i];
+        }
+      }
+      sorted.splice(index, 1);
+      let result = [Seller].concat(sorted);
       res.status(200).json(result)
     }).catch((err) => {
       console.log('Error getting answers: ', err)
