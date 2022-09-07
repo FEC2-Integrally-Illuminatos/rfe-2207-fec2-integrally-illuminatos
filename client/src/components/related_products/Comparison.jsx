@@ -1,7 +1,8 @@
 import React from 'react';
 import ComparisonRow from './ComparisonRow.jsx';
 
-const ComparisonTable = () => {
+const ComparisonTable = ({product, productForComparison}) => {
+  console.log('prodforcomp', productForComparison)
   return (
     <div className="tableContainer">
       <table>
@@ -13,18 +14,11 @@ const ComparisonTable = () => {
             </tr>
           </thead>
           <tbody>
-            <ComparisonRow />
-            <ComparisonRow />
-            <ComparisonRow />
-            <ComparisonRow />
-            <ComparisonRow />
-            <ComparisonRow />
-            <ComparisonRow />
-            <ComparisonRow />
-            <ComparisonRow />
-            <ComparisonRow />
-            <ComparisonRow />
-            <ComparisonRow />
+            <ComparisonRow type="Name" product={product} productForComparison={productForComparison}/>
+            <ComparisonRow type="Category" product={product} productForComparison={productForComparison}/>
+            <ComparisonRow type="Price" product={product} productForComparison={productForComparison}/>
+            <ComparisonRow type="Rating" product={product} productForComparison={productForComparison}/>
+
           </tbody>
       </table>
     </div>
