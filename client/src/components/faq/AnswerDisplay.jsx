@@ -6,6 +6,8 @@ const Div = styled.div`
   display: flex;
   align-items: flex-start;
   background-color: #D8CFD0;
+  max-height: 50vh;
+  overflow-y: auto;
 `
 const AnswerBlock = styled.div`
   display:flex;
@@ -34,14 +36,16 @@ export default function Answers({answers, fetchAnswers, setDisplayAnswers, allAn
   }, [seeMore]);
 
   return (
+    <>
     <Div>
       <Heading>A:</Heading>
       <AnswerBlock>
       {answers.map((answer) => {
         return (<Answer answer = {answer} key= {answer['answer_id']} fetchAnswers={fetchAnswers}/>)
       })}
-      <button onClick={handleMoreAnswers}>{seeMore ? 'COLLAPSE ANSWERS' : 'SEE MORE ANSWERS'}</button>
       </AnswerBlock>
     </Div>
+      <button onClick={handleMoreAnswers}>{seeMore ? 'COLLAPSE ANSWERS' : 'SEE MORE ANSWERS'}</button>
+    </>
   )
 }

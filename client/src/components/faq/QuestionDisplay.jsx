@@ -3,7 +3,7 @@ import IndividualQ from './IndividualQ.jsx';
 import {Container} from './styles/QContainer.styled.js';
 import styled from 'styled-components';
 
-const Display = styled.div`
+export const Display = styled.div`
   max-height: 75vh;
   overflow-y: auto;
 `
