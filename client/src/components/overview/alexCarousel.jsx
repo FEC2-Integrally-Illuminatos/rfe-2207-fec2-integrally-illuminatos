@@ -88,6 +88,9 @@ const MainImageDiv = styled.div`
   height: 0;
   padding-bottom: 100%;
   width: 100%;
+  &:hover {
+    cursor: zoom-in;
+  }
 `
 
 const AlexCarousel = (props) => {
@@ -108,7 +111,11 @@ const AlexCarousel = (props) => {
       if (index >= 7) {
         return;
       };
-      results.push(photo.url);
+      if (photo.url === null || photo.url === undefined || photo.url.slice(0, 5) !== 'https') {
+        results.push('https://media.istockphoto.com/vectors/thumbnail-image-vector-graphic-vector-id1147544807?k=20&m=1147544807&s=612x612&w=0&h=pBhz1dkwsCMq37Udtp9sfxbjaMl27JUapoyYpQm0anc=');
+      } else {
+        results.push(photo.url);
+      }
     });
     return results;
   });
@@ -118,7 +125,11 @@ const AlexCarousel = (props) => {
       if (index >= 7) {
         return;
       };
-      results.push(photo.thumbnail_url);
+      if (photo.thumbnail_url === null || photo.thumbnail_url === undefined || photo.thumbnail_url.slice(0, 5) !== 'https') {
+        results.push('https://media.istockphoto.com/vectors/thumbnail-image-vector-graphic-vector-id1147544807?k=20&m=1147544807&s=612x612&w=0&h=pBhz1dkwsCMq37Udtp9sfxbjaMl27JUapoyYpQm0anc=');
+      } else {
+        results.push(photo.thumbnail_url);
+      }
     });
     return results;
   });
@@ -142,7 +153,11 @@ const AlexCarousel = (props) => {
         if (index >= 7) {
           return;
         };
-        results.push(photo.url);
+        if (photo.url === null || photo.url === undefined || photo.url.slice(0, 5) !== 'https') {
+          results.push('https://media.istockphoto.com/vectors/thumbnail-image-vector-graphic-vector-id1147544807?k=20&m=1147544807&s=612x612&w=0&h=pBhz1dkwsCMq37Udtp9sfxbjaMl27JUapoyYpQm0anc=');
+        } else {
+          results.push(photo.url);
+        }
       });
       return results;
     });
@@ -152,7 +167,11 @@ const AlexCarousel = (props) => {
         if (index >= 7) {
           return;
         };
-        results.push(photo.thumbnail_url);
+        if (photo.thumbnail_url === null || photo.thumbnail_url === undefined || photo.thumbnail_url.slice(0, 5) !== 'https') {
+          results.push('https://media.istockphoto.com/vectors/thumbnail-image-vector-graphic-vector-id1147544807?k=20&m=1147544807&s=612x612&w=0&h=pBhz1dkwsCMq37Udtp9sfxbjaMl27JUapoyYpQm0anc=');
+        } else {
+          results.push(photo.thumbnail_url);
+        }
       });
       return results;
     });

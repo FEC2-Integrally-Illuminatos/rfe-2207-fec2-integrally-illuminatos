@@ -58,8 +58,8 @@ const StyleThumbnail = (props) => {
 
 
   const photoSetter = (item) => {
-    if (item.photos[0] === undefined) {
-      return 'https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dmlld3xlbnwwfHwwfHw%3D&w=1000&q=80';
+    if (item.photos[0].thumbnail_url === undefined || item.photos[0].thumbnail_url === null || item.photos[0].thumbnail_url.slice(0, 5) !== 'https') {
+      return 'https://media.istockphoto.com/vectors/thumbnail-image-vector-graphic-vector-id1147544807?k=20&m=1147544807&s=612x612&w=0&h=pBhz1dkwsCMq37Udtp9sfxbjaMl27JUapoyYpQm0anc=';
     } else {
       return item.photos[0].thumbnail_url;
     }

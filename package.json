@@ -29,6 +29,7 @@
     "react-fullscreen-image": "^0.0.3",
     "react-icons": "^4.4.0",
     "react-image-gallery": "^1.2.9",
+    "react-image-magnifiers": "^1.4.0",
     "react-multi-carousel": "^2.8.2",
     "react-refresh": "^0.14.0",
     "react-router-dom": "6",
@@ -51,7 +52,7 @@
     "build": "webpack --mode=production",
     "dev": "webpack serve --open",
     "server-dev": "nodemon server/index.js",
-    "test" : "node ./test/app.test.js"
+    "test": "node ./test/app.test.js"
   },
   "devDependencies": {
     "@babel/core": "^7.18.13",

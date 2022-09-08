@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 
 const ThumbBox = styled.div`
-  border: ${props => props.selected ? "3px solid #0E216C" : "0.01px solid grey"};
+  border: ${props => props.selected ? "3px solid #E98074" : "0.01px solid grey"};
   border-radius: 50%;
   display: flex;
   justify-content: center;

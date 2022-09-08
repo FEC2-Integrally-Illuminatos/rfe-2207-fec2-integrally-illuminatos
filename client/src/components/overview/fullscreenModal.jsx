@@ -1,6 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import {MdArrowRight, MdArrowLeft, MdClose, MdCircle, MdOutlineTripOrigin} from 'react-icons/md';
+import {
+  SideBySideMagnifier,
+  MOUSE_ACTIVATION,
+  TOUCH_ACTIVATION
+} from "react-image-magnifiers";
+
 
 const StyledCircle = styled(MdCircle)`
   color: #E98074;
@@ -49,15 +55,15 @@ const ThumbnailDiv = styled.div`
   display: flex;
   justify-content: space-between;
   width: 25%;
-  bottom: 7%;
-  left: 36%;
+  top: 5%;
+  left: 37%;
 `
 
 const LeftArrowDiv = styled.div`
   position: absolute;
   width: 5%;
   top: 40%;
-  left: 6%;
+  left: 5%;
 `
 
 const RightArrowDiv = styled.div`
@@ -80,13 +86,15 @@ export const ModalWrap = styled.div`
   align-items: center;
   justify-content: center;
 `
-export const Img = styled.img`
-  margin: auto;
-  display: block;
-  border-radius: 8px;
-  padding: 2%;
-  max-width: 100%;
-  max-height: 100%;
+export const Img = styled.div`
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: auto;
+  height: auto;
+  max-width: 1080px;
+  max-height: 720px;
+  overflow: hidden;
   `
   export const ContentBox = styled.div`
   background-image: url(${(props => props.image_url)});
@@ -121,7 +129,11 @@ export default function FullscreenModal (props) {
 
   return (
     <ModalWrap>
-      <Img src={props.style.photos[props.current].url}></Img>
+      {/* <Img src={props.style.photos[props.current].url}></Img> */}
+      <Img>
+      <SideBySideMagnifier
+        imageSrc={props.style.photos[props.current].url} alwaysInPlace={true} />
+      </Img>
       <CloseButtonDiv>
         <StyledClose onClick={(e) => {props.setIsOpen(false);}}/>
       </CloseButtonDiv>
