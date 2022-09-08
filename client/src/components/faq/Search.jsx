@@ -20,7 +20,6 @@ const Input = styled.input`
 `
 
 const Search = ({questions, setSearchQuestions, setSearched}) => {
-  //TODO: The search filter should work with any other filters or sorts that have been applied, and narrow the results further. Changes to the sort and rating filters should not remove the search term filter.
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleChange = (e) => {
@@ -36,6 +35,7 @@ const Search = ({questions, setSearchQuestions, setSearched}) => {
       })
       setSearchQuestions(filtered);
     } else {
+      setSearched(false);
       setSearchQuestions(questions);
     }
   }, [searchTerm]);

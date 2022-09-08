@@ -15,7 +15,7 @@ const Chevere = styled.div`
 
 const App = () => {
 
-  const [currentProductID, setCurrentProductID] = useState(37315);
+  const [currentProductID, setCurrentProductID] = useState(37316);
   const [product, setProduct] = useState({});
   const [style, setStyle] = useState({});
   const [styles, setStyles] = useState({});
@@ -40,17 +40,14 @@ const App = () => {
         setStyles(data.data.styles);
         console.log('this is the data', data.data);
       })
+      .then(() => {
+        setLoading(false);
+      })
       .catch((err) => {
         console.log(err);
       });
   }, [currentProductID])
 
-  useEffect(() => {
-    axios.get('/loading')
-      .then(() => {
-        setLoading(false);
-      });
-  });
 
   const handleProductChange = (e) => {
     let productNum = null;
@@ -88,9 +85,8 @@ const App = () => {
   return (
     loading
     ? (
-      <div>
-        Loading...
-      </div>
+      <background>
+      </background>
     )
     : (
 

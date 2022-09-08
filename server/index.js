@@ -190,13 +190,10 @@ app.get("/reviews", (req, res) => {
 });
 
 app.get('/questions/:id', (req, res) => {
-  //TODO:
   let {id} = req.params;
-  let {productID, count, page} = req.query;
-  //if id is questions - GET ALL QUESTIONS 'qa/questions'
+  let {productID} = req.query;
   if (id === 'all') {
-    axios.get(`${url}/qa/questions`, {params: {'product_id': productID, count: count, page: page }, ...auth}).then((questions) => {
-      console.log(questions.data.results);
+    axios.get(`${url}/qa/questions`, {params: {'product_id': productID, count: 30 }, ...auth}).then((questions) => {
       let result = questions.data.results.sort((a, b) => {
         return b['question_helpfulness'] - a['question_helpfulness']
       });
@@ -205,10 +202,24 @@ app.get('/questions/:id', (req, res) => {
       console.log('Error getting questions: ', err)
     })
   } else {
-    axios.get(`${url}/qa/questions/${id}/answers`, {params: {count: count}, ...auth}).then((answers) => {
-      let result = answers.data.results.sort((a, b) => {
-        return b.helpfulness - a.helpfulness });
-      res.status(200).json(result)
+    axios.get(`${url}/qa/questions/${id}/answers`, {params: {count: 15}, ...auth}).then((answers) => {
+      if (answers.data.results.length > 0) {
+        let sorted = answers.data.results.sort((a, b) => {
+          return b.helpfulness - a.helpfulness });
+        let index = 0
+        let Seller = sorted[0];
+        for (let i = 0; i < sorted.length; i++) {
+          if (sorted[i]['answerer_name'].toLowerCase() === 'seller') {
+            index = i;
+            Seller = sorted[i];
+          }
+        }
+        sorted.splice(index, 1);
+        let result = [Seller].concat(sorted);
+        res.status(200).json(result)
+      } else {
+        res.status(200).json(answers.data.results);
+      }
     }).catch((err) => {
       console.log('Error getting answers: ', err)
     })

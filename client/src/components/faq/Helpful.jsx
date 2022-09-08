@@ -15,7 +15,6 @@ export default function Helpful({count, answerId, questionId}) {
     if (!isHelpful) {
       let endpoint = answerId ? 'answer' : 'question'
       axios.put(`/qa/questions/${endpoint}_helpful`, body).then((response) => {
-        console.log(response);
         setHelpCount(helpCount + 1)
       }).catch((err) => {
         console.log('helpful', err)
