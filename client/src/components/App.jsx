@@ -9,8 +9,8 @@ import {BrowserRouter as Router} from 'react-router-dom';
 import styled from 'styled-components';
 
 const Chevere = styled.div`
-  margin-left: 7%;
-  margin-right: 7%;
+  margin-left: 12%;
+  margin-right: 12%;
 `
 
 const App = () => {
@@ -40,18 +40,14 @@ const App = () => {
         setStyles(data.data.styles);
         console.log('this is the data', data.data);
       })
+      .then(() => {
+        setLoading(false);
+      })
       .catch((err) => {
         console.log(err);
       });
   }, [currentProductID])
 
-  useEffect(() => {
-    axios.get('/loading')
-      .then(() => {
-        setLoading(false);
-      })
-      .catch(err => {console.log(err)})
-  });
 
   const handleProductChange = (e) => {
     let productNum = null;
@@ -90,9 +86,8 @@ const App = () => {
   return (
     loading
     ? (
-      <div>
-        Loading...
-      </div>
+      <background>
+      </background>
     )
     : (
 

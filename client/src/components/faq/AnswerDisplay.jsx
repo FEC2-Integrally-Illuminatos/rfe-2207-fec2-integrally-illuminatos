@@ -45,7 +45,7 @@ export default function Answers({answers, fetchAnswers, setDisplayAnswers, allAn
       })}
       </AnswerBlock>
     </Div>
-      <button onClick={handleMoreAnswers}>{seeMore ? 'COLLAPSE ANSWERS' : 'SEE MORE ANSWERS'}</button>
+      {allAnswers.length > 2 && <button onClick={handleMoreAnswers}>{seeMore ? 'COLLAPSE ANSWERS' : 'SEE MORE ANSWERS'}</button>}
     </>
   )
 }

@@ -2,11 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faStar} from '@fortawesome/free-solid-svg-icons';
+import {faPlus} from '@fortawesome/free-solid-svg-icons'
+import {faXmark} from '@fortawesome/free-solid-svg-icons'
+import StarRating from './Stars.jsx';
 
-// const CardWordsContainer = styled.div`
-//   padding: 2%;
-//   background-color: red;
-// `
 const CardWordsContainer = styled.div`
 
 `
@@ -16,7 +15,9 @@ const Card = ({type, product, handleRemove, id, handleComparison, productWithRat
   if (type === 'Product') {
     return (
       <div className="card" id={id}>
-        <FontAwesomeIcon icon={faStar} onClick={handleComparison}/>
+        <div className="star">
+          <FontAwesomeIcon icon={faStar} onClick={handleComparison}/>
+        </div>
         <div className="image-conatiner">
           <img className="thumbnail" src={product.picture} />
         </div>
@@ -26,7 +27,7 @@ const Card = ({type, product, handleRemove, id, handleComparison, productWithRat
           {/* TODO: visual bussiness document shows "expanded product name with extra text" */}
           <p className="price">${product.default_price}</p>
           {/* TODO: handle sale prices */}
-          <div>Star Component</div>
+          <StarRating ratings={productWithRatings.ratings}/>
         </CardWordsContainer>
       </div>
     )
@@ -34,7 +35,9 @@ const Card = ({type, product, handleRemove, id, handleComparison, productWithRat
   if (type === 'Outfit') {
     return (
       <div className="card" id={id}>
-        <button className="remove" onClick={handleRemove}>x</button>
+        <div className="remove">
+        <FontAwesomeIcon icon={faXmark} onClick={handleRemove} />
+        </div>
         <div className="image-conatiner">
           <img className="thumbnail" src={product.picture} />
         </div>
@@ -44,7 +47,7 @@ const Card = ({type, product, handleRemove, id, handleComparison, productWithRat
           {/* TODO: visual bussiness document shows "expanded product name with extra text" */}
           <p className="price">${product.default_price}</p>
           {/* TODO: handle sale prices */}
-          <div>Star Component</div>
+          <StarRating ratings={productWithRatings.ratings}/>
         </CardWordsContainer>
       </div>
     )
@@ -53,6 +56,14 @@ const Card = ({type, product, handleRemove, id, handleComparison, productWithRat
     return (
       <div className="card add-card">
         <h1>Add To Outfit</h1>
+        <FontAwesomeIcon icon={faPlus} />
+      </div>
+    )
+  }
+  if (type === 'noProducts') {
+    return (
+      <div className="card no-products">
+        <h1>No Related Products</h1>
       </div>
     )
   }
