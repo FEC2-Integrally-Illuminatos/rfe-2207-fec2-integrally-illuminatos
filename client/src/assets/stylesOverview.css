@@ -1,11 +1,10 @@
-/* @media (max-width: 900px) {
-  .carousel {
-    width:auto;
-    height:auto;
-  }
-} */
-@import "~react-image-gallery/styles/css/image-gallery.css";
-@import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
+@font-face {
+  font-family: 'ourfont';
+  src: url('../components/faq/fonts/RosmatikaRegular.ttf');
+}
+/* import RosmatikaTTF from './fonts/RosmatikaRegular.ttf'; */
+
 
 .mainImg {
   display: flex;
@@ -14,4 +13,16 @@
   flex-flow: column wrap;
   width: 50%;
   height: auto;
+}
+
+.loading {
+  background: radial-gradient(50% 50% at 50% 50%, #D7ACA5 0%, #97A3BF 100%);
+  height: 100vh;
+  width: 100vw;
+  font-family: 'ourfont';
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
 }
