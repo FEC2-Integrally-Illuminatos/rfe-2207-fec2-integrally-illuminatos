@@ -1,14 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
-/* @font-face {
-  font-family: Rosmatika;
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+@font-face {
+  font-family: 'ourfont';
   src: url('../components/faq/fonts/RosmatikaRegular.ttf');
-} */
+}
 
 #related_products {
-  font-family: 'Rosmatika', Times;
+  font-family: 'Karla';
+  padding: 3% 0 5% 0;
 }
 .related-title {
-  margin-bottom: 10px;
+  margin-bottom: 1%;
+  margin-left: 3%;
   font-size: 32px;
   font-family: 'Yeseva One';
 }
@@ -18,8 +22,9 @@ change font (size and style)
 add background for start
  */
 .outfit-title {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 2%;
+  margin-left: 3%;
+  margin-top: 2%;
   font-size: 32px;
   font-family: 'Yeseva One';
 

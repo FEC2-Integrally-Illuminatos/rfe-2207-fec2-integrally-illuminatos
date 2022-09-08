@@ -15,6 +15,7 @@ const axios = require("axios");
 const GlobalReviewWrapper = styled.div`
   display:flex;
   background-color: #D8CFD0;
+  padding: 3% 2% 3% 2%;
 `;
 
 const ReviewWrapper = styled.div`

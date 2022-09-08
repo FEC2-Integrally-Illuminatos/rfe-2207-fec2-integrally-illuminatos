@@ -8,7 +8,7 @@ grid-area: title;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 105px;
+  font-size: 90px;
   flex-grow: 1;
   margin: 15px 10px 0px 15px;
   `

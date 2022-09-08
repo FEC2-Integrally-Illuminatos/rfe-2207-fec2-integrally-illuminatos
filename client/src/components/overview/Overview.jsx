@@ -11,6 +11,7 @@ const OverviewDiv = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  padding-bottom: 3%;
 `
 
 const CarouselDiv = styled.div`

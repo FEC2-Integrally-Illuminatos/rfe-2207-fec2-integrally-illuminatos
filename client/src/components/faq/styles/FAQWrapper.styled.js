@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import '../../../assets/stylesRelatedProducts.css';
+
 
 export const FAQWrapper = styled.div`
   display: grid;
@@ -11,7 +13,8 @@ export const FAQWrapper = styled.div`
     "buttons buttons buttons buttons";
   background-color: #F2F1EF;
   max-height: 100vh;
-
+  padding: 4% 0 6% 0;
+  font-family: Karla;
 `
 
 //TODO: Add media queries

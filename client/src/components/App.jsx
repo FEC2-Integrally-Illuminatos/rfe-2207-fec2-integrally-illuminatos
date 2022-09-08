@@ -103,7 +103,7 @@ const App = () => {
     <>
       <Router>
         <NavBar/>
-          <Chevere>
+          <Chevere className='chevere'>
             <Overview product={product} style={style} styles={styles}/>
             <RelatedProducts currentProductID={currentProductID} handleProductChange={handleProductChange} setProduct={setProduct} product={product} userOutfits={userOutfits} setUserOutfits={setUserOutfits} handleAddClick={handleAddClick}/>
             <Wrapper product={product}/>

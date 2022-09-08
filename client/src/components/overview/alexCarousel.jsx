@@ -42,7 +42,7 @@ const StyledLeftArrow = styled(MdOutlineArrowBackIos)`
 const ThumbnailDiv = styled.div`
   position: absolute;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex start;
   width: 60%;
   top: 2%;
   left: 1%;

@@ -16,7 +16,7 @@ const NavContainer = styled.div`
   font-size: 1.2rem;
   position: sticky;
   top: 0;
-  z-index: 999;
+  z-index: 3;
   width: 100%;
   box-shadow: 0px 4px 4px rgba(0,0,0,0.25);
 `
