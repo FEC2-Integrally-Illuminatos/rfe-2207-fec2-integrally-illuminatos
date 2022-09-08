@@ -103,7 +103,13 @@ app.get("/relatedProducts", (req, res) => {
             auth
           )
           .then((response) => {
-            let thumbnail = response.data.results.filter(
+            if (!response.data.results.filter(
+              (style) => style["default?"]
+            )[0]) {
+              var thumbnail = '';
+              return product.data;
+            }
+            var thumbnail = response.data.results.filter(
               (style) => style["default?"]
             )[0].photos[0].thumbnail_url;
             product.data.picture = thumbnail;
