@@ -9,8 +9,8 @@ import {BrowserRouter as Router} from 'react-router-dom';
 import styled from 'styled-components';
 
 const Chevere = styled.div`
-  margin-left: 7%;
-  margin-right: 7%;
+  margin-left: 12%;
+  margin-right: 12%;
 `
 
 const App = () => {
@@ -48,6 +48,7 @@ const App = () => {
       });
   }, [currentProductID])
 
+
   const handleProductChange = (e) => {
     let productNum = null;
     if (e.target.className === 'card') {
@@ -84,9 +85,8 @@ const App = () => {
   return (
     loading
     ? (
-      <div>
-        Loading...
-      </div>
+      <background>
+      </background>
     )
     : (
 

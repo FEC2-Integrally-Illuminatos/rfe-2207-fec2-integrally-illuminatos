@@ -162,8 +162,11 @@ export default function AnswerModal({name, question, questionId, setIsOpen}) {
 
   const handleImageChange = (e) => {
     let fileList = e.target.files;
-    console.log(fileList)
-    let validImages = [...fileList].filter((file) =>
+    let files = [...fileList];
+    if (files.length > 5) {
+      files = files.slice(0, 5);
+    }
+    let validImages = files.filter((file) =>
         ['image/jpeg', 'image/png'].includes(file.type)
     );
       validImages.forEach((image) => {
@@ -197,9 +200,8 @@ export default function AnswerModal({name, question, questionId, setIsOpen}) {
           For authentication reasons, you will not be emailed
           </div>
           <div>
-          <PhotoLabel>Upload Your Photos</PhotoLabel>
-        { images.length < 5 && <Input type="file" name="image" accept="image/png, image/jpeg"onChange={handleImageChange} multiple onError={(e) => e.target.setCustomValidity('You must enter the following: png or jpeg image')}></Input>}
-          {/* <input type="submit" name="submit" value="Upload"></input> */}
+        { images.length < 5 && <PhotoLabel>Upload Your Photos</PhotoLabel>
+        && <Input type="file" name="image" accept="image/png, image/jpeg"onChange={handleImageChange} multiple onError={(e) => e.target.setCustomValidity('You must enter the following: png or jpeg image')}></Input>}
           </div>
         <ImgContainer>
           {images.length > 0 && <ImageDisplay images={images}/>}

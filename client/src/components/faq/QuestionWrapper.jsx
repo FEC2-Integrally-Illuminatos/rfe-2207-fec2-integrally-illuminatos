@@ -40,7 +40,7 @@ const Wrapper = (props) => {
 
   const handleMoreClick = (e) => {
     if (allQuestions.length !== displayQuestions.length) {
-      let addedDisplay = allQuestions.slice(displayQuestions.length, displayQuestions.length + 4);
+      let addedDisplay = allQuestions.slice(displayQuestions.length, displayQuestions.length + 2);
       setDisplayQuestions([...displayQuestions, ...addedDisplay]);
     }
   }

@@ -18,7 +18,7 @@ const SocialStarDiv = styled.div`
 const CategoryDiv = styled.div`
   font-size: 16px;
   margin-top: 5%;
-  margin-bottom: 3%;
+  margin-bottom: 5%;
   font-family: 'Yeseva One', cursive;
 `
 const NameDiv = styled.div`
