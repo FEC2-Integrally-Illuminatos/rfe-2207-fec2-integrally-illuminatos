@@ -33,7 +33,15 @@ const Heading = styled.h3`
   display: inline-block;
 `
 export default function IndividualQ ({question, questionID, product, count}) {
-  question = question.includes('?') ? question : question +='?';
+  if (question[question.length-1] === '.') {
+    let array = question.split('');
+    let lastIndex = array.length - 1;
+    array[lastIndex] = '?';
+    array = array.join('');
+    question = array;
+  } else {
+    question = question.includes('?') ? question : question += '?';
+  }
   const [allAnswers, setAllAnswers] = useState([]);
   const [displayAnswers, setDisplayAnswers] = useState([]);
   const [showAnswers, setShowAnswers] = useState(false);
