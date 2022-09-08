@@ -4,9 +4,11 @@ import RosmatikaTTF from './fonts/RosmatikaRegular.ttf';
 import FAQ from './QuestionWrapper.jsx';
 import {NavHashLink} from 'react-router-hash-link';
 import faq from './QuestionWrapper.jsx';
+import '../../assets/stylesOverview.css';
+
 
 const NavContainer = styled.div`
-  background: white;
+  background: #eba9a2;
   height: 80px;
   display: flex;
   justify-content: center;
@@ -14,7 +16,7 @@ const NavContainer = styled.div`
   font-size: 1.2rem;
   position: sticky;
   top: 0;
-  z-index: 1;
+  z-index: 999;
   width: 100%;
   box-shadow: 0px 4px 4px rgba(0,0,0,0.25);
 `
@@ -40,26 +42,26 @@ justify-content: end;
 `
 
 const linkStyle = {
-  color: '#000000',
+  color: 'white',
   display: 'flex',
   alignItems: 'center',
   textDecoration: 'underline',
   padding: '0.5rem 1rem',
-  height: '100%'
+  height: '100%',
+  fontFamily: "'Yeseva One', cursive"
 }
 
 const logo = {
-  color: 'black',
+  color: 'white',
   marginRight: 'auto',
   cursor: 'pointer',
   textDecoration: 'none',
   fontSize: '2rem',
   display: 'flex',
   alignItems: 'center',
-  fontFamily: 'Rosmatika'
+  fontFamily: "'Yeseva One', cursive",
 }
-// fontFamily: 'Rosmatika',
-// marginTop: '10px'
+
 const ListItem = styled.li`
 height: 80px;
 border-bottom: 2px solid transparent;

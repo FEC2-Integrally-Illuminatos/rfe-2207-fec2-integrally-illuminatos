@@ -5,6 +5,8 @@ import ProductList from './ProductList.jsx';
 import ComparisonTable from './Comparison.jsx'
 import axios from 'axios';
 import styled from 'styled-components';
+import '../../assets/stylesOverview.css';
+
 
 const RelatedProds = styled.div`
   background-color: #D8CFD0;
