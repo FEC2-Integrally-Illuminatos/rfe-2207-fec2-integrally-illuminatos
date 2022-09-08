@@ -7,10 +7,18 @@ import RelatedProducts from './related_products/RelatedProducts.jsx';
 import NavBar from './faq/NavBar.jsx';
 import {BrowserRouter as Router} from 'react-router-dom';
 import styled from 'styled-components';
+import '../../src/assets/stylesOverview.css';
 
 const Chevere = styled.div`
   margin-left: 12%;
   margin-right: 12%;
+`
+
+const background = styled.div`
+  width: 1080px;
+  height: 720px;
+  border: 10px solid red;
+  background-color: blue;
 `
 
 const App = () => {
@@ -86,8 +94,9 @@ const App = () => {
   return (
     loading
     ? (
-      <background>
-      </background>
+      <div className='loading'>
+        Chévere
+      </div>
     )
     : (
 

@@ -1,5 +1,4 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
 /* @font-face {
   font-family: Rosmatika;
   src: url('../components/faq/fonts/RosmatikaRegular.ttf');
@@ -11,6 +10,7 @@
 .related-title {
   margin-bottom: 10px;
   font-size: 32px;
+  font-family: 'Yeseva One';
 }
 
 /*
@@ -21,6 +21,8 @@ add background for start
   margin-top: 10px;
   margin-bottom: 10px;
   font-size: 32px;
+  font-family: 'Yeseva One';
+
 }
 
 /* this is the caoursel */

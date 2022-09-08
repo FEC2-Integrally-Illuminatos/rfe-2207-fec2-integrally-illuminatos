@@ -1,8 +1,10 @@
 import styled from 'styled-components';
+import '../../../assets/stylesOverview.css';
+
 
 export const Title = styled.div`
 grid-area: title;
-  font-family: Rosmatika;
+  font-family: Yeseva One;
   display: flex;
   justify-content: center;
   align-items: center;
