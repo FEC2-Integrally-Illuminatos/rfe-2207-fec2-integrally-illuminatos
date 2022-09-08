@@ -139,7 +139,8 @@ app.get("/outfits", (req, res) => {
           )[0].photos[0].thumbnail_url;
           product.data.picture = thumbnail;
           res.status(200).send(product.data);
-        });
+        })
+        .catch((err) => console.log(err));
     });
 });
 
@@ -148,7 +149,8 @@ app.get("/storage", (req, res) => {
     return axios.get(
       `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${~~id}`,
       auth
-    );
+    )
+    .catch((err) => console.log(err));
   });
   Promise.all(promiseArr)
     .then((products) => {
@@ -164,7 +166,8 @@ app.get("/storage", (req, res) => {
             )[0].photos[0].thumbnail_url;
             product.data.picture = thumbnail;
             return product.data;
-          });
+          })
+          .catch((err) => console.log(err));
       });
     })
     .then((promises) =>
