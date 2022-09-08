@@ -23,6 +23,7 @@ const Alert = (props) => {
   } else {
     return (
       <div>
+        <br></br>
       </div>
     );
   }

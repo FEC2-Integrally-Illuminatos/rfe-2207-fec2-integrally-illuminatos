@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'react-bootstrap/Image';
-// import { Checkmark } from 'react-checkmark';
 import styled from 'styled-components';
 
 
 const ImageBox = styled.div`
   box-shadow: 5px 5px 5px grey;
   border: ${props => props.selected ? "4px solid #0E216C" : "0.01px solid grey"};
-  border-radius: 8px;
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,9 +16,12 @@ const ImageBox = styled.div`
   background-image: url(${(props => props.link)});
   background-size: cover;
   height: 0;
-  padding-bottom: 20%;
-  width: 17%;
-  margin: 2px;
+  padding-bottom: 18%;
+  width: 18%;
+  margin: 8px;
+  &:hover {
+    cursor: pointer;
+  }
 `
 const CheckPos = styled.div `
   margin-top: 30%;
@@ -27,8 +29,9 @@ const CheckPos = styled.div `
 `
 
 const MyCheckmark = styled.img `
-  width: 35%;
+  width: 32%;
   height: auto;
+  border-radius: 50%;
   margin-top: 32%;
   margin-left: 67%;
   background: transparent;
@@ -55,8 +58,8 @@ const StyleThumbnail = (props) => {
 
 
   const photoSetter = (item) => {
-    if (item.photos[0] === undefined) {
-      return 'https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dmlld3xlbnwwfHwwfHw%3D&w=1000&q=80';
+    if (item.photos[0].thumbnail_url === undefined || item.photos[0].thumbnail_url === null || item.photos[0].thumbnail_url.slice(0, 5) !== 'https') {
+      return 'https://media.istockphoto.com/vectors/thumbnail-image-vector-graphic-vector-id1147544807?k=20&m=1147544807&s=612x612&w=0&h=pBhz1dkwsCMq37Udtp9sfxbjaMl27JUapoyYpQm0anc=';
     } else {
       return item.photos[0].thumbnail_url;
     }
