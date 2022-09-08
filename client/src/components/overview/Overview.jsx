@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import MainCarousel from './mainCarousel.jsx';
 import ProductInfo from './productInfo.jsx';
 import ProductOverview from './productOverview.jsx';
 import MetaInfo from './metaInfo.jsx';
@@ -52,12 +51,8 @@ const Overview = (props) => {
 
   return (
     <div id='overview'>
-      {/* <CarouselDiv2>
-        <AlexCarousel product={product} style={style}/>
-      </CarouselDiv2> */}
       <OverviewDiv>
         <CarouselDiv>
-          {/* <MainCarousel product={product} style={style}/> */}
           <AlexCarousel product={product} style={style}/>
         </CarouselDiv>
         <InfoDiv>

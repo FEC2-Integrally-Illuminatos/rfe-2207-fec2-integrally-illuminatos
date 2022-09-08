@@ -9,8 +9,8 @@ import {BrowserRouter as Router} from 'react-router-dom';
 import styled from 'styled-components';
 
 const Chevere = styled.div`
-  margin-left: 10%;
-  margin-right: 10%;
+  margin-left: 12%;
+  margin-right: 12%;
 `
 
 const App = () => {
