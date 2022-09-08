@@ -1,5 +1,26 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap'); */
+/* @font-face {
+  font-family: Rosmatika;
+  src: url('../components/faq/fonts/RosmatikaRegular.ttf');
+} */
+
 #related_products {
-  /* max-height: 100vh; */
+  font-family: 'Rosmatika', Times;
+}
+.related-title {
+  margin-bottom: 10px;
+  font-size: 32px;
+}
+
+/*
+change font (size and style)
+add background for start
+ */
+.outfit-title {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 32px;
 }
 
 /* this is the caoursel */
@@ -10,8 +31,8 @@
 }
 
 /* this is the list of items */
-.react-multi-carousel-track {
-}
+/* .react-multi-carousel-track {
+} */
 
 .react-multi-carousel-track .item {
   max-height: 100%;
@@ -26,7 +47,14 @@
 }
 
 .container:hover {
-  box-shadow: 0 0 20px rgba(33,33,33,.2);
+  box-shadow: 0 3px 8px #000;
+  transition: all 300ms ease-in-out;
+  cursor: pointer;
+}
+
+.container:active {
+  transform: scale(0.96);
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
 }
 
 .container .card {
@@ -43,6 +71,7 @@
 
 .words-container {
   height: 60%;
+  padding-top: 5px;
 }
 
 .container .thumbnail {
@@ -53,17 +82,48 @@
 
 .container .remove {
   position: absolute;
-  top: 5%;
+  color: grey;
+  top: 3%;
   left: 180px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  text-align: center;
 }
 
-.container .fa-star {
+.container .star {
   position: absolute;
   top: 3%;
   left: 180px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 4px;
+  height: 20px;
+  width: 20px;
+  text-align: center;
+}
+
+.container .fa-star {
   color: grey;
 }
+
+.remove:hover {
+  color: black;
+}
+
 /* add a div with a black background to help the star stand out */
+
+.container .fa-star:hover {
+  color: black;
+}
+
+.fa-plus {
+  position: absolute;
+  top: 125px;
+  left: 62.5px;
+  font-size: 80px;
+  opacity: 0.3;
+}
 
 .container .add {
   position: absolute;
@@ -71,10 +131,18 @@
   left: 50%;
 }
 
-
-
+.add-card {
+  text-align: center;
+}
 .add-card h1 {
   margin: 0;
+  font-size: 27px;
+  font-weight: normal;
+}
+
+.no-products h1{
+  font-size: 27px;
+  font-weight: normal;
 }
 
 /* working to get the star component on the bottom left no matter what */
@@ -82,24 +150,47 @@
   margin-left: 2%;
 }
 
-
-.words-container h1{
-  height: 30%;
+.words-container .category{
+  width: fit-content;
+  background-color: #D8CFD0;
+  height: fit-content;
+  border-radius: 10%;
+  margin-bottom: 3%;
 }
 
+.words-container .name{
+  height: 50%;
+  bottom: 10%;
+  font-weight: normal;
+}
 
-
-
-
-
+.words-container div {
+  position: absolute;
+  bottom: 0;
+}
 
 .tableContainer {
   overflow: auto;
   max-height: 200px;
   width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  background-color: #D9D9D9;
+  border-style: solid;
+  border-width: 2px;
+  border-color: grey;
 }
+
+.tableContainer table {
+  border-collapse:separate;
+  border-spacing: 1px;
+  border-style: solid;
+  background-color: #000;
+}
+
 thead tr {
-  position: sticky;
+  /* position: sticky; */
   top: 0;
   left: 0;
   z-index: 999;
@@ -118,6 +209,8 @@ td, th {
   text-align: left;
   padding: 8px;
   min-width: 100px;
-  background: #ffffff;
+  background: #D9D9D9;
 }
+
+
 

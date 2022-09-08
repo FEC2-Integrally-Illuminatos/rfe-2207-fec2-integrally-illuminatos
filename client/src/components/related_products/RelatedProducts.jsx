@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '../../assets/stylesRelatedProducts.css';
 import OutfitList from './OutfitList.jsx';
 import ProductList from './ProductList.jsx';
@@ -12,11 +12,13 @@ const RelatedProds = styled.div`
 `
 
 const RelatedProducts = ({currentProductID, handleProductChange, userOutfits, setUserOutfits, handleAddClick, product}) => {
+  const [productForComparison, setProductForComparison] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [productNum, setProductNum] = useState(currentProductID);
   const [isComparison, setIsComparison] = useState(false);
   const [itemToCompare, setItemToCompare] = useState(null);
   const [localOutfits, setLocalOutfits] = useState([1, 2, 3, 4, 5]);
+  const [firstUpdate, setFirstUpdate] = useState(true);
 
   useEffect(() => {
     setLocalOutfits(userOutfits);
@@ -27,38 +29,54 @@ const RelatedProducts = ({currentProductID, handleProductChange, userOutfits, se
     setProductNum(currentProductID);
   }, [currentProductID]);
 
-
   useEffect(() => {
     axios.get('/relatedProducts', {params: {productID: productNum}})
-      .then((response) => setRelatedProducts(response.data));
+      .then((response) => {
+        console.log('resoponse', response.data);
+        setRelatedProducts(response.data)
+      });
   }, [productNum]);
 
   const handleComparison = (e) => {
     e.stopPropagation();
-    setItemToCompare(e.target.parentElement.id);
-    isComparison ? setIsComparison(false) : setIsComparison(true);
+    if (e.target.parentElement.parentElement.parentElement.className === 'card') {
+      setItemToCompare(e.target.parentElement.parentElement.parentElement.id);
+    } else {
+      setItemToCompare(e.target.parentElement.parentElement.id);
+    }
+    if (isComparison) {
+      setIsComparison(false);
+    }
   };
 
   useEffect(() => {
-    console.log(itemToCompare);
+    if (firstUpdate) {
+      setFirstUpdate(false);
+      return;
+    }
+    axios.get('/products', {params: {product_id: itemToCompare}})
+    .then((response) => {
+      setProductForComparison(response.data);
+      isComparison ? setIsComparison(false) : setIsComparison(true);
+    })
   }, [itemToCompare]); //probably dont need this
 
   if (isComparison) {
     return (
       <RelatedProds id="related_products">
-        <h2>Related Products</h2>
-        <ComparisonTable />
+        <p class="related-title">Related Products</p>
+        <ComparisonTable product={product} productForComparison={productForComparison}/>
         <ProductList relatedProducts={relatedProducts} handleComparison={handleComparison} handleProductChange={handleProductChange} productWithRatings={product}/>
-        <h2>Your Outfit</h2>
+        <p className="outfit-title">Your Outfit</p>
         <OutfitList productNum={productNum} handleProductChange={handleProductChange} userOutfits={localOutfits} setUserOutfits={setUserOutfits} handleAddClick={handleAddClick} productWithRatings={product}/>
       </RelatedProds>
     )
   } else {
     return (
       <RelatedProds id="related_products">
-        <h2>Related Products</h2>
+        <p class="related-title">Related Products</p>
         <ProductList relatedProducts={relatedProducts} handleComparison={handleComparison} handleProductChange={handleProductChange} productWithRatings={product}/>
-        <h2>Your Outfit</h2>
+        <p class="outfit-title">Your Outfit</p>
         <OutfitList productNum={productNum} handleProductChange={handleProductChange} userOutfits={localOutfits} setUserOutfits={setUserOutfits} handleAddClick={handleAddClick} productWithRatings={product}/>
       </RelatedProds>
     )

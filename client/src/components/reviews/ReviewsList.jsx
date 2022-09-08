@@ -1,23 +1,22 @@
 import React, { useState } from "react";
 import ReviewsListItem from "./ReviewsListItem.jsx";
-var ReviewsList = function (props) {
-  //console.log(props);
-  // Declare a new state variable, which we'll call "count"
-  //has Product, Reviews, DisplayCount
-  const { Product, ReviewsToDisplay } = props;
+import styled from "styled-components";
 
+const ReviewCardContainer = styled.div`
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+`;
+var ReviewsList = function (props) {
+
+  const { Product, ReviewsToDisplay } = props;
   // const [DisplayCount, setDisplayCount] = useState(
   //   props.Reviews.length > 1 ? 2 : props.Reviews.length
   // );
   // const [ToDisplay, setToDisplay] = useState(Reviews.slice(0, DisplayCount));
 
   return ReviewsToDisplay.map((DisplayItem) => (
-
-    <div>
-      <div>
-
-      </div>
-      <div>
+    <ReviewCardContainer>
       <ReviewsListItem
         body={DisplayItem.body}
         date={DisplayItem.date}
@@ -31,13 +30,13 @@ var ReviewsList = function (props) {
         summary={DisplayItem.summary}
         key={DisplayItem.review_id}
       />
-      </div>
-    </div>
+    </ReviewCardContainer>
   ));
 };
 
 export default ReviewsList;
 
+//sample data
 // body: "Consectetur voluptate sit cillum in occaecat sit. Commodo ipsum ad adipisicing adipisicing. Cupidatat non esse elit proident duis incididunt laborum. Laboris eiusmod in pariatur. Excepteur sint occaecat ullamco cillum ea minim deserunt. Officia labore id sunt consectetur amet eiusmod. Mollit do nisi ipsum aute. Laborum eiusmod occaecat sunt enim enim laborum."
 // date: "2021-12-30T00:00:00.000Z"
 // helpfulness: 27

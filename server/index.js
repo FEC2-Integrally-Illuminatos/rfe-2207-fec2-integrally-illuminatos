@@ -97,7 +97,13 @@ app.get("/relatedProducts", (req, res) => {
             auth
           )
           .then((response) => {
-            let thumbnail = response.data.results.filter(
+            if (!response.data.results.filter(
+              (style) => style["default?"]
+            )[0]) {
+              var thumbnail = '';
+              return product.data;
+            }
+            var thumbnail = response.data.results.filter(
               (style) => style["default?"]
             )[0].photos[0].thumbnail_url;
             product.data.picture = thumbnail;
@@ -133,7 +139,8 @@ app.get("/outfits", (req, res) => {
           )[0].photos[0].thumbnail_url;
           product.data.picture = thumbnail;
           res.status(200).send(product.data);
-        });
+        })
+        .catch((err) => console.log(err));
     });
 });
 
@@ -142,7 +149,8 @@ app.get("/storage", (req, res) => {
     return axios.get(
       `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${~~id}`,
       auth
-    );
+    )
+    .catch((err) => console.log(err));
   });
   Promise.all(promiseArr)
     .then((products) => {
@@ -158,14 +166,19 @@ app.get("/storage", (req, res) => {
             )[0].photos[0].thumbnail_url;
             product.data.picture = thumbnail;
             return product.data;
-          });
+          })
+          .catch((err) => console.log(err));
       });
     })
     .then((promises) =>
       Promise.all(promises).then((productArr) =>
         res.status(200).send(productArr)
       )
-    );
+    )
+    .catch(err=> {
+      console.log("Error from storage:", err)
+      res.status(500).send('error from storage call')
+    })
 });
 
 app.get("/reviews", (req, res) => {

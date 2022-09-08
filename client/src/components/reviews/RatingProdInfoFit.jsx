@@ -1,40 +1,8 @@
 // import RatingItems from './Rating.jsx';
 import React from "react";
-import styled from "styled-components";
-// import LeftText from "./styles/LeftText.js";
+import styled from 'styled-components';
 import { CenterText } from "./styles/CenterText.js";
-// import { LeftText } from "./styles/LeftText.js";
-// import { RightText } from "./styles/RightText.js";
-var RatingProdInfoComfort = function (props) {
 
-  // const CenterText = styled.div`
-  //   display: flex;
-  //   flex-direction: row;
-  //   justify-content: center;
-  //   padding-top: -50px;
-  //   width: 50%;
-  // `
-
-  const { characteristics } = props;
-  const num = characteristics.Comfort.value;
-  const pointer = num / 5;
-
-  // console.log(pointer);
-  return (
-    <div>
-      <CenterText>Comfort</CenterText>
-      <BarContainer>
-        <ShortContainer>&nbsp;</ShortContainer>
-        <LongContainer>&nbsp;</LongContainer>
-        <ShortContainer>&nbsp;</ShortContainer>
-      </BarContainer>
-      <BottomContainer>
-        <LeftText>Uncomfortable</LeftText>
-        <RightText>Perfect</RightText>
-      </BottomContainer>
-    </div>
-  );
-};
 var BarContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -80,6 +48,27 @@ var Triangle = styled.div`
   border-right: 10px solid transparent;
   border-bottom: 20px solid #555;
 `;
-export default RatingProdInfoComfort;
+var RatingProdInfoFit = function (props) {
 
+  const {characteristics} = props;
+  const num = characteristics.Fit.value;
+  const pointer = num/5;
+  //console.log(pointer);
+  return (
+    <div>
+      <CenterText>Comfort</CenterText>
+      <BarContainer>
+        <ShortContainer>&nbsp;</ShortContainer>
+        <LongContainer>&nbsp;</LongContainer>
+        <ShortContainer>&nbsp;</ShortContainer>
+      </BarContainer>
+      <BottomContainer>
+        <LeftText>Uncomfortable</LeftText>
+        <RightText>Perfect</RightText>
+      </BottomContainer>
+    </div>
+  );
+};
+
+export default RatingProdInfoFit;
 
