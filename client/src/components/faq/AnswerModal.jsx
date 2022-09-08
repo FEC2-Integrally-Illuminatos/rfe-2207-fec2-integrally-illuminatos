@@ -199,7 +199,6 @@ export default function AnswerModal({name, question, questionId, setIsOpen}) {
           <div>
           <PhotoLabel>Upload Your Photos</PhotoLabel>
         { images.length < 5 && <Input type="file" name="image" accept="image/png, image/jpeg"onChange={handleImageChange} multiple onError={(e) => e.target.setCustomValidity('You must enter the following: png or jpeg image')}></Input>}
-          {/* <input type="submit" name="submit" value="Upload"></input> */}
           </div>
         <ImgContainer>
           {images.length > 0 && <ImageDisplay images={images}/>}
