@@ -56,7 +56,6 @@ const App = () => {
       });
   }, [currentProductID])
 
-
   const handleProductChange = (e) => {
     let productNum = null;
     if (e.target.className === 'card') {
@@ -68,6 +67,7 @@ const App = () => {
     }
     setCurrentProductID(~~productNum);
   }
+
 
   const handleAddClick = () => {
     let isNewProduct = true;
