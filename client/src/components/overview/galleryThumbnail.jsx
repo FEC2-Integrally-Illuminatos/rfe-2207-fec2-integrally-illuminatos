@@ -25,7 +25,6 @@ const ThumbBox = styled.div`
 const GalleryThumbnail = (props) => {
   const [thumbnail, setThumbnail] = useState(props.thumbnail);
   const [active, setActive] = useState(() => {
-    console.log(props.index === props.current);
     if (props.index === props.current) {
       return true;
     } else {
