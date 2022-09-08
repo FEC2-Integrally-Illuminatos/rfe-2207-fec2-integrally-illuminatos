@@ -16,7 +16,7 @@ const NavContainer = styled.div`
   top: 0;
   z-index: 1;
   width: 100%;
-  box-shadow: 0px 4px 4px rgba(0,0,0,0.25)
+  box-shadow: 0px 4px 4px rgba(0,0,0,0.25);
 `
 
 const Nav = styled.nav`
@@ -28,27 +28,6 @@ const Nav = styled.nav`
   margin: 0 auto;
   align-items: center;
 `
-// display: flex;
-//  justify-content: space-between;
-//  height: 80px;
-//  z-index: 1;
-//  width: 100%;
-//  max-width: 1300px;
-//  margin-right: auto;
-//  margin-left: auto;
-//  padding-right: 50px;
-//  padding-left: 50px;
-
-// const NavName = styled.div`
-//   width: 128px;
-//   height: 22px;
-//   font-family: 'Rosmatika';
-//   cursor: pointer;
-// `
-// @font-face {
-//   font-family: 'Rosmatika';
-// };
-// margin-top: 10px;
 const List = styled.ul`
 display: flex;
 justify-content: flex-end;

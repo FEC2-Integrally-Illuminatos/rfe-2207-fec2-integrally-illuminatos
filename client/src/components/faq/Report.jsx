@@ -9,7 +9,6 @@ export default function Report({answerId, questionId, fetchAnswers}) {
     if (!isReported) {
       let endpoint = answerId ? 'answer' : 'question'
       axios.put(`/qa/questions/${endpoint}_report`, body).then((response) => {
-        console.log(response);
         setIsReported(true);
         //TODO: should make a GET request to re-render the
           if (answerId) {
