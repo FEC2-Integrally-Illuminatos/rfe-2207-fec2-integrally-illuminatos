@@ -171,7 +171,11 @@ app.get("/storage", (req, res) => {
       Promise.all(promises).then((productArr) =>
         res.status(200).send(productArr)
       )
-    );
+    )
+    .catch(err=> {
+      console.log("Error from storage:", err)
+      res.status(500).send('error from storage call')
+    })
 });
 
 app.get("/reviews", (req, res) => {

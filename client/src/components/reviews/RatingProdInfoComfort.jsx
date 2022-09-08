@@ -7,7 +7,7 @@ var RatingProdInfoComfort = function (props) {
   const {characteristics} = props;
   const num = characteristics.Comfort.value;
   const pointer = num/5;
-  console.log(pointer);
+  // console.log(pointer);
   return (
     <div>
       RatingProdInfoComfort
