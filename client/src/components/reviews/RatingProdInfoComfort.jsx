@@ -1,60 +1,85 @@
 // import RatingItems from './Rating.jsx';
 import React from "react";
-import styled from 'styled-components';
-
-
+import styled from "styled-components";
+// import LeftText from "./styles/LeftText.js";
+import { CenterText } from "./styles/CenterText.js";
+// import { LeftText } from "./styles/LeftText.js";
+// import { RightText } from "./styles/RightText.js";
 var RatingProdInfoComfort = function (props) {
-  const {characteristics} = props;
+
+  // const CenterText = styled.div`
+  //   display: flex;
+  //   flex-direction: row;
+  //   justify-content: center;
+  //   padding-top: -50px;
+  //   width: 50%;
+  // `
+
+  const { characteristics } = props;
   const num = characteristics.Comfort.value;
-  const pointer = num/5;
+  const pointer = num / 5;
+
   // console.log(pointer);
   return (
     <div>
-      RatingProdInfoComfort
-      <TotalBar>
-      <div class="comfortContainer">
-        <GreenBar>
-          <div class="col1">&nbsp;</div>
-          </GreenBar>
-        <GrayBar>
-        <div class="col2">&nbsp;</div>
-        </GrayBar>
-      </div>
-      </TotalBar>
-      <Triangle>
-      <div>&nbsp;</div>
-      </Triangle>
+      <CenterText>Comfort</CenterText>
+      <BarContainer>
+        <ShortContainer>&nbsp;</ShortContainer>
+        <LongContainer>&nbsp;</LongContainer>
+        <ShortContainer>&nbsp;</ShortContainer>
+      </BarContainer>
+      <BottomContainer>
+        <LeftText>Uncomfortable</LeftText>
+        <RightText>Perfect</RightText>
+      </BottomContainer>
     </div>
   );
 };
-
-const TotalBar = styled.div`
+var BarContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 5px;
   width: 50%;
-`
+`;
+var LeftText = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 50%;
+`;
+var RightText = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 50%;
+`;
+var BottomContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 50%;
+`;
 
-const GreenBar = styled.div`
-  display: inline-block;
-  width: 15%;
-  height: 100%;
-  margin: 0;
-    padding: 0;
-  background: #66FF99;
-`
-const GrayBar = styled.div`
-  display: inline-block;
-  width: 85%;
-  height: 100%;
-  margin: 0;
-    padding: 0;
-  background: #A9A9A9;
-`
-const Triangle = styled.div`
+var ShortContainer = styled.div`
+  background: red;
+  display: flex;
+  flex-grow: 1;
+`;
+var LongContainer = styled.div`
+  background: red;
+  display: flex;
+  flex-grow: 2;
+  border-right: 5px solid black;
+  border-left: 5px solid black;
+`;
+var Triangle = styled.div`
   width: 0;
   height: 0;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
   border-bottom: 20px solid #555;
-`
-
+`;
 export default RatingProdInfoComfort;
+
 

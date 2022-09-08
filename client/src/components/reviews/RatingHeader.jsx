@@ -19,7 +19,6 @@ var RatingHeader = function (props) {
   //console.log(avg);
   return (
     <div>
-      RATING BREAKDOWN
       <div>Average Rating: {avg}</div>
       <div>Total Ratings Count: {totalCount}</div>
       <h2><SR rating={avg} totalCount={totalCount}/></h2>

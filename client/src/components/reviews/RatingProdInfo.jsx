@@ -8,46 +8,47 @@ import RatingProdInfoLength from "./RatingProdInfoLength.jsx";
 import RatingProdInfoFit from "./RatingProdInfoFit.jsx";
 var RatingProdInfo = function (props) {
   const { metadata } = props;
-  // console.log(metadata)
+  const { characteristics } = metadata;
+
   return (
     <div>
-      ProductInfoComponent
-      {/* <div>
-        Size
+      CHARACTERISTICS!
+      {characteristics.Size === undefined ? null : (
         <div>
-        <RatingProdInfoSize characteristics={metadata.characteristics}/>
+          Size
+          <RatingProdInfoSize characteristics={metadata.characteristics} />
         </div>
-      </div> */}
-      {/* <div>
-        Width
+      )}
+      {characteristics.Width === undefined ? null : (
         <div>
-        <RatingProdInfoWidth characteristics={metadata.characteristics}/>
+          Width
+          <RatingProdInfoWidth characteristics={metadata.characteristics} />
         </div>
-      </div> */}
-      <div>
-        Comfort
+      )}
+      {characteristics.Comfort === undefined ? null : (
         <div>
-        <RatingProdInfoComfort characteristics={metadata.characteristics}/>
+          Comfort
+          <RatingProdInfoComfort characteristics={metadata.characteristics} />
         </div>
-      </div>
-      <div>
-        Quality
+      )}
+      {characteristics.Quality === undefined ? null : (
         <div>
-        <RatingProdInfoQuality characteristics={metadata.characteristics}/>
+          Quality
+          <RatingProdInfoQuality characteristics={metadata.characteristics} />
         </div>
-      </div>
-      <div>
-        Length
+      )}
+      {characteristics.Length === undefined ? null : (
         <div>
-        <RatingProdInfoLength characteristics={metadata.characteristics}/>
+          Length
+          <RatingProdInfoLength characteristics={metadata.characteristics} />
         </div>
-      </div>
-      <div>
-        Fit
+      )}
+      {characteristics.Fit === undefined ? null : (
         <div>
-        <RatingProdInfoFit characteristics={metadata.characteristics}/>
+          Fit
+          <RatingProdInfoFit characteristics={metadata.characteristics} />
         </div>
-      </div>
+      )}
     </div>
   );
 };

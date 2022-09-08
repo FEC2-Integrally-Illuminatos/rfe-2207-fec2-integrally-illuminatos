@@ -1,6 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import StarBar from "./StarBar.jsx";
+const StarRating = styled.div`
+  width: 500px;
+  display: flex;
+  flex-direction: row;
+`;
+const TestRiver = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 7fr;
+`;
 
 var Rating = function (props) {
   console.log(props);
@@ -8,17 +17,6 @@ var Rating = function (props) {
   const ratings = props.metadata.ratings;
   const vals = Object.values(ratings);
   const total = vals.reduce((a, b) => Number(a) + Number(b));
-
-  const StarRating = styled.div`
-    width: 500px;
-    display: flex;
-    flex-direction: row;
-  `;
-  const TestRiver = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 7fr;
-  `;
-
   // return (null)
   return (
     <div>
