@@ -31,7 +31,12 @@ const responsive = {
 
 const OutfitList = ({productNum, handleProductChange, userOutfits, setUserOutfits, handleAddClick, productWithRatings}) => {
   const handleRemove = (e) => {
-    let id = e.target.parentElement.id;
+    e.stopPropagation();
+    if (e.target.parentElement.parentElement.className === 'card') {
+      var id = e.target.parentElement.parentElement.id;
+    } else {
+      var id = e.target.parentElement.parentElement.parentElement.id
+    }
     localStorage.removeItem(id);
     let filteredArr = userOutfits.filter((outfit) => {
       return (outfit.id !== ~~id );
@@ -73,7 +78,7 @@ const OutfitList = ({productNum, handleProductChange, userOutfits, setUserOutfit
       {userOutfits.map(product => {
         return (
         <div className="container" key={product.id} onClick={handleProductChange}>
-          <Card type="Outfit" product={product} handleRemove={handleRemove} id={product.id} productWithRatings={product}/>
+          <Card type="Outfit" product={product} handleRemove={handleRemove} id={product.id} productWithRatings={productWithRatings}/>
         </div>
         )
       })}
