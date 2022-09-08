@@ -29,10 +29,12 @@ const RelatedProducts = ({currentProductID, handleProductChange, userOutfits, se
     setProductNum(currentProductID);
   }, [currentProductID]);
 
-
   useEffect(() => {
     axios.get('/relatedProducts', {params: {productID: productNum}})
-      .then((response) => setRelatedProducts(response.data));
+      .then((response) => {
+        console.log('resoponse', response.data);
+        setRelatedProducts(response.data)
+      });
   }, [productNum]);
 
   const handleComparison = (e) => {
