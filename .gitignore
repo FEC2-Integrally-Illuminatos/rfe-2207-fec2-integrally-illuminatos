@@ -4,4 +4,5 @@ bundle.js
 coverage/
 .env
 .pem
+FEC.pem
 #comment
