@@ -162,8 +162,11 @@ export default function AnswerModal({name, question, questionId, setIsOpen}) {
 
   const handleImageChange = (e) => {
     let fileList = e.target.files;
-    console.log(fileList)
-    let validImages = [...fileList].filter((file) =>
+    let files = [...fileList];
+    if (files.length > 5) {
+      files = files.slice(0, 5);
+    }
+    let validImages = files.filter((file) =>
         ['image/jpeg', 'image/png'].includes(file.type)
     );
       validImages.forEach((image) => {
