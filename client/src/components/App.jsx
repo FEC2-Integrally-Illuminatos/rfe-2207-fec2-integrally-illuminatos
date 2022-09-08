@@ -75,6 +75,7 @@ const App = () => {
       .then((response) => {
         setUserOutfits([...userOutfits, response.data]);
       })
+      .catch(err => {console.log(err)})
     }
   };
 

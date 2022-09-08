@@ -9,13 +9,44 @@ import Rating from "./Rating.jsx";
 import RatingProdInfo from "./RatingProdInfo.jsx";
 import RatingHeader from "./RatingHeader.jsx";
 import AddReviewForm from "./AddReviewForm.jsx";
+
 const axios = require("axios");
-var Reviews = function () {
+
+const GlobalReviewWrapper = styled.div`
+  display:flex;
+  background-color: #D8CFD0;
+`;
+
+const ReviewWrapper = styled.div`
+  display: flex;
+  width: 60%;
+  margin: 20px;
+  flex-direction: column;
+  background-color: #D9D9D9;
+`;
+
+const ProductRatingContainer = styled.div`
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 30px;
+`;
+
+var Reviews = function (props) {
+
+  // console.log(props);
+  const ProductID = props.product.id;
   // Declare a new state variable, which we'll call "count"
   const [openModal, setOpenModal] = useState(false);
   const ratings = ["*****", "****", "***", "**", "*"];
   const [Product, setProduct] = useState(37331);
-  const [Sorted, setSorted] = useState('');
+  const [Sorted, setSorted] = useState("");
   const [Reviews, setReviews] = useState([]);
 
   // const [ResetReviews, setResetReviews] = useState(sampleReview.results);
@@ -64,10 +95,10 @@ var Reviews = function () {
       body,
       photos,
       name,
-      email
+      email,
     } = reviewData;
     const params = {
-      product_id: 37331,
+      product_id: ProductID,
       rating: rating,
       recommend: recommend,
       summary: summary,
@@ -96,7 +127,7 @@ var Reviews = function () {
 
   //sort options are "newest", "helpful", or "relevant"
   function GetReviews(
-    product_id = 37331,
+    product_id = ProductID,
     sort = "newest",
     count = 20,
     page = 1
@@ -117,74 +148,71 @@ var Reviews = function () {
         console.log(err);
       });
   }
+
   useEffect(() => {
     GetReviews();
-  }, []);
+    // AddTwoReview();
+  }, [ReviewsList, ReviewsToDisplay]);
 
   //RENDERING
   return (
-    <div id="gohere">
-      <div className="ReviewsList">
+    <GlobalReviewWrapper id="gohere">
+
+      <ProductRatingContainer>
+      <h1>Reviews and Rating</h1>
+        <div>
+          <RatingHeader metadata={sampleMetaData} />
+        </div>
+        <div>
+          <Rating FilterFunc={FilterByStars} metadata={sampleMetaData} />
+        </div>
+        <br></br>
+        <div>
+          <RatingProdInfo metadata={sampleMetaData} />
+        </div>
+      </ProductRatingContainer>
+      <ReviewWrapper>
         <form>
           <label>{sampleReview.count} Reviews: Select By:</label>
           <select>
             {/* https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_select */}
-            <option value="helpful" >Helpful </option>
+            <option value="helpful">Helpful </option>
             <option value="newest">Newest</option>
             <option value="rating">Rating</option>
           </select>
-          <button onClick={()=>GetReviews(37331, Sorted, 20, 1)}>SUBMIT</button>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              GetReviews(ProductID, Sorted, 20, 1);
+            }}
+          >
+            SUBMIT
+          </button>
           <button onClick={ResetFilter}>RESET REVIEW FILTER</button>
           <p></p>
         </form>
         <ReviewsList Product={Product} ReviewsToDisplay={ReviewsToDisplay} />
-        <button onClick={AddTwoReview}>More Reviews</button>
+        <ButtonContainer>
+          <button onClick={AddTwoReview}>More Reviews</button>
 
-        <button
-          className="openModalBtn"
-          onClick={() => {
-            setOpenModal(true);
-          }}
-        >
-          Add a Review
-        </button>
-        {openModal && (
-          <AddReviewForm
-            closeModal={setOpenModal}
-            submitReview={SubmitReview}
-          />
-        )}
-      </div>
-      <div>
-        <RatingHeader metadata={sampleMetaData} />
-      </div>
-      <div>
-        <Rating FilterFunc={FilterByStars} />
-      </div>
-      <br></br>
-      <div>
-        <RatingProdInfo metadata={sampleMetaData} />
-      </div>
-      {/* <div>
-        <AddReviewForm />
-      </div> */}
-    </div>
+          <button
+            className="openModalBtn"
+            onClick={() => {
+              setOpenModal(true);
+            }}
+          >
+            Add a Review
+          </button>
+          {openModal && (
+            <AddReviewForm
+              closeModal={setOpenModal}
+              submitReview={SubmitReview}
+            />
+          )}
+        </ButtonContainer>
+      </ReviewWrapper>
+    </GlobalReviewWrapper>
   );
 };
 
-const ReviewContainer = styled.div`
-  position: absolute;
-  width: 80%;
-  right: 100px;
-  max-width: 50%;
-  border: 3px solid red;
-`;
-
-const RatingContainer = styled.div`
-  position: absolute;
-  width: 30%;
-  left: 20px;
-  max-width: 50%;
-  border: 3px solid black;
-`;
 export default Reviews;

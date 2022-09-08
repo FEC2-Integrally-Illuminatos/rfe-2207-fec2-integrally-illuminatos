@@ -4,7 +4,24 @@ import styled from "styled-components";
 import ReviewsListItemStars from "./ReviewsListItemStars.jsx";
 import ReviewsListItemNameDate from "./ReviewsListItemNameDate.jsx";
 import ReviewsListItemBody from "./ReviewsListItemBody.jsx";
+var NameDateContainer = styled.span`
+  display: flex;
+  justify-content: flex-end;
+  background: #b1a6a4;
+`;
 
+var StarContainer = styled.span`
+  display: flex;
+  justify-content: flex;
+  color: #FFDF00;
+  background: #b1a6a4
+`;
+
+var ReviewCardContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+`;
 var ReviewsListItem = function (props) {
   const {
     body,
@@ -18,20 +35,18 @@ var ReviewsListItem = function (props) {
     reviewer_name,
     summary,
   } = props;
+
   return (
-    <div>
-      <span>
+    <ReviewCardContainer>
+
         <StarContainer>
           <ReviewsListItemStars rating={rating} />
         </StarContainer>
-      </span>
 
-      <span>
         <NameDateContainer>
           <ReviewsListItemNameDate reviewer_name={reviewer_name} date={date} />
         </NameDateContainer>
-      </span>
-      <br></br>
+
       <div>
         <ReviewsListItemBody
           summary={summary}
@@ -41,24 +56,24 @@ var ReviewsListItem = function (props) {
           helpfulness={helpfulness}
         />
       </div>
-    </div>
+    </ReviewCardContainer>
   );
 };
 
 export default ReviewsListItem;
 
-const NameDateContainer = styled.span`
-  position: absolute;
-  display: flex;
-  width: 80%;
-  right: -40%;
-`;
-const StarContainer = styled.span`
-  position: absolute;
-  display: flex;
-  width: 80%;
-  left: 40%%;
-`;
+// const NameDateContainer = styled.span`
+//   position: absolute;
+//   display: flex;
+//   width: 80%;
+//   right: -40%;
+// `;
+// const StarContainer = styled.span`
+//   position: absolute;
+//   display: flex;
+//   width: 80%;
+//   left: 40%%;
+// `;
 
 // return (
 //   <div>
