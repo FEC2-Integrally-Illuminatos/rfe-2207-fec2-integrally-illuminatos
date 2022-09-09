@@ -39,6 +39,13 @@ const ButtonContainer = styled.div`
   height: 30px;
   font-family: Karla;
 `;
+const Button2Container = styled.div`
+  display: flex;
+  justify-content: center;
+  height: 30px;
+  font-family: Karla;
+  font-size: 30px
+`;
 const ReviewDisplayContainer = styled.div`
   max-height 50hv;
   autoflow-y: auto;
@@ -207,7 +214,8 @@ var Reviews = function (props) {
       </ProductRatingContainer>
       <ReviewWrapper>
         <form>
-          <label>{sampleReview.count} Reviews: Select By:</label>
+          <Button2Container>
+          <label>{ReviewsList.count} Reviews: Select By:</label>
           <select
             onChange={(e) => {
               setSorted(e.target.value);
@@ -220,6 +228,7 @@ var Reviews = function (props) {
             <option value="newest">Newest</option>
             <option value="relevant">Relevant</option>
           </select>
+          </Button2Container>
         </form>
         <ReviewsList Product={Product} ReviewsToDisplay={ReviewsToDisplay} />
         <ButtonContainer>

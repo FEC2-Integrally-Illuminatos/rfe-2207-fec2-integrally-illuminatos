@@ -1,6 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import SR from "./SR.jsx"
+const RatContainer = styled.div`
+  display: flex;
+  justify-content: start;
+  font-family: Karla;
+  font-size: 20px
+`;
+
 var RatingHeader = function (props) {
   const { metadata } = props;
   // console.log('props from rating header', props);
@@ -19,13 +26,13 @@ var RatingHeader = function (props) {
   //console.log(avg);
   return (
     <div>
-      <div>Average Rating: {avg}</div>
-      <div>Total Ratings Count: {totalCount}</div>
+      <RatContainer>Average Rating: {avg}</RatContainer>
+      <RatContainer>Total Ratings Count: {totalCount}</RatContainer>
       <h2><SR rating={avg} totalCount={totalCount}/></h2>
-      <div>
+      <RatContainer>
         {Math.round((recCount / totalCount) * 100)}% of the reviewers recommend
         this product.
-      </div>
+      </RatContainer>
 
 
     </div>
