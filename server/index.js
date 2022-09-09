@@ -117,7 +117,6 @@ app.get("/relatedProducts", (req, res) => {
     })
     .then((promises) =>
       Promise.all(promises).then((productArr) => {
-        console.log('this is prod arr', productArr);
         res.status(200).send(productArr)
       }
       )
