@@ -4,7 +4,7 @@ import styled from "styled-components";
 const axios = require("axios");
 
 const ModalWrap = styled.div`
-  background-color: gray;
+  background-color: #F5F5DC;
   position: fixed;
   z-index: 4;
   left: 20%;
