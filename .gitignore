@@ -3,5 +3,9 @@ node_modules/
 bundle.js
 coverage/
 .env
+.pem
+FEC-Capstone.cer
+FEC.pem
+FEC Cap2.pem
 AndrewHackReactorFEC.pem
 #comment

@@ -12,7 +12,7 @@ export const FAQWrapper = styled.div`
     "main main main main"
     "buttons buttons buttons buttons";
   background-color: #F2F1EF;
-  max-height: 100vh;
+  max-height: 105vh;
   padding: 4% 0 6% 0;
   font-family: Karla;
 `
