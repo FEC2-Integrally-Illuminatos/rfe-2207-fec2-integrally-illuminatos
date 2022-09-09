@@ -2,7 +2,6 @@ import React from 'react';
 import ComparisonRow from './ComparisonRow.jsx';
 
 const ComparisonTable = ({product, productForComparison}) => {
-  console.log('prodforcomp', productForComparison)
   return (
     <div className="tableContainer">
       <table>
