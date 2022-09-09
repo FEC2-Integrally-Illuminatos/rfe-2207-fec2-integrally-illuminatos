@@ -6,13 +6,15 @@ const StarRating = styled.div`
   display: flex;
   flex-direction: row;
 `;
-const TestRiver = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 7fr;
+const StarDetail = styled.div`
+  display: flex;
+  justify-content: flex-start space-evenly;
+  font-size: 15px
 `;
-
+//grid-template-columns: 1fr 7fr;
+// display: grid;
 var Rating = function (props) {
-  console.log(props);
+  // console.log(props);
   const { FilterFunc } = props;
   const ratings = props.metadata.ratings;
   const vals = Object.values(ratings);
@@ -23,26 +25,26 @@ var Rating = function (props) {
       <div></div>
       <div>
         FILTER BY REVIEWS
-        <TestRiver id="text" onClick={() => FilterFunc(5)}>
+        <StarDetail id="text" onClick={() => FilterFunc(5)}>
           <div>5 Stars: ({ratings["5"]})</div>
           <StarBar starCount={ratings["5"]} total={total} />
-        </TestRiver>
-        <TestRiver id="text" onClick={() => FilterFunc(4)}>
+        </StarDetail>
+        <StarDetail id="text" onClick={() => FilterFunc(4)}>
           4 Stars: ({ratings["4"]}){" "}
           <StarBar starCount={ratings["5"]} total={total} />
-        </TestRiver>
-        <TestRiver id="text" onClick={() => FilterFunc(3)}>
+        </StarDetail>
+        <StarDetail id="text" onClick={() => FilterFunc(3)}>
           3 Stars: ({ratings["3"]}){" "}
           <StarBar starCount={ratings["3"]} total={total} />
-        </TestRiver>
-        <TestRiver id="text" onClick={() => FilterFunc(2)}>
+        </StarDetail>
+        <StarDetail id="text" onClick={() => FilterFunc(2)}>
           2 Stars: ({ratings["2"]}){" "}
           <StarBar starCount={ratings["2"]} total={total} />
-        </TestRiver>
-        <TestRiver id="text" onClick={() => FlterFunc(1)}>
+        </StarDetail>
+        <StarDetail id="text" onClick={() => FilterFunc(1)}>
           1 Star: ({ratings["1"]}){" "}
           <StarBar starCount={ratings["5"]} total={total} />
-        </TestRiver>
+        </StarDetail>
       </div>
     </div>
   );

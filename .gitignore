@@ -3,5 +3,5 @@ node_modules/
 bundle.js
 coverage/
 .env
-.pem
+AndrewHackReactorFEC.pem
 #comment
