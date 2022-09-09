@@ -71,7 +71,7 @@ const StyleThumbnail = (props) => {
       <ImageBox selected={active} link={photoSetter(style)} onClick={(e) => {handleClick(e)}}>
       </ImageBox>
     );
-  } else { //ADD FEATURES TO HIGHLIGHT and ADD CHECKMARK TO INDICATE SELECTED
+  } else {
     return (
       <ImageBox selected={active} link={photoSetter(style)} onClick={(e) => {handleClick(e)}}>
         <MyCheckmark src='https://toppng.com/uploads/preview/12-months-blue-check-mark-icon-11563057671d6e51m4dr7.png'/>

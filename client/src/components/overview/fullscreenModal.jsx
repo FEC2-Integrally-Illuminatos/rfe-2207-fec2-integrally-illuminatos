@@ -53,7 +53,7 @@ const StyledLeftArrow = styled(MdArrowLeft)`
 const ThumbnailDiv = styled.div`
   position: absolute;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   width: 25%;
   top: 5%;
   left: 37%;
