@@ -100,20 +100,26 @@ app.get("/relatedProducts", (req, res) => {
             if (!response.data.results.filter(
               (style) => style["default?"]
             )[0]) {
-              var thumbnail = '';
+              product.data.picture = 'https://media.istockphoto.com/vectors/thumbnail-image-vector-graphic-vector-id1147544807?k=20&m=1147544807&s=612x612&w=0&h=pBhz1dkwsCMq37Udtp9sfxbjaMl27JUapoyYpQm0anc=';
+              return product.data;
+            } else {
+              var thumbnail = response.data.results.filter(
+                (style) => style["default?"]
+              )[0].photos[0].thumbnail_url;
+              product.data.picture = thumbnail;
+              if (product.data.picture === null) {
+                product.data.picture = 'https://media.istockphoto.com/vectors/thumbnail-image-vector-graphic-vector-id1147544807?k=20&m=1147544807&s=612x612&w=0&h=pBhz1dkwsCMq37Udtp9sfxbjaMl27JUapoyYpQm0anc=';
+              }
               return product.data;
             }
-            var thumbnail = response.data.results.filter(
-              (style) => style["default?"]
-            )[0].photos[0].thumbnail_url;
-            product.data.picture = thumbnail;
-            return product.data;
           });
       });
     })
     .then((promises) =>
-      Promise.all(promises).then((productArr) =>
+      Promise.all(promises).then((productArr) => {
+        console.log('this is prod arr', productArr);
         res.status(200).send(productArr)
+      }
       )
     )
     .catch((err) => {
