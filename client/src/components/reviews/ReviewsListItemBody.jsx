@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import ReviewsListItem from "./ReviewsListItem.jsx";
 import styled from "styled-components";
-
+const SummaryContainer = styled.div`
+  background: #b1a6a4;
+`;
+const BodyContainer = styled.div`
+  display: flex;
+  overflow: hidden;
+`;
 var ReviewsListItemBody = function (props) {
   const { summary, body, recommend, response, helpfulness } = props;
   const [HCount, setHCount] = useState(helpfulness);
   const [Reported, setReported] = useState(false);
 
-  const SummaryContainer = styled.div`
-    background: #b1a6a4;
-  `;
-  const BodyContainer = styled.div`
-    display: flex;
-    overflow: hidden;
-  `;
+
 
   function HelpfulHandler(e) {
     setHCount(HCount+1);
