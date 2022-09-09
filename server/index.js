@@ -196,6 +196,24 @@ app.get("/reviews", (req, res) => {
     });
 });
 
+app.get("/reviews/meta", (req, res) => {
+  let config = {
+    url: `${url}/reviews/meta`,
+    headers: { Authorization: process.env.API_KEY },
+    params: req.query,
+  };
+  // console.log(req.query)
+  // const params = req.query
+  return axios(config)
+    .then((result) => {
+      console.log(result.data);
+      res.send(result.data);})
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+
 app.get('/questions/:id', (req, res) => {
   let {id} = req.params;
   let {productID} = req.query;

@@ -25,11 +25,11 @@ const GrayBar = styled.div`
   background: #a9a9a9;
 `;
 var StarBar = function (props) {
-  console.log(props);
+  // console.log(props);
   const { starCount, total } = props;
   const FillTo = (Number(starCount) / total) * 100;
   const LeaveTo = 100 - FillTo;
-  console.log(FillTo, LeaveTo);
+  // console.log(FillTo, LeaveTo);
 
 
   return (
