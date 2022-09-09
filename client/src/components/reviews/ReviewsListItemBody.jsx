@@ -10,6 +10,10 @@ var ReviewsListItemBody = function (props) {
   const SummaryContainer = styled.div`
     background: #b1a6a4;
   `;
+  const BodyContainer = styled.div`
+    display: flex;
+    overflow: hidden;
+  `;
 
   function HelpfulHandler(e) {
     setHCount(HCount+1);
@@ -26,7 +30,7 @@ var ReviewsListItemBody = function (props) {
       <SummaryContainer>
         <h3>{summary.slice(0, 60)}</h3>
       </SummaryContainer>
-      <div>{body}</div>
+      <BodyContainer>{body}</BodyContainer>
       {recommend ? <div>✅ I recommend this product!</div> : null}
       {response ? <div>Response from seller: {response}</div> : null}
       {/* <div>Helpful? 👍 ({helpfulness})</div> */}
