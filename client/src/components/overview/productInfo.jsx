@@ -30,32 +30,24 @@ const NameDiv = styled.div`
 
 
 const ProductInfo = (props) => {
-  const [product, setProduct] = useState(props.product);
-  const [style, setStyle] = useState(props.style);
-  const [styles, setStyles] = useState(props.styles);
 
-  useEffect(() => {
-    setProduct(props.product);
-    setStyle(props.style);
-    setStyles(props.styles);
-  }, [props]);
 
   return (
     <div>
       <SocialStarDiv>
-        <SocialMedia style={style}/>
-        <StarRating {...product}/>
+        <SocialMedia style={props.style}/>
+        <StarRating {...props.product}/>
       </SocialStarDiv>
       <div>
-        <CategoryDiv data-testid="counter">{product.category}</CategoryDiv>
+        <CategoryDiv data-testid="counter">{props.product.category}</CategoryDiv>
         </div>
       <div>
-        <NameDiv>{product.name}</NameDiv>
+        <NameDiv>{props.product.name}</NameDiv>
       </div>
-        <Price {...style}/>
-        <StyleName {...style}/>
-        <ThumbnailGallery handleStyleChange={props.handleStyleChange} style={style} styles={styles}/>
-        <SizeSelector product={product} style={style}/>
+        <Price {...props.style}/>
+        <StyleName {...props.style}/>
+        <ThumbnailGallery handleStyleChange={props.handleStyleChange} style={props.style} styles={props.styles}/>
+        <SizeSelector product={props.product} style={props.style}/>
      </div>
   )
 }

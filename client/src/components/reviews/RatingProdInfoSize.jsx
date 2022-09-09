@@ -49,28 +49,32 @@ var RatingProdInfoSize = function (props) {
     border-left: 5px solid black;
   `;
   var Triangle = styled.div`
-    width: 0;
-    height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 20px solid #555;
-  `;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 10px solid #555;
+  margin-left: ${(props) => Number(props.num)/5*100}%
+
+`;
   const {characteristics} = props;
   //console.log(props)
   const num = characteristics.Size.value;
-  const pointer = num/5;
-  //console.log(pointer);
+
   return (
     <div>
-      <CenterText>Comfort</CenterText>
+      <CenterText>Size</CenterText>
       <BarContainer>
         <ShortContainer>&nbsp;</ShortContainer>
         <LongContainer>&nbsp;</LongContainer>
         <ShortContainer>&nbsp;</ShortContainer>
       </BarContainer>
+      <BarContainer>
+      <Triangle num={num}>&nbsp;</Triangle>
+      </BarContainer>
       <BottomContainer>
-        <LeftText>Uncomfortable</LeftText>
-        <RightText>Perfect</RightText>
+        <LeftText>Small</LeftText>
+        <RightText>Big</RightText>
       </BottomContainer>
     </div>
   );

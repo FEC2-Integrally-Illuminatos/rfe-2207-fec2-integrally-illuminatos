@@ -15,37 +15,37 @@ var RatingProdInfo = function (props) {
       CHARACTERISTICS!
       {characteristics.Size === undefined ? null : (
         <div>
-          Size
+          {/* Size */}
           <RatingProdInfoSize characteristics={metadata.characteristics} />
         </div>
       )}
       {characteristics.Width === undefined ? null : (
         <div>
-          Width
+          {/* Width */}
           <RatingProdInfoWidth characteristics={metadata.characteristics} />
         </div>
       )}
       {characteristics.Comfort === undefined ? null : (
         <div>
-          Comfort
+          {/* Comfort */}
           <RatingProdInfoComfort characteristics={metadata.characteristics} />
         </div>
       )}
       {characteristics.Quality === undefined ? null : (
         <div>
-          Quality
+          {/* Quality */}
           <RatingProdInfoQuality characteristics={metadata.characteristics} />
         </div>
       )}
       {characteristics.Length === undefined ? null : (
         <div>
-          Length
+          {/* Length */}
           <RatingProdInfoLength characteristics={metadata.characteristics} />
         </div>
       )}
       {characteristics.Fit === undefined ? null : (
         <div>
-          Fit
+          {/* Fit */}
           <RatingProdInfoFit characteristics={metadata.characteristics} />
         </div>
       )}

@@ -9,24 +9,20 @@ const DetailDiv = styled.div`
 `
 
 const Detail = (props) => {
-  const [detail, setDetail] = useState(props.detail);
 
-  useEffect(() => {
-    setDetail(props.detail);
-  }, []);
 
-  if (!!detail.feature && !detail.value) {
+  if (!!props.detail.feature && !props.detail.value) {
     return (
       <DetailDiv>
         <span>&#10003;</span>
-        &nbsp;&nbsp;&nbsp;{detail.feature}
+        &nbsp;&nbsp;&nbsp;{props.detail.feature}
       </DetailDiv>
     );
-  } else if (detail.feature && detail.value) {
+  } else if (props.detail.feature && props.detail.value) {
     return (
       <DetailDiv>
         <span>&#10003;</span>
-        &nbsp;&nbsp;&nbsp;{detail.feature}:&nbsp;&nbsp;{detail.value}
+        &nbsp;&nbsp;&nbsp;{props.detail.feature}:&nbsp;&nbsp;{props.detail.value}
       </DetailDiv>
     );
   } else {

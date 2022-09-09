@@ -12,20 +12,14 @@ const MetaDiv = styled.div`
 
 
 const MetaInfo = (props) => {
-  const [product, setProduct] = useState(props.product);
-
-  useEffect(() => {
-    setProduct(props.product);
-  }, []);
 
   return (
     <div>
-      {product.features.map((detail, key) => {
+      {props.product.features.map((detail, key) => {
         return <Detail detail={detail} key={key}/>
       })}
     </div>
   );
 }
-
 
 export default MetaInfo;

@@ -44,16 +44,17 @@ var LongContainer = styled.div`
 var Triangle = styled.div`
   width: 0;
   height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-bottom: 20px solid #555;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 10px solid #555;
+  margin-left: ${(props) => Number(props.num)/5*100}%
+
 `;
 var RatingProdInfoFit = function (props) {
 
   const {characteristics} = props;
   const num = characteristics.Fit.value;
-  const pointer = num/5;
-  //console.log(pointer);
+
   return (
     <div>
       <CenterText>Comfort</CenterText>
@@ -61,6 +62,9 @@ var RatingProdInfoFit = function (props) {
         <ShortContainer>&nbsp;</ShortContainer>
         <LongContainer>&nbsp;</LongContainer>
         <ShortContainer>&nbsp;</ShortContainer>
+      </BarContainer>
+      <BarContainer>
+      <Triangle num={num}>&nbsp;</Triangle>
       </BarContainer>
       <BottomContainer>
         <LeftText>Uncomfortable</LeftText>

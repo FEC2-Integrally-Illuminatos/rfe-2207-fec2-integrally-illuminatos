@@ -100,20 +100,25 @@ app.get("/relatedProducts", (req, res) => {
             if (!response.data.results.filter(
               (style) => style["default?"]
             )[0]) {
-              var thumbnail = '';
+              product.data.picture = 'https://media.istockphoto.com/vectors/thumbnail-image-vector-graphic-vector-id1147544807?k=20&m=1147544807&s=612x612&w=0&h=pBhz1dkwsCMq37Udtp9sfxbjaMl27JUapoyYpQm0anc=';
+              return product.data;
+            } else {
+              var thumbnail = response.data.results.filter(
+                (style) => style["default?"]
+              )[0].photos[0].thumbnail_url;
+              product.data.picture = thumbnail;
+              if (product.data.picture === null) {
+                product.data.picture = 'https://media.istockphoto.com/vectors/thumbnail-image-vector-graphic-vector-id1147544807?k=20&m=1147544807&s=612x612&w=0&h=pBhz1dkwsCMq37Udtp9sfxbjaMl27JUapoyYpQm0anc=';
+              }
               return product.data;
             }
-            var thumbnail = response.data.results.filter(
-              (style) => style["default?"]
-            )[0].photos[0].thumbnail_url;
-            product.data.picture = thumbnail;
-            return product.data;
           });
       });
     })
     .then((promises) =>
-      Promise.all(promises).then((productArr) =>
+      Promise.all(promises).then((productArr) => {
         res.status(200).send(productArr)
+      }
       )
     )
     .catch((err) => {
@@ -195,6 +200,24 @@ app.get("/reviews", (req, res) => {
       console.log(err);
     });
 });
+
+app.get("/reviews/meta", (req, res) => {
+  let config = {
+    url: `${url}/reviews/meta`,
+    headers: { Authorization: process.env.API_KEY },
+    params: req.query,
+  };
+  // console.log(req.query)
+  // const params = req.query
+  return axios(config)
+    .then((result) => {
+      console.log(result.data);
+      res.send(result.data);})
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
 
 app.get('/questions/:id', (req, res) => {
   let {id} = req.params;

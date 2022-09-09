@@ -17,20 +17,15 @@ const DescriptionP = styled.p`
 `
 
 const ProductOverview = (props) => {
-  const [product, setStyle] = useState(props.product);
 
-  useEffect(() => {
-    setStyle(props.product);
-  }, [props]);
-
-  if (product.description.length > 0) {
+  if (props.product.description.length > 0) {
     return (
       <div>
         <SloganDiv>
-          {product.slogan}
+          {props.product.slogan}
         </SloganDiv>
         <DescriptionP>
-          {product.description}
+          {props.product.description}
         </DescriptionP>
       </div>
     )
@@ -38,7 +33,7 @@ const ProductOverview = (props) => {
     return (
       <div>
         <SloganDiv>
-          {product.slogan}
+          {props.product.slogan}
         </SloganDiv>
       </div>
     )

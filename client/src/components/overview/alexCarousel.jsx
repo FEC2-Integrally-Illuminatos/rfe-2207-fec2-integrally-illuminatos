@@ -94,8 +94,6 @@ const MainImageDiv = styled.div`
 `
 
 const AlexCarousel = (props) => {
-  const [product, setProduct] = useState(props.product);
-  const [style, setStyle] = useState(props.style);
   const [current, setCurrent] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const [length, setLength] = useState(() => {
@@ -136,8 +134,6 @@ const AlexCarousel = (props) => {
 
 
   useEffect(() => {
-    setProduct(props.product);
-    setStyle(props.style);
     setIsOpen(false);
     setCurrent(0);
     setLength(() => {
@@ -211,19 +207,14 @@ const AlexCarousel = (props) => {
             return <GalleryThumbnail handleThumbClick={handleThumbClick} current={current} thumbnail={thumbnail} index={index}/>
           })}
         </ThumbnailDiv>
-        {/* <IconContainer> */}
           <LeftArrowDiv onClick={(e) => {handleBackClick(e);}}>
             <StyledLeftArrow/>
           </LeftArrowDiv>
           <RightArrowDiv>
             <StyledRightArrow onClick={(e) => {handleNextClick(e);}}/>
           </RightArrowDiv>
-          {/* <FullscreenDiv>
-            <ExpandButton length={length} setCurrent={setCurrent} handleNextClick={handleNextClick} handleBackClick={handleBackClick} product={product} style={style} current={current}/>
-          </FullscreenDiv> */}
-        {/* </IconContainer>*/}
       </MainImageDiv>
-      {isOpen && <FullscreenModal length={length} setIsOpen={setIsOpen} handleBackClick={handleBackClick} handleNextClick={handleNextClick} setCurrent={setCurrent} current={current} product={product} style={style}/> }
+      {isOpen && <FullscreenModal length={length} setIsOpen={setIsOpen} handleBackClick={handleBackClick} handleNextClick={handleNextClick} setCurrent={setCurrent} current={current} product={props.product} style={props.style}/> }
       </>
   );
 }
