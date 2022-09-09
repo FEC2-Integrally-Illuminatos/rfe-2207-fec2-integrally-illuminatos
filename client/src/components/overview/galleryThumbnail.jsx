@@ -23,7 +23,6 @@ const ThumbBox = styled.div`
 `
 
 const GalleryThumbnail = (props) => {
-  const [thumbnail, setThumbnail] = useState(props.thumbnail);
   const [active, setActive] = useState(() => {
     if (props.index === props.current) {
       return true;
@@ -34,7 +33,6 @@ const GalleryThumbnail = (props) => {
 
 
   useEffect(() => {
-    setThumbnail(props.thumbnail);
     if (props.index === props.current) {
       setActive(true);
     } else {
@@ -56,7 +54,7 @@ const GalleryThumbnail = (props) => {
   };
 
   return (
-    <ThumbBox selected={active} link={photoSetter(thumbnail)} onClick={(e) => {handleClick(e);}}/>
+    <ThumbBox selected={active} link={photoSetter(props.thumbnail)} onClick={(e) => {handleClick(e);}}/>
   );
 }
 

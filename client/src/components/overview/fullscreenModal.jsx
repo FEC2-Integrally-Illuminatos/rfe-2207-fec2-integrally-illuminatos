@@ -116,8 +116,6 @@ export const CloseButtonDiv = styled.div`
 `
 
 export default function FullscreenModal (props) {
-  const [product, setProduct] = useState(props.product);
-  const [style, setStyle] = useState(props.style);
 
   const createIcons = () => {
     let arr = [];
@@ -129,7 +127,6 @@ export default function FullscreenModal (props) {
 
   return (
     <ModalWrap>
-      {/* <Img src={props.style.photos[props.current].url}></Img> */}
       <Img>
       <SideBySideMagnifier
         imageSrc={props.style.photos[props.current].url} alwaysInPlace={true} />
