@@ -5,8 +5,6 @@ import styled from "styled-components";
 var SR = function (props) {
 
   let {rating, totalCount} = props;
-  console.log('THIS IS RATING:', rating);
-  // rating = rating ? rating : 3;
 
   return (
     <div>

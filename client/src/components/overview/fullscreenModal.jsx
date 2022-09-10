@@ -1,54 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
-import {MdArrowRight, MdArrowLeft, MdClose, MdCircle, MdOutlineTripOrigin} from 'react-icons/md';
+import '../../assets/stylesOverview.css';
+import {faCaretRight, faCaretLeft, faCircle, faCircleDot, faX} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   SideBySideMagnifier,
   MOUSE_ACTIVATION,
   TOUCH_ACTIVATION
 } from "react-image-magnifiers";
 
-
-const StyledCircle = styled(MdCircle)`
-  color: #E98074;
-  font-size: 20px;
-`
-
-const StyledOutline = styled(MdOutlineTripOrigin)`
-  color: #E98074;
-  font-size: 20px;
-  &:hover {
-    color: white;
-    cursor: pointer;
-  }
-`
-
-const StyledClose = styled(MdClose)`
-  color: white;
-  font-size: 70px;
-  &:hover {
-    color: gray;
-    cursor: pointer;
-  }
-`
-const StyledRightArrow = styled(MdArrowRight)`
-  color: white;
-  font-size: 100px;
-  &:hover {
-    color: gray;
-    font-size: 110px;
-    cursor: pointer;
-  }
-`
-
-const StyledLeftArrow = styled(MdArrowLeft)`
-  color: white;
-  font-size: 100px;
-  &:hover {
-    color: gray;
-    font-size: 110px;
-    cursor: pointer;
-  }
-`
 
 const ThumbnailDiv = styled.div`
   position: absolute;
@@ -132,22 +92,22 @@ export default function FullscreenModal (props) {
         imageSrc={props.style.photos[props.current].url} alwaysInPlace={true} />
       </Img>
       <CloseButtonDiv>
-        <StyledClose onClick={(e) => {props.setIsOpen(false);}}/>
+        <FontAwesomeIcon onClick={(e) => {props.setIsOpen(false);}} icon={faX} color='white' size='3x' className='xmark'/>;
       </CloseButtonDiv>
       <ThumbnailDiv>
         {createIcons().map((item, key) => {
           if (item === props.current) {
-            return <StyledCircle onClick={(e) => {props.setCurrent(item);}}/>;
+            return <FontAwesomeIcon onClick={(e) => {props.setCurrent(item);}} icon={faCircle} color='#E98074' size='1x' className=''/>;
           } else {
-            return <StyledOutline onClick={(e) => {props.setCurrent(item);}}/>;
+            return <FontAwesomeIcon onClick={(e) => {props.setCurrent(item);}} icon={faCircleDot} color='#E98074' size='1x' className='outlinedot'/>;
           }
         })}
       </ThumbnailDiv>
       <LeftArrowDiv>
-        <StyledLeftArrow onClick={(e) => {props.handleBackClick(e)}}/>
+        <FontAwesomeIcon onClick={(e) => {props.handleBackClick(e)}} icon={faCaretLeft} color='white' size='7x' className='fullscreenarrows'/>
       </LeftArrowDiv>
       <RightArrowDiv>
-        <StyledRightArrow onClick={(e) => {props.handleNextClick(e)}}/>
+        <FontAwesomeIcon onClick={(e) => {props.handleNextClick(e)}} icon={faCaretRight} color='white' size='7x' className='fullscreenarrows'/>
       </RightArrowDiv>
     </ModalWrap>
   )

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Image from 'react-bootstrap/Image';
 import styled from 'styled-components';
 
 

@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import '../../assets/stylesOverview.css';
 import styled from 'styled-components';
 import GalleryThumbnail from './galleryThumbnail.jsx';
-import ExpandButton from './expandButton.jsx';
 import FullscreenModal from './fullscreenModal.jsx';
-import {MdOutlineArrowForwardIos, MdOutlineArrowBackIos, MdFullscreen, MdClose} from 'react-icons/md';
+import {faChevronRight, faChevronLeft} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 
 
 const ContainerDiv = styled.div`
@@ -24,23 +25,6 @@ const SecondDiv = styled.div`
   justify-content: space-evenly;
 `
 
-const StyledRightArrow = styled(MdOutlineArrowForwardIos)`
-  color: #E98074;
-  font-size: 72px;
-  &:hover {
-    color: #4652DF;
-    cursor: pointer;
-  }
-`
-
-const StyledLeftArrow = styled(MdOutlineArrowBackIos)`
-  color: #E98074;
-  font-size: 72px;
-  &:hover {
-    color: #4652DF;
-    cursor: pointer;
-  }
-`
 
 const ThumbnailDiv = styled.div`
   position: absolute;
@@ -206,7 +190,7 @@ const AlexCarousel = (props) => {
     <>
     {/* <SecondDiv> */}
       <LeftArrowDiv onClick={(e) => {handleBackClick(e);}}>
-        <StyledLeftArrow/>
+      <FontAwesomeIcon onClick={(e) => {handleNextClick(e);}} icon={faChevronLeft} color='#E98074' size='5x' className='rightArrow'/>
       </LeftArrowDiv>
       <MainImageDiv image_url={MainImageData[current]} onClick={() => setIsOpen(true)}>
         <ThumbnailDiv>
@@ -216,7 +200,7 @@ const AlexCarousel = (props) => {
         </ThumbnailDiv>
       </MainImageDiv>
       <RightArrowDiv>
-        <StyledRightArrow onClick={(e) => {handleNextClick(e);}}/>
+        <FontAwesomeIcon onClick={(e) => {handleNextClick(e);}} icon={faChevronRight} color='#E98074' size='5x' className='rightArrow'/>
       </RightArrowDiv>
     {/* </SecondDiv> */}
       {isOpen && <FullscreenModal length={length} setIsOpen={setIsOpen} handleBackClick={handleBackClick} handleNextClick={handleNextClick} setCurrent={setCurrent} current={current} product={props.product} style={props.style}/> }

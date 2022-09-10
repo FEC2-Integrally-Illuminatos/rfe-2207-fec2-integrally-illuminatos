@@ -27,3 +27,23 @@
   font-size: 100px;
 }
 
+.rightArrow:hover {
+  color: #4652DF;
+  cursor: pointer;
+}
+
+.fullscreenarrows:hover {
+  color: gray;
+  font-size: 110px;
+  cursor: pointer;
+}
+
+.outlinedot:hover {
+  color: white;
+  cursor: pointer;
+}
+
+.xmark:hover {
+  color: gray;
+  cursor: pointer;
+}

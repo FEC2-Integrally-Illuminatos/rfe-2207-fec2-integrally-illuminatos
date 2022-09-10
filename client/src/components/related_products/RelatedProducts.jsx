@@ -34,7 +34,6 @@ const RelatedProducts = ({currentProductID, handleProductChange, userOutfits, se
   useEffect(() => {
     axios.get('/relatedProducts', {params: {productID: productNum}})
       .then((response) => {
-        console.log('resoponse', response.data);
         setRelatedProducts(response.data)
       });
   }, [productNum]);
