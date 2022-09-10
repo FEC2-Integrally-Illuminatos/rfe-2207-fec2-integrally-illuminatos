@@ -82,7 +82,7 @@ const MainImageDiv = styled.div`
   background-image: url(${(props => props.image_url)});
   background-size: cover;
   height: 0;
-  padding-bottom: 100%;
+  padding-bottom: 80%;
   width: 100%;
   &:hover {
     cursor: zoom-in;
