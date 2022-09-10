@@ -1,6 +1,7 @@
 const path = require("path");
 const Dotenv = require('dotenv-webpack');
 const webpack = require('webpack');
+const CompressionPlugin = require("compression-webpack-plugin");
 // const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 module.exports = {
@@ -45,4 +46,11 @@ module.exports = {
     // [port] what port on our local machine to run the dev server
     port: process.env.PORT,
   },
+  plugins: [
+    new CompressionPlugin({
+    test: /\.js$|\.css$|\.html$/,
+    // threshold: 10240,
+    // minRatio: 0.8
+    })
+  ]
 }
