@@ -20,21 +20,19 @@ const ContainerDiv = styled.div`
 `
 
 const StyledRightArrow = styled(MdOutlineArrowForwardIos)`
-  color: white;
+  color: #E98074;
   font-size: 72px;
   &:hover {
     color: #4652DF;
-    font-size: 80px;
     cursor: pointer;
   }
 `
 
 const StyledLeftArrow = styled(MdOutlineArrowBackIos)`
-  color: white;
+  color: #E98074;
   font-size: 72px;
   &:hover {
     color: #4652DF;
-    font-size: 80px;
     cursor: pointer;
   }
 `
@@ -49,17 +47,15 @@ const ThumbnailDiv = styled.div`
 `
 
 const LeftArrowDiv = styled.div`
-  position: absolute;
-  width: 5%;
-  top: 40%;
-  left: -1%;
+  display: flex;
+  height: 85%;
+  align-items: center;
 `
 
 const RightArrowDiv = styled.div`
-  position: absolute;
-  width: 5%;
-  top: 40%;
-  right: 5%;
+  display: flex;
+  height: 81%;
+  align-items: center;
 `
 
 const FullscreenDiv = styled.div`
@@ -92,6 +88,8 @@ const MainImageDiv = styled.div`
     cursor: zoom-in;
   }
 `
+
+
 
 const AlexCarousel = (props) => {
   const [current, setCurrent] = useState(0);
@@ -201,21 +199,21 @@ const AlexCarousel = (props) => {
 
   return (
     <>
+      <LeftArrowDiv onClick={(e) => {handleBackClick(e);}}>
+        <StyledLeftArrow/>
+      </LeftArrowDiv>
       <MainImageDiv image_url={MainImageData[current]} onClick={() => setIsOpen(true)}>
         <ThumbnailDiv>
           {ThumbImageData.map((thumbnail, index) => {
             return <GalleryThumbnail handleThumbClick={handleThumbClick} current={current} thumbnail={thumbnail} index={index}/>
           })}
         </ThumbnailDiv>
-          <LeftArrowDiv onClick={(e) => {handleBackClick(e);}}>
-            <StyledLeftArrow/>
-          </LeftArrowDiv>
-          <RightArrowDiv>
-            <StyledRightArrow onClick={(e) => {handleNextClick(e);}}/>
-          </RightArrowDiv>
       </MainImageDiv>
+      <RightArrowDiv>
+        <StyledRightArrow onClick={(e) => {handleNextClick(e);}}/>
+      </RightArrowDiv>
       {isOpen && <FullscreenModal length={length} setIsOpen={setIsOpen} handleBackClick={handleBackClick} handleNextClick={handleNextClick} setCurrent={setCurrent} current={current} product={props.product} style={props.style}/> }
-      </>
+    </>
   );
 }
 
