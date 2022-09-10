@@ -16,12 +16,17 @@ var RatingHeader = function (props) {
 
   let totalCount = Number(recommended.false) + Number(recommended.true);
   let recCount = Number(recommended.true);
+  let rating1 = ratings[1] || 0;
+  let rating2 = ratings[2] || 0;
+  let rating3 = ratings[3] || 0;
+  let rating4 = ratings[4] || 0;
+  let rating5 = ratings[5] || 0;
   let totalScore =
-    Number(ratings[1]) * 1 +
-    Number(ratings[2]) * 2 +
-    Number(ratings[3]) * 3 +
-    Number(ratings[4]) * 4 +
-    Number(ratings[5]) * 5;
+    Number(rating1) * 1 +
+    Number(rating2) * 2 +
+    Number(rating3) * 3 +
+    Number(rating4) * 4 +
+    Number(rating5) * 5;
   let avg = Math.round((totalScore / totalCount) * 10) / 10;
   //console.log(avg);
   return (

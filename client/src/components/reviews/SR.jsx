@@ -3,8 +3,10 @@ import StarRatings from "react-star-ratings";
 import styled from "styled-components";
 
 var SR = function (props) {
-  // console.log(props);
-  const {rating, totalCount} = props;
+
+  let {rating, totalCount} = props;
+  console.log('THIS IS RATING:', rating);
+  // rating = rating ? rating : 3;
 
   return (
     <div>

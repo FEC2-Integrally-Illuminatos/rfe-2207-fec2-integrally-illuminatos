@@ -92,10 +92,10 @@ var Reviews = function (props) {
     setReviewsToDisplay(StarFilter);
   }
 
-  function ResetFilter() {
-    const StarFilter = Reviews.filter((item) => item.rating === starNum);
-    setReviews(ResetReviews);
-  }
+  // function ResetFilter() {
+  //   const StarFilter = Reviews.filter((item) => item.rating === starNum);
+  //   // setReviews(ResetReviews);
+  // }
   function SubmitReview(reviewData) {
     const {
       rating,

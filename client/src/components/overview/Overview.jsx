@@ -16,7 +16,7 @@ const OverviewDiv = styled.div`
 
 const CarouselDiv = styled.div`
   display: flex;
-  width: 55%;
+  width: 58%;
   margin: 3% 0% 3% 0%;
 
 `
