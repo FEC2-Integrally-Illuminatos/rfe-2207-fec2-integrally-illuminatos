@@ -156,7 +156,6 @@ var Reviews = function (props) {
     return axios
       .get("/reviews", { params })
       .then((result) => {
-        console.log('teck says console log this', result.data.results);
         setReviews(result.data.results);
       })
       .catch((err) => {

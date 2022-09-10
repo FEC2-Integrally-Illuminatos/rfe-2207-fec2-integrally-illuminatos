@@ -19,6 +19,11 @@ const ContainerDiv = styled.div`
   }
 `
 
+const SecondDiv = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+`
+
 const StyledRightArrow = styled(MdOutlineArrowForwardIos)`
   color: #E98074;
   font-size: 72px;
@@ -199,19 +204,21 @@ const AlexCarousel = (props) => {
 
   return (
     <>
+    {/* <SecondDiv> */}
       <LeftArrowDiv onClick={(e) => {handleBackClick(e);}}>
         <StyledLeftArrow/>
       </LeftArrowDiv>
       <MainImageDiv image_url={MainImageData[current]} onClick={() => setIsOpen(true)}>
         <ThumbnailDiv>
-          {ThumbImageData.map((thumbnail, index) => {
-            return <GalleryThumbnail handleThumbClick={handleThumbClick} current={current} thumbnail={thumbnail} index={index}/>
+          {ThumbImageData.map((thumbnail, key) => {
+            return <GalleryThumbnail handleThumbClick={handleThumbClick} current={current} thumbnail={thumbnail} key={key} index={key}/>
           })}
         </ThumbnailDiv>
       </MainImageDiv>
       <RightArrowDiv>
         <StyledRightArrow onClick={(e) => {handleNextClick(e);}}/>
       </RightArrowDiv>
+    {/* </SecondDiv> */}
       {isOpen && <FullscreenModal length={length} setIsOpen={setIsOpen} handleBackClick={handleBackClick} handleNextClick={handleNextClick} setCurrent={setCurrent} current={current} product={props.product} style={props.style}/> }
     </>
   );

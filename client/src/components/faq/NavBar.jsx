@@ -82,17 +82,17 @@ export default function NavBar(props) {
           </NavHashLink>
         </ListItem>
         <ListItem>
-          <NavHashLink smooth to='#related_products' activeStyle={{color: 'red'}} style={linkStyle}>
+          <NavHashLink smooth to='#related_products'  style={linkStyle}>
           Related Products
           </NavHashLink>
         </ListItem>
         <ListItem>
-          <NavHashLink smooth to='#faq' activeStyle={{color: 'red'}} style={linkStyle}>
+          <NavHashLink smooth to='#faq'  style={linkStyle}>
           Questions & Answers
           </NavHashLink>
         </ListItem>
         <ListItem>
-          <NavHashLink smooth to='#gohere' activeStyle={{color: 'red'}} style={linkStyle}>
+          <NavHashLink smooth to='#gohere'  style={linkStyle}>
           Reviews
           </NavHashLink>
         </ListItem>

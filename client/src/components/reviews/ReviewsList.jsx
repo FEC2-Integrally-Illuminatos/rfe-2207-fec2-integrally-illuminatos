@@ -15,8 +15,8 @@ var ReviewsList = function (props) {
   // );
   // const [ToDisplay, setToDisplay] = useState(Reviews.slice(0, DisplayCount));
 
-  return ReviewsToDisplay.map((DisplayItem) => (
-    <ReviewCardContainer>
+  return ReviewsToDisplay.map((DisplayItem, key) => (
+    <ReviewCardContainer key={key}>
       <ReviewsListItem
         body={DisplayItem.body}
         date={DisplayItem.date}

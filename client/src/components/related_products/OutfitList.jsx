@@ -75,10 +75,10 @@ const OutfitList = ({productNum, handleProductChange, userOutfits, setUserOutfit
       <div className="container" onClick={handleAddClick}>
         <Card type="AddOutfit"/>
       </div>
-      {userOutfits.map(product => {
+      {userOutfits.map((product, key) => {
         return (
-        <div className="container" key={product.id} onClick={handleProductChange}>
-          <Card type="Outfit" product={product} handleRemove={handleRemove} id={product.id} productWithRatings={productWithRatings}/>
+        <div className="container" key={key} onClick={handleProductChange}>
+          <Card type="Outfit"  product={product} handleRemove={handleRemove} id={product.id} productWithRatings={productWithRatings}/>
         </div>
         )
       })}
