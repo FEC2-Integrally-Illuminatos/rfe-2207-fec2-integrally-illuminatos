@@ -37,7 +37,7 @@ const ThumbnailDiv = styled.div`
 
 const LeftArrowDiv = styled.div`
   display: flex;
-  height: 85%;
+  height: 81%;
   align-items: center;
 `
 
