@@ -26,9 +26,13 @@ The Chevere project is an e-commerce site that was made with React and Express f
 
 ## Product Overview
 
+![Screen Shot 2022-10-13 at 5 14 15 PM](https://user-images.githubusercontent.com/97701317/195712084-ff00042c-6d97-467b-b484-64180cdf4cf2.png)
+
 The overview section contains three major components: a carousel of images of the current product, a panel with information about the current product, and a long text description of the current product. Within the carousel, there is one main image and any number of thumbnail images aligned on top of the main image. Within the information panel, there is the product's name, price, style selector, size selector, quantity selector, add to cart button, and add to favorites button. The long product description comes below the carousel and information panel and contains a long text description with details of the item.
 
 ## Related Items
+
+![Screen Shot 2022-10-13 at 5 14 30 PM](https://user-images.githubusercontent.com/97701317/195712107-8e8f4a61-1fc7-4cb1-aa19-884944acd242.png)
 
 The Related Products carousel displays a list of products related to the main product, while the Outfit List carousel is unique to each user, only displaying the products that have been added by the user. 
 
@@ -41,11 +45,13 @@ This widget includes:
     
 ## Questions & Answers
 
+![Screen Shot 2022-10-13 at 5 14 46 PM](https://user-images.githubusercontent.com/97701317/195712161-b4a88cab-027b-4655-9c9a-eb00ebb39975.png)
 
 This section allows the user to view and interact with the questions and answers for a given product. The user can use a query and search for a question in the product regardless of whether it is rendered or not, and the app will return a list of questions that match that query and highlight the matched area for increased visibility. The user can see more questions or answers by clicking buttons, and mark questions or answers as helpful. They can also report answers, which will be marked in the API as such and will no longer be rendered for future page loads. The user can click an image to see a modal of that image at full resolution. Finally, the user has the ability to add questions and answers by clicking on their respective buttons, which will open a modal asking them for valid and respective inputs. After submitting their information, the new question or answer will be displayed on the page.
 
 ## Ratings & Reviews
 
+![Screen Shot 2022-10-13 at 5 14 57 PM](https://user-images.githubusercontent.com/97701317/195712172-f857b549-eb7b-41ac-87b1-4e7a2ba4779c.png)
 
 All of the collective meta review information is held in the upper left side while the list of reviews will either sit on the right side or flex underneath depending on the users screen width. Users can vote once on if a review was helpful or report the review for inspection by a moderator. Sorting and searching reviews is also available. A user can also add a new review to the page through the button that will open a modal that will allow a user to input their ratings, summary, pictures, and main body of the review that will be rendered on the page once it has been submitted.
 
