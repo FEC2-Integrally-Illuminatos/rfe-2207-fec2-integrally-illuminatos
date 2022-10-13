@@ -94,7 +94,7 @@ yarn run server-dev
 ```
 Starts server
 ```
-yarn run dev
+yarn start
 ```
 
 # Deployment
