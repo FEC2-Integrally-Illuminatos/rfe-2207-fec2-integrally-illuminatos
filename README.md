@@ -2,6 +2,9 @@
 
 ### Overview
 
+![Screen Shot 2022-10-13 at 4 50 35 PM](https://user-images.githubusercontent.com/97701317/195708970-fe32b49f-08da-4e14-81ac-6e512e499572.png)
+
+
 The Chevere project is an e-commerce site that was made with React and Express following a business requirements document and uses an API provided by the project stakeholders. Our team was tasked to create a dynamic and modern user interface to enhance the client experience. We challenged ourselves to use technologies that were new to us such as React hooks, Styled Components, and Jest. To keep our workflow organized we used daily stand-up meetings along with Trello to keep track of individual engineers' progress and used Git workflow techniques along with code reviews/testing to keep our code stable.
 
 # Table of Contents
@@ -38,13 +41,11 @@ This widget includes:
     
 ## Questions & Answers
 
-![Q A](https://user-images.githubusercontent.com/108149399/189500041-323b980f-94d2-48c7-bb39-192bd847bb39.png)
 
 This section allows the user to view and interact with the questions and answers for a given product. The user can use a query and search for a question in the product regardless of whether it is rendered or not, and the app will return a list of questions that match that query and highlight the matched area for increased visibility. The user can see more questions or answers by clicking buttons, and mark questions or answers as helpful. They can also report answers, which will be marked in the API as such and will no longer be rendered for future page loads. The user can click an image to see a modal of that image at full resolution. Finally, the user has the ability to add questions and answers by clicking on their respective buttons, which will open a modal asking them for valid and respective inputs. After submitting their information, the new question or answer will be displayed on the page.
 
 ## Ratings & Reviews
 
-![Screen Shot 2022-09-10 at 9 30 28 AM](https://user-images.githubusercontent.com/103958999/189490719-c424128d-79d1-48b0-b19c-a1abf0c116e4.jpeg)
 
 All of the collective meta review information is held in the upper left side while the list of reviews will either sit on the right side or flex underneath depending on the users screen width. Users can vote once on if a review was helpful or report the review for inspection by a moderator. Sorting and searching reviews is also available. A user can also add a new review to the page through the button that will open a modal that will allow a user to input their ratings, summary, pictures, and main body of the review that will be rendered on the page once it has been submitted.
 
